@@ -1,0 +1,5 @@
+Dados Banco PI-3
+
+Servidor - senacpi3.mysql.dbaas.com.br
+Usuário - senacpi3
+Senha - TADS1801@pi3
