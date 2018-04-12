@@ -29,6 +29,14 @@ public class Pessoa {
         this.idEndereco = idEndereco;
         this.data = data;
     }
+    
+    public Pessoa(String nome, String apelido, int tipo, int idEndereco, Date data) {
+        this.nome = nome;
+        this.apelido = apelido;
+        this.tipo = tipo;
+        this.idEndereco = idEndereco;
+        this.data = data;
+    }
 
     public String getNome() {
         return nome;

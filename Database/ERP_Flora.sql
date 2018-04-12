@@ -64,14 +64,12 @@ CREATE TABLE ContatoPessoa
 
 CREATE TABLE Endereco
 (
-	id_Endereco INTEGER NOT NULL DEFAULT 1,
-	CEP INTEGER NOT NULL,
+	id_Endereco INTEGER NOT NULL,
+	DEP VARCHAR(10) NOT NULL,
 	Log VARCHAR(150) NOT NULL,
-	Numero INTEGER,
-	Complemento VARCHAR(50),
-	Bairro VARCHAR(100),
-	Cidade VARCHAR(100),
-	Estado VARCHAR(100),
+	Bairro VARCHAR(100) NOT NULL,
+	Cidade VARCHAR(100) NOT NULL,
+	Estado VARCHAR(100) NOT NULL,
 	PRIMARY KEY (id_Endereco)
 
 ) 
@@ -80,11 +78,11 @@ CREATE TABLE Endereco
 
 CREATE TABLE EnderecoPessoa
 (
-	id_Endereco INTEGER NOT NULL,
 	id_Pessoa INTEGER NOT NULL,
-	Numero INTEGER,
+	id_Endereco INTEGER NOT NULL,
+	Numero VARCHAR(20),
 	Complemento VARCHAR(50),
-	PRIMARY KEY (id_Endereco, id_Pessoa)
+	PRIMARY KEY (id_Pessoa, id_Endereco)
 
 ) 
 ;
@@ -167,10 +165,8 @@ CREATE TABLE Pessoa
 	Nome VARCHAR(100) NOT NULL,
 	Apelido VARCHAR(100),
 	TipoPessoa INTEGER NOT NULL,
-	id_Endereco INTEGER NOT NULL,
 	dt_Cadastro DATE,
 	PRIMARY KEY (id_Pessoa),
-	UNIQUE UQ_Pessoa_id_Endereco(id_Endereco),
 	UNIQUE UQ_Pessoa_id_Pessoa(id_Pessoa)
 
 ) 
@@ -278,10 +274,6 @@ ALTER TABLE ContatoPessoa ADD CONSTRAINT FK_ContatoPessoa_Contato
 
 ALTER TABLE ContatoPessoa ADD CONSTRAINT FK_ContatoPessoa_Pessoa 
 	FOREIGN KEY (id_Pessoa) REFERENCES Pessoa (id_Pessoa)
-;
-
-ALTER TABLE Endereco ADD CONSTRAINT FK_Endereco_Pessoa 
-	FOREIGN KEY (id_Endereco) REFERENCES Pessoa (id_Endereco)
 ;
 
 ALTER TABLE EstoqueProduto ADD CONSTRAINT FK_FornecedorProduto_Produto 
