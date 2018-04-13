@@ -7,7 +7,7 @@ package com.senac.pi.floricultura.DAO;
 
 import com.senac.pi.floricultura.connection.ConnectionFactory;
 import com.senac.pi.floricultura.model.Endereco;
-import com.senac.pi.floricultura.model.Pessoa;
+//import com.senac.pi.floricultura.model.Pessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

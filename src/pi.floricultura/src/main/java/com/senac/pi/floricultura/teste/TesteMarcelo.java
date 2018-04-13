@@ -25,9 +25,9 @@ public class TesteMarcelo {
         SimpleDateFormat formato = new SimpleDateFormat( "yyyy-MM-d" );
         Date data = formato.parse("2018-04-13");
         Date dtNasc = formato.parse("2000-04-15");
-        PessoaFisica cliente = new PessoaFisica("44444444444", 2, dtNasc, codObjeto, "Teste Quathro", 0, data);
+        PessoaFisica cliente = new PessoaFisica("55555555555", 2, dtNasc, codObjeto, "Teste Cincho", 0, data);
         
-        Endereco endereco = new Endereco(cliente.getCodObjeto(),"55555555", "Rua de Teste Quathro", "1555", "", "Balneario Teste Paulista", "Cidade tstTeste", "AA");
+        Endereco endereco = new Endereco(cliente.getCodObjeto(),"88888888", "Rua de Teste Quathro", "5", "ap 10", "Parara", "Cidade PIriri", "CC");
         
         try {
            ServicoCliente.cadastrarClientePF(cliente);

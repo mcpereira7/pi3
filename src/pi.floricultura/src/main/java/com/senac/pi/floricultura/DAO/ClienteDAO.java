@@ -32,12 +32,12 @@ public class ClienteDAO {
                     stmt.setDate(5, new Date(cliente.getData().getTime()));
                stmt.execute();
                 
-        } finally {
-            ConnectionFactory.closeConnection(cn, stmt);
-        }
+//        } finally {
+//            ConnectionFactory.closeConnection(cn, stmt);
+//        }
         // Insere os outros atributos de ClientePessoaFisica na tabela PessoaFisica
         
-        try{
+//        try{
                     cn = ConnectionFactory.getConnection();
                     stmt = cn.prepareStatement(sqlPessoaFisica);
                         stmt.setString(1, cliente.getCodObjeto());
