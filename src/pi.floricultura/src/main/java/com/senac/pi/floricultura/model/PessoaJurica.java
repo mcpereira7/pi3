@@ -10,8 +10,8 @@ public class PessoaJurica extends Pessoa{
     private boolean ehEmpresa;
     private boolean disable;
 
-    public PessoaJurica(String cnpj, boolean ehCliente, boolean ehEmpresa, boolean disable, String nome, String apelido, int tipo, int idEndereco, Date data) {
-        super(nome, apelido, tipo, idEndereco, data);
+    public PessoaJurica(String cnpj, boolean ehCliente, boolean ehEmpresa, boolean disable, String codOjeto, String nome, String apelido, int tipo, Date data) {
+        super(codOjeto, nome, apelido, tipo, data);
         this.cnpj = cnpj;
         this.ehCliente = ehCliente;
         this.ehEmpresa = ehEmpresa;

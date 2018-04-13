@@ -5,7 +5,10 @@
  */
 package com.senac.pi.floricultura.model;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -14,28 +17,39 @@ import java.util.Date;
 public class Pessoa {
     
     private int id;
+    String codObjeto;
     private String nome;
     private String apelido;
     private int tipo;
-    private int idEndereco;
     private Date data;
+    private List<Contato> contatos;
 
-    public Pessoa() {
-    }
 
-    public Pessoa(String nome, int tipo, int idEndereco, Date data) {
+    public Pessoa(String codObjeto, String nome, int tipo, Date data) {
+        this.contatos = new ArrayList<Contato>();
+        this.codObjeto = codObjeto;
         this.nome = nome;
         this.tipo = tipo;
-        this.idEndereco = idEndereco;
         this.data = data;
     }
-    
-    public Pessoa(String nome, String apelido, int tipo, int idEndereco, Date data) {
+
+    public Pessoa(String codOjeto, String nome, String apelido, int tipo, Date data) {
+        this.contatos = new ArrayList<Contato>();
+        this.codObjeto = codOjeto;
         this.nome = nome;
         this.apelido = apelido;
         this.tipo = tipo;
-        this.idEndereco = idEndereco;
         this.data = data;
+    }
+
+    
+
+    public String getCodObjeto() {
+        return codObjeto;
+    }
+
+    public void setCodObjeto(String codOjeto) {
+        this.codObjeto = codOjeto;
     }
 
     public String getNome() {
@@ -60,14 +74,6 @@ public class Pessoa {
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
-    }
-
-    public int getIdEndereco() {
-        return idEndereco;
-    }
-
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
     }
 
     public Date getData() {
