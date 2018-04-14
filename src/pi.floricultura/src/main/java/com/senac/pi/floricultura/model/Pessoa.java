@@ -5,7 +5,6 @@
  */
 package com.senac.pi.floricultura.model;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,11 +21,8 @@ public class Pessoa {
     private String apelido;
     private int tipo;
     private Date data;
-    private List<Contato> contatos;
-
 
     public Pessoa(String codObjeto, String nome, int tipo, Date data) {
-        this.contatos = new ArrayList<Contato>();
         this.codObjeto = codObjeto;
         this.nome = nome;
         this.tipo = tipo;
@@ -34,7 +30,6 @@ public class Pessoa {
     }
 
     public Pessoa(String codOjeto, String nome, String apelido, int tipo, Date data) {
-        this.contatos = new ArrayList<Contato>();
         this.codObjeto = codOjeto;
         this.nome = nome;
         this.apelido = apelido;
@@ -42,7 +37,13 @@ public class Pessoa {
         this.data = data;
     }
 
-    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCodObjeto() {
         return codObjeto;

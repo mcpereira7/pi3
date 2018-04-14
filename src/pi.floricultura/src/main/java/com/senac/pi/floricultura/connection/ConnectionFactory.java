@@ -43,7 +43,7 @@ public class ConnectionFactory {
     public static void closeConnection(Connection cn, PreparedStatement stmt) {
         if (stmt != null) {
             try {
-                cn.close();
+                stmt.close();
             } catch (SQLException ex) {
                 Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -55,7 +55,7 @@ public class ConnectionFactory {
     public static void closeConnection(Connection cn, PreparedStatement stmt, ResultSet rs) {
         if (rs != null) {
             try {
-                cn.close();
+                rs.close();
             } catch (SQLException ex) {
                 Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
             }
