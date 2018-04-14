@@ -174,6 +174,7 @@ CREATE TABLE Pessoa
 	Apelido VARCHAR(100),
 	TipoPessoa INTEGER NOT NULL,
 	dt_Cadastro DATE,
+	Disable BIT,
 	PRIMARY KEY (id_Pessoa),
 	UNIQUE UQ_Pessoa_cod_objeto(cod_objeto),
 	UNIQUE UQ_Pessoa_id_Pessoa(id_Pessoa)
@@ -206,7 +207,6 @@ CREATE TABLE PessoaJuridica
 	IE VARCHAR(12),
 	ehCliente BIT NOT NULL,
 	ehEmpresa BIT NOT NULL,
-	Disable BIT NOT NULL,
 	Responsavel VARCHAR(100),
 	Email VARCHAR(150),
 	Telefone VARCHAR(20),

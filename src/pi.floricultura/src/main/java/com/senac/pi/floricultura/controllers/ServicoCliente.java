@@ -6,7 +6,7 @@
 package com.senac.pi.floricultura.controllers;
 
 import com.senac.pi.floricultura.model.PessoaFisica;
-import com.senac.pi.floricultura.DAO.ClienteDAO;
+import com.senac.pi.floricultura.DAO.PessoaDAO;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,9 +19,7 @@ public class ServicoCliente {
 
     public static void cadastrarClientePF(PessoaFisica cliente) throws SQLException, Exception {
         try {
-            // Realizada a inserção de dados no 'MOCk'
-            //MockListaDeCliente.inserir(cliente);
-            ClienteDAO.inserirPF(cliente);
+            PessoaDAO.inserirPF(cliente);
             
         } catch (SQLException e) {
             //mostra no console qualquer erro que ocorra no 'MOCK'
@@ -30,7 +28,11 @@ public class ServicoCliente {
     }
 
     public static void atualizaClientePF(PessoaFisica cliente) {
-
+        
+        try {
+            
+        } catch (Exception e) {
+        }
       
     }
 

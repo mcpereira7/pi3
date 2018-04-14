@@ -5,9 +5,7 @@
  */
 package com.senac.pi.floricultura.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -21,20 +19,23 @@ public class Pessoa {
     private String apelido;
     private int tipo;
     private Date data;
+    private boolean disable;
 
-    public Pessoa(String codObjeto, String nome, int tipo, Date data) {
+    public Pessoa(String codObjeto, String nome, int tipo, Date data, boolean disable) {
         this.codObjeto = codObjeto;
         this.nome = nome;
         this.tipo = tipo;
         this.data = data;
+        this.disable = disable;
     }
 
-    public Pessoa(String codOjeto, String nome, String apelido, int tipo, Date data) {
+    public Pessoa(String codOjeto, String nome, String apelido, int tipo, Date data, boolean disable) {
         this.codObjeto = codOjeto;
         this.nome = nome;
         this.apelido = apelido;
         this.tipo = tipo;
         this.data = data;
+        this.disable = disable;
     }
 
     public int getId() {
@@ -84,7 +85,14 @@ public class Pessoa {
     public void setData(Date data) {
         this.data = data;
     }
-    
+
+    public boolean isDisable() {
+        return disable;
+    }
+
+    public void setDisable(boolean disable) {
+        this.disable = disable;
+    }
     
     
 }

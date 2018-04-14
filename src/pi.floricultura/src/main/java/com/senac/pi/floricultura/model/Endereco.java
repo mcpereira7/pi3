@@ -3,7 +3,7 @@ package com.senac.pi.floricultura.model;
 public class Endereco {
     
     private int idEndereco;
-    private String codObjeto;;
+    private int id_Pessoa;
     private String cep;
     private String log;
     private String numero;
@@ -12,8 +12,8 @@ public class Endereco {
     private String cidade;
     private String estado;
 
-    public Endereco(String codObjeto, String cep, String log, String numero, String complemento, String bairro, String cidade, String estado) {
-        this.codObjeto = codObjeto;
+    public Endereco(int id_Pessoa, String cep, String log, String numero, String complemento, String bairro, String cidade, String estado) {
+        this.id_Pessoa = id_Pessoa;
         this.cep = cep;
         this.log = log;
         this.numero = numero;
@@ -23,12 +23,12 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public String getCodObjeto() {
-        return codObjeto;
+    public int getId_Pessoa() {
+        return id_Pessoa;
     }
 
-    public void setCodObjeto(String codObjeto) {
-        this.codObjeto = codObjeto;
+    public void setId_Pessoa(int id_Pessoa) {
+        this.id_Pessoa = id_Pessoa;
     }
 
     public int getIdEndereco() {

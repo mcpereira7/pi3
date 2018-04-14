@@ -25,13 +25,13 @@ public class TesteMarcelo {
         SimpleDateFormat formato = new SimpleDateFormat( "yyyy-MM-d" );
         Date data = formato.parse("2018-04-13");
         Date dtNasc = formato.parse("2000-04-15");
-        PessoaFisica cliente = new PessoaFisica("55555555555", 2, dtNasc, codObjeto, "Teste Cincho", 0, data);
+        PessoaFisica cliente = new PessoaFisica("77777777777", 1, dtNasc, "bbbbb@bbb.bb", "1111111111", "11222222222", codObjeto, "GGGGG BBBB kkkkkkkk", 10, data, false);
         
-        Endereco endereco = new Endereco(cliente.getCodObjeto(),"88888888", "Rua de Teste Quathro", "5", "ap 10", "Parara", "Cidade PIriri", "CC");
+        Endereco endereco = new Endereco(cliente.getId(),"99999999", "Av de Teste EEEEEEEEEE", "5", "ap 10", "CCCCCCC", "Cidade MMMMMMM", "PP");
         
         try {
             ServicoCliente.cadastrarClientePF(cliente);
-            EnderecoDAO.inserirEndereco(endereco,cliente.getId());
+            EnderecoDAO.inserirEndereco(endereco, cliente.getId());
         } catch (Exception e) {
             System.out.println("Achou mesmo que seria assim tão fácil?");
             System.out.println("Aproveita que tá sentado e chora...hahaha");
