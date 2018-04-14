@@ -20,16 +20,16 @@ public class EnderecoDAO {
 
     private static Connection cn = null;
 
-    public static void inserirEndereco(Endereco endereco) throws SQLException, Exception {
+    public static void inserirEndereco(Endereco endereco, int id_pessoa) throws SQLException, Exception {
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO Endereco(cod_objeto, CEP, Log, Numero, Complemento, Bairro, Cidade, UF) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Endereco(id_pessoa, CEP, Log, Numero, Complemento, Bairro, Cidade, UF) VALUES (?,?,?,?,?,?,?,?)";
         
         cn = ConnectionFactory.getConnection();
         
         try{
             stmt = cn.prepareStatement(sql);
-                stmt.setString(1, endereco.getCodObjeto());
+                stmt.setInt(1, id_pessoa);
                 stmt.setString(2, endereco.getCep());
                 stmt.setString(3, endereco.getLog());
                 stmt.setString(4, endereco.getNumero());

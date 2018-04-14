@@ -13,10 +13,10 @@ import java.util.Date;
  */
 public class PessoaFisica extends Pessoa{
     
-        private String cpf;
-        private String rg;
-        private int sexo;
-        private Date dtNasc;
+    private String cpf;
+    private String rg;
+    private int sexo;
+    private Date dtNasc;
 
     public PessoaFisica(String cpf, int sexo, Date dtNasc, String codObjeto, String nome, int tipo, Date data) {
         super(codObjeto, nome, tipo, data);

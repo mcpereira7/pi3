@@ -30,8 +30,8 @@ public class TesteMarcelo {
         Endereco endereco = new Endereco(cliente.getCodObjeto(),"88888888", "Rua de Teste Quathro", "5", "ap 10", "Parara", "Cidade PIriri", "CC");
         
         try {
-           ServicoCliente.cadastrarClientePF(cliente);
-            EnderecoDAO.inserirEndereco(endereco);
+            ServicoCliente.cadastrarClientePF(cliente);
+            EnderecoDAO.inserirEndereco(endereco,cliente.getId());
         } catch (Exception e) {
             System.out.println("Achou mesmo que seria assim tão fácil?");
             System.out.println("Aproveita que tá sentado e chora...hahaha");
