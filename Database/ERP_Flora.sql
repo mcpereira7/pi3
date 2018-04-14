@@ -73,7 +73,8 @@ CREATE TABLE Endereco
 	Cidade VARCHAR(100) NOT NULL,
 	UF CHAR(2) NOT NULL,
 	PRIMARY KEY (id_Endereco),
-	UNIQUE UQ_Endereco_cod_objeto(id_Pessoa)
+	UNIQUE UQ_Endereco_cod_objeto(id_Pessoa),
+	KEY (id_Pessoa)
 
 ) 
 ;
@@ -290,6 +291,10 @@ CREATE TABLE Vendas
 SET FOREIGN_KEY_CHECKS=1;
 
 
+ALTER TABLE Endereco ADD CONSTRAINT FK_Endereco_Pessoa 
+	FOREIGN KEY (id_Pessoa) REFERENCES Pessoa (id_Pessoa)
+;
+
 ALTER TABLE GrupoPermissao ADD CONSTRAINT FK_GrupoPermissao_Usuarios 
 	FOREIGN KEY (id_Grupo) REFERENCES Usuarios (id_Grupo)
 ;
@@ -312,10 +317,6 @@ ALTER TABLE ItensVenda ADD CONSTRAINT FK_ItensVenda_Produto
 ALTER TABLE ItensVenda ADD CONSTRAINT FK_ItensVenda_Vendas 
 	FOREIGN KEY (id_Venda) REFERENCES Vendas (id_Venda)
 	ON DELETE CASCADE
-;
-
-ALTER TABLE Pessoa ADD CONSTRAINT FK_Pessoa_Endereco 
-	FOREIGN KEY (id_Pessoa) REFERENCES Endereco (id_Pessoa)
 ;
 
 ALTER TABLE PessoaJuridica ADD CONSTRAINT FK_Pessoajuridica_Pessoa 
