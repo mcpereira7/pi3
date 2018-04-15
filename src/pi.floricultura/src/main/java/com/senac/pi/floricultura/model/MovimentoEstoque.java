@@ -11,8 +11,7 @@ public class MovimentoEstoque {
     private int tipo;
     private int natureza;
 
-    public MovimentoEstoque(int id_movimento, int id_produto, int id_pessoa, int quantidade, Date Data, int tipo, int natureza) {
-        this.id_movimento = id_movimento;
+    public MovimentoEstoque(int id_produto, int id_pessoa, int quantidade, Date Data, int tipo, int natureza) {
         this.id_produto = id_produto;
         this.id_pessoa = id_pessoa;
         this.quantidade = quantidade;
@@ -23,10 +22,6 @@ public class MovimentoEstoque {
 
     public int getId_movimento() {
         return id_movimento;
-    }
-
-    public void setId_movimento(int id_movimento) {
-        this.id_movimento = id_movimento;
     }
 
     public int getId_produto() {
