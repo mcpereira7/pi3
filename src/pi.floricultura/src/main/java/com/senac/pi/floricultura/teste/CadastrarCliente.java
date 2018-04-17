@@ -2,6 +2,7 @@ package com.senac.pi.floricultura.teste;
 
 import com.senac.pi.floricultura.DAO.EnderecoDAO;
 import com.senac.pi.floricultura.controllers.ServicoCliente;
+import com.senac.pi.floricultura.model.Endereco;
 import com.senac.pi.floricultura.model.GerarCodigo;
 import com.senac.pi.floricultura.model.PessoaFisica;
 import java.io.IOException;
@@ -48,11 +49,24 @@ public class CadastrarCliente extends HttpServlet{
         String telefone = req.getParameter("telefone1");
         String telefone2 = req.getParameter("telefone2");
         
+        // endereço PessoaFisica
+        String log = req.getParameter("log");
+        String numero = req.getParameter("numero");
+        String complemento = req.getParameter("comp");
+        String bairro = req.getParameter("bairro");
+        String cidade = req.getParameter("cid");
+        String cep = req.getParameter("cep");
+        String uf = req.getParameter("uf");
+        
+        // Objetos PessoaFisica e Endereço criados com os dados recebidos no form
+        
         PessoaFisica pf = new PessoaFisica(cpf, sexo, dtNasc, email, telefone, telefone2, codObjeto, nome, tipo, data, false);
         pf.setApelido(apelido);
+        Endereco endereco = new Endereco(pf.getId(), cep, log, numero, complemento, bairro, cidade, uf);
+        
         try {
             ServicoCliente.cadastrarClientePF(pf);
-//            EnderecoDAO.inserirEndereco(endereco, cliente.getId());
+            EnderecoDAO.inserirEndereco(endereco, pf.getId());
             PrintWriter writer = resp.getWriter();
             writer.println("<html><body>Empresa adicionanda com Sucesso</body></html>");
             
