@@ -20,7 +20,7 @@ public class Venda {
     private int id;
     private int idVenda;
     private Date data;
-    // private Cliente cliente;
+    private Pessoa pessoa;
     private List<ItensVenda> itensVenda = new ArrayList<>();
     private float valorTotal;
 
@@ -72,13 +72,13 @@ public class Venda {
         this.data = dataVenda;
     }
 
-    /*public Cliente getCliente() {
-        return cliente;
-    }*/
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
 
-    /*public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }*/
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
 
     public List<ItensVenda> getListaItensVenda() {
         return itensVenda;
