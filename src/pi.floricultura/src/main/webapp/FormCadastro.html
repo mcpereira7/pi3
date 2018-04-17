@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <title>Cadastrar Cliente</title>
+        
+        <link href="css/estilo.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <h1>Cadastro Cliente PF</h1>
+        <form action="cadastrarCliente" method="POST">
+            Nome: <input type="text" name="nome" id="Nome"><br>
+            Apelido: <input type="text" name="apelido" id="Nome"><br>
+            CPF: <input type="text" name="cpf" id="docFisc"><br>
+            RG: <input type="text" name="rg" id="docFisc"><br>
+            Data Nasc: <input type="date" id="dtNasc" name="dtNasc"><br>
+            
+            
+            <input type="radio" name="sxType" value="1" id="sxType" checked>Masculino
+            <input type="radio" name="sxType" value="2" id="sxType">Feminino
+            <input type="radio" name="sxType" value="3" id="sxType">Outro
+            <br>
+            
+            E-mail: <input type="email" name="email" id="contato"><br>
+            Telefone: <input type="tel" name="telefone1" id="contato"><br>
+            Celular: <input type="tel" name="telefone2" id="contato"><br>
+            
+            <input type="submit" name="btCadastrar" id="btCadastrar" value="Cadastrar">
+        </form>
+    </body>
+</html>
