@@ -12,6 +12,9 @@ public class PessoaJuridica extends Pessoa{
     private String email;
     private String telefone;
     private String telefone2;
+    
+     public PessoaJuridica() {
+    }
 
     public PessoaJuridica(String cnpj, String inscEs, boolean ehCliente, boolean ehEmpresa, String responsavel, String email, String telefone, String telefone2, String codOjeto, String nome, String apelido, int tipo, Date data, boolean disable) {
         super(codOjeto, nome, apelido, tipo, data, disable);
@@ -24,6 +27,8 @@ public class PessoaJuridica extends Pessoa{
         this.telefone = telefone;
         this.telefone2 = telefone2;
     }
+
+   
 
    
     

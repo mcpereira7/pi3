@@ -21,6 +21,9 @@ public class PessoaFisica extends Pessoa{
     private String telefone;
     private String telefone2;
 
+    public PessoaFisica() {
+    }
+
     public PessoaFisica(String cpf, int sexo, Date dtNasc, String email, String telefone, String telefone2, String codObjeto, String nome, int tipo, Date data, boolean disable) {
         super(codObjeto, nome, tipo, data, disable);
         this.cpf = cpf;

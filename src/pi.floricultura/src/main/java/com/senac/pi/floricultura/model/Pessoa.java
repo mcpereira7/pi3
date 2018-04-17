@@ -21,6 +21,9 @@ public class Pessoa {
     private Date data;
     private boolean disable;
 
+    public Pessoa() {
+    }
+    
     public Pessoa(String codObjeto, String nome, int tipo, Date data, boolean disable) {
         this.codObjeto = codObjeto;
         this.nome = nome;
