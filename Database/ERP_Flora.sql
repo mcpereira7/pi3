@@ -41,10 +41,12 @@ DROP TABLE IF EXISTS Vendas CASCADE
 
 CREATE TABLE Contato
 (
-	id_Contato INTEGER NOT NULL,
+	id_Contato INTEGER NOT NULL AUTO_INCREMENT,
+	cod_objeto VARCHAR(40) NOT NULL,
 	Tipo INTEGER NOT NULL,
 	Valor VARCHAR(50) NOT NULL,
-	PRIMARY KEY (id_Contato)
+	PRIMARY KEY (id_Contato),
+	UNIQUE UQ_Contato_cod_objeto(cod_objeto)
 
 ) 
 ;
@@ -52,11 +54,8 @@ CREATE TABLE Contato
 
 CREATE TABLE ContatoPessoa
 (
-	id_Contato INTEGER NOT NULL DEFAULT 1,
-	id_Pessoa INTEGER NOT NULL,
-	PRIMARY KEY (id_Contato, id_Pessoa),
-	KEY (id_Contato),
-	KEY (id_Pessoa)
+	cod_ObjetoPessoa VARCHAR(40) NOT NULL,
+	cod_ObjetoContato VARCHAR(40) NOT NULL
 
 ) 
 ;
@@ -64,15 +63,18 @@ CREATE TABLE ContatoPessoa
 
 CREATE TABLE Endereco
 (
-	id_Endereco INTEGER NOT NULL DEFAULT 1,
-	CEP INTEGER NOT NULL,
+	id_Endereco INTEGER NOT NULL AUTO_INCREMENT,
+	id_Pessoa INTEGER NOT NULL,
+	CEP VARCHAR(10) NOT NULL,
 	Log VARCHAR(150) NOT NULL,
-	Numero INTEGER,
+	Numero VARCHAR(20),
 	Complemento VARCHAR(50),
-	Bairro VARCHAR(100),
-	Cidade VARCHAR(100),
-	Estado VARCHAR(100),
-	PRIMARY KEY (id_Endereco)
+	Bairro VARCHAR(100) NOT NULL,
+	Cidade VARCHAR(100) NOT NULL,
+	UF CHAR(2) NOT NULL,
+	PRIMARY KEY (id_Endereco),
+	UNIQUE UQ_Endereco_cod_objeto(id_Pessoa),
+	KEY (id_Pessoa)
 
 ) 
 ;
@@ -80,11 +82,12 @@ CREATE TABLE Endereco
 
 CREATE TABLE EnderecoPessoa
 (
-	id_Endereco INTEGER NOT NULL,
-	id_Pessoa INTEGER NOT NULL,
-	Numero INTEGER,
+	id INTEGER NOT NULL,
+	cod_ObjetoEndereco VARCHAR(40) NOT NULL,
+	cod_ObjetoPessoa VARCHAR(40) NOT NULL,
+	Numero VARCHAR(20),
 	Complemento VARCHAR(50),
-	PRIMARY KEY (id_Endereco, id_Pessoa)
+	PRIMARY KEY (id)
 
 ) 
 ;
@@ -94,7 +97,7 @@ CREATE TABLE EstoqueProduto
 (
 	id_Produto INTEGER NOT NULL,
 	Quantidade INTEGER NOT NULL DEFAULT 0,
-	KEY (id_Produto)
+	UNIQUE UQ_EstoqueProduto_id_Produto(id_Produto)
 
 ) 
 ;
@@ -103,10 +106,12 @@ CREATE TABLE EstoqueProduto
 CREATE TABLE Funcionarios
 (
 	id_Pessoa INTEGER NOT NULL,
-	Codigo INTEGER NOT NULL,
+	Codigo INTEGER NOT NULL DEFAULT 1,
 	Funcao VARCHAR(50) NOT NULL,
 	Salario FLOAT(0),
-	PRIMARY KEY (id_Pessoa)
+	UNIQUE UQ_Funcionarios_Codigo(Codigo),
+	UNIQUE UQ_Funcionarios_id_Pessoa(id_Pessoa),
+	KEY (id_Pessoa)
 
 ) 
 ;
@@ -114,7 +119,7 @@ CREATE TABLE Funcionarios
 
 CREATE TABLE GrupoPermissao
 (
-	id_Grupo INTEGER NOT NULL,
+	id_Grupo INTEGER NOT NULL AUTO_INCREMENT,
 	Nome VARCHAR(50) NOT NULL,
 	PRIMARY KEY (id_Grupo)
 
@@ -149,10 +154,10 @@ CREATE TABLE ItensVenda
 
 CREATE TABLE MovimentoEstoque
 (
-	id_Movimento INTEGER NOT NULL,
+	id_Movimento INTEGER NOT NULL AUTO_INCREMENT,
 	Data DATE NOT NULL,
 	Quantidade INTEGER NOT NULL,
-	id_Pessoa INTEGER,
+	cod_ObjetoPessoa VARCHAR(40) NOT NULL,
 	Tipo INTEGER NOT NULL,
 	Natureza INTEGER NOT NULL,
 	PRIMARY KEY (id_Movimento)
@@ -163,14 +168,15 @@ CREATE TABLE MovimentoEstoque
 
 CREATE TABLE Pessoa
 (
-	id_Pessoa INTEGER NOT NULL DEFAULT 1,
+	id_Pessoa INTEGER NOT NULL AUTO_INCREMENT,
+	cod_objeto VARCHAR(40) NOT NULL,
 	Nome VARCHAR(100) NOT NULL,
 	Apelido VARCHAR(100),
 	TipoPessoa INTEGER NOT NULL,
-	id_Endereco INTEGER NOT NULL,
 	dt_Cadastro DATE,
+	Disable BIT,
 	PRIMARY KEY (id_Pessoa),
-	UNIQUE UQ_Pessoa_id_Endereco(id_Endereco),
+	UNIQUE UQ_Pessoa_cod_objeto(cod_objeto),
 	UNIQUE UQ_Pessoa_id_Pessoa(id_Pessoa)
 
 ) 
@@ -179,11 +185,16 @@ CREATE TABLE Pessoa
 
 CREATE TABLE PessoaFisica
 (
-	id_pessoa INTEGER NOT NULL,
+	id_PessoaFisica INTEGER NOT NULL AUTO_INCREMENT,
+	id_Pessoa INTEGER NOT NULL,
 	CPF VARCHAR(11) NOT NULL,
 	dt_Nasc DATE,
-	Sexo VARCHAR(15),
-	PRIMARY KEY (id_pessoa)
+	Sexo INTEGER,
+	Email VARCHAR(150),
+	Telefone VARCHAR(20),
+	Telefone2 VARCHAR(20),
+	PRIMARY KEY (id_PessoaFisica),
+	UNIQUE UQ_PessoaFisica_id_Pessoa(id_Pessoa)
 
 ) 
 ;
@@ -191,12 +202,15 @@ CREATE TABLE PessoaFisica
 
 CREATE TABLE PessoaJuridica
 (
-	id_Pessoa INTEGER NOT NULL,
+	id_Pessoa INTEGER NOT NULL AUTO_INCREMENT,
 	CNPJ VARCHAR(14) NOT NULL,
 	IE VARCHAR(12),
 	ehCliente BIT NOT NULL,
 	ehEmpresa BIT NOT NULL,
-	Disable BIT NOT NULL,
+	Responsavel VARCHAR(100),
+	Email VARCHAR(150),
+	Telefone VARCHAR(20),
+	Telefone2 VARCHAR(20),
 	PRIMARY KEY (id_Pessoa)
 
 ) 
@@ -212,7 +226,8 @@ CREATE TABLE Produto
 	Tipo INTEGER NOT NULL,
 	dt_Cadastro DATE,
 	Disable BIT,
-	PRIMARY KEY (id_produto)
+	PRIMARY KEY (id_produto),
+	UNIQUE UQ_Produto_Codigo(Codigo)
 
 ) 
 ;
@@ -220,7 +235,7 @@ CREATE TABLE Produto
 
 CREATE TABLE Telas
 (
-	id_Tela INTEGER NOT NULL,
+	id_Tela INTEGER NOT NULL AUTO_INCREMENT,
 	Nome VARCHAR(50) NOT NULL,
 	PRIMARY KEY (id_Tela)
 
@@ -230,7 +245,7 @@ CREATE TABLE Telas
 
 CREATE TABLE Tipo
 (
-	id_Tipo INTEGER NOT NULL,
+	id_Tipo INTEGER NOT NULL AUTO_INCREMENT,
 	Codigo INTEGER NOT NULL,
 	Descricao VARCHAR(50) NOT NULL,
 	Categoria VARCHAR(50),
@@ -242,12 +257,14 @@ CREATE TABLE Tipo
 
 CREATE TABLE Usuarios
 (
-	id_Usuario INTEGER NOT NULL,
+	id_Usuario INTEGER NOT NULL AUTO_INCREMENT,
 	Nome VARCHAR(100) NOT NULL,
 	Login VARCHAR(20) NOT NULL,
 	Senha VARCHAR(20) NOT NULL,
 	id_Grupo INTEGER NOT NULL,
+	cod_objeto VARCHAR(40) NOT NULL,
 	PRIMARY KEY (id_Usuario),
+	UNIQUE UQ_Usuarios_cod_objeto(cod_objeto),
 	UNIQUE UQ_Usuarios_id_Grupo(id_Grupo)
 
 ) 
@@ -256,12 +273,14 @@ CREATE TABLE Usuarios
 
 CREATE TABLE Vendas
 (
-	id_Venda INTEGER NOT NULL,
+	id_Venda INTEGER NOT NULL AUTO_INCREMENT,
+	Codigo INTEGER NOT NULL,
 	id_Cliente INTEGER,
 	ValorTotal FLOAT(0) NOT NULL,
 	Data DATE NOT NULL,
 	id_Vendedor INTEGER NOT NULL,
 	PRIMARY KEY (id_Venda),
+	UNIQUE UQ_Vendas_Codigo(Codigo),
 	KEY (id_Vendedor)
 
 ) 
@@ -272,25 +291,8 @@ CREATE TABLE Vendas
 SET FOREIGN_KEY_CHECKS=1;
 
 
-ALTER TABLE ContatoPessoa ADD CONSTRAINT FK_ContatoPessoa_Contato 
-	FOREIGN KEY (id_Contato) REFERENCES Contato (id_Contato)
-;
-
-ALTER TABLE ContatoPessoa ADD CONSTRAINT FK_ContatoPessoa_Pessoa 
-	FOREIGN KEY (id_Pessoa) REFERENCES Pessoa (id_Pessoa)
-;
-
 ALTER TABLE Endereco ADD CONSTRAINT FK_Endereco_Pessoa 
-	FOREIGN KEY (id_Endereco) REFERENCES Pessoa (id_Endereco)
-;
-
-ALTER TABLE EstoqueProduto ADD CONSTRAINT FK_FornecedorProduto_Produto 
-	FOREIGN KEY (id_Produto) REFERENCES Produto (id_produto)
-;
-
-ALTER TABLE Funcionarios ADD CONSTRAINT FK_Funcionarios_PessoaFisica 
-	FOREIGN KEY (id_Pessoa) REFERENCES PessoaFisica (id_pessoa)
-	ON DELETE CASCADE
+	FOREIGN KEY (id_Pessoa) REFERENCES Pessoa (id_Pessoa)
 ;
 
 ALTER TABLE GrupoPermissao ADD CONSTRAINT FK_GrupoPermissao_Usuarios 
@@ -317,12 +319,12 @@ ALTER TABLE ItensVenda ADD CONSTRAINT FK_ItensVenda_Vendas
 	ON DELETE CASCADE
 ;
 
-ALTER TABLE PessoaFisica ADD CONSTRAINT FK_PessoaFisica_Pessoa 
-	FOREIGN KEY (id_pessoa) REFERENCES Pessoa (id_Pessoa)
-;
-
 ALTER TABLE PessoaJuridica ADD CONSTRAINT FK_Pessoajuridica_Pessoa 
 	FOREIGN KEY (id_Pessoa) REFERENCES Pessoa (id_Pessoa)
+;
+
+ALTER TABLE Produto ADD CONSTRAINT FK_Produto_EstoqueProduto 
+	FOREIGN KEY (id_produto) REFERENCES EstoqueProduto (id_Produto)
 ;
 
 ALTER TABLE Vendas ADD CONSTRAINT FK_Vendas_Usuarios 

@@ -1,6 +1,5 @@
 package com.senac.pi.floricultura.teste;
 
-import com.senac.pi.floricultura.DAO.EnderecoDAO;
 import com.senac.pi.floricultura.controllers.ServicoCliente;
 import com.senac.pi.floricultura.model.GerarCodigo;
 import com.senac.pi.floricultura.model.PessoaFisica;
@@ -9,8 +8,6 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
