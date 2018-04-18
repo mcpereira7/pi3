@@ -20,9 +20,10 @@ public class Venda {
     private int id;
     private int idVenda;
     private Date data;
-    private Pessoa pessoa;
+    private int idPessoa;
+    private int idVendedor;
     private List<ItensVenda> itensVenda = new ArrayList<>();
-    private float valorTotal;
+    private double valorTotal;
 
     public Venda() {
     }
@@ -47,7 +48,6 @@ public class Venda {
 
         itensVenda.add(item);
     } */
-    
     public int getId() {
         return id;
     }
@@ -72,12 +72,20 @@ public class Venda {
         this.data = dataVenda;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public int getIdPessoa() {
+        return idPessoa;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setIdPessoa(int pessoa) {
+        this.idPessoa = pessoa;
+    }
+
+    public int getIdVendedor() {
+        return idVendedor;
+    }
+
+    public void setIdVendedor(int idVendedor) {
+        this.idVendedor = idVendedor;
     }
 
     public List<ItensVenda> getListaItensVenda() {
@@ -88,11 +96,11 @@ public class Venda {
         this.itensVenda = listaProdutos;
     }
 
-    public float getValorTotal() {
+    public double getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(float valorTotal) {
+    public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
 

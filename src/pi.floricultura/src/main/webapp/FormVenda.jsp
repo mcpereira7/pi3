@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<!--
-André de Amorim Yamamoto
-Github: aayandre
-Senac
--->
-<html lang="pt-BR">
+<%-- 
+    Document   : FormVenda
+    Created on : 17/04/2018, 20:59:34
+    Author     : andre.ayamamoto
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="pt-BR">
+    
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Venda</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="css/estilo.css" />
@@ -26,5 +27,5 @@ Senac
         </form>
 
     </body>
-
+    
 </html>

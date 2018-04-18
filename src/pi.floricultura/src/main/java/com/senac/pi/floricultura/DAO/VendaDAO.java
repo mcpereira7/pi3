@@ -25,37 +25,32 @@ public class VendaDAO {
 
     private static Connection cn = null;
 
-    public VendaDAO() {
-        cn = ConnectionFactory.getConnection();
-    }
-
     public static void inserir(Venda venda)
             throws SQLException, Exception {
 
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO vendas (idVenda, idCliente, ValorTotal, Data, idVendedor)"
+        String sql = "INSERT INTO vendas (cod_Venda, id_Cliente, ValorTotal, Data, id_Vendedor)"
                 + "VALUES (?, ?, ?, ?, ?)";
 
         cn = ConnectionFactory.getConnection();
-        //falta criar ClienteDAO
-        /* 
+        //Preciso da consulta de Pessoa
+
         try {
 
-            int idCliente = ClienteDAO.obterByCod(venda.getCliente().getCodCliente()).getId();
-
+            //int idCliente = ClienteDAO.obterByCod(venda.getCliente().getCodCliente()).getId();
             stmt = cn.prepareStatement(sql);
-            stmt.setInt(1, idVenda);
-            stmt.setInt(2, idCliente);
-            stmt.setFloat(3, venda.getValorTotal());  
-            stmt.setDate(4, (java.sql.Date));
-            stmt.setInt(5, idVendedor);
- 
+            stmt.setInt(1, venda.getCodVenda());
+            stmt.setInt(2, venda.getIdPessoa());
+            stmt.setDouble(3, venda.getValorTotal());
+            stmt.setDate(4, (java.sql.Date) venda.getDataVenda()); //Provavelmente vai dar erro
+            stmt.setInt(5, venda.getIdVendedor());
+
             stmt.execute();
 
         } finally {
             ConnectionFactory.closeConnection(cn, stmt);
-        } */
+        }
     }
 
     public static int countVendas()
