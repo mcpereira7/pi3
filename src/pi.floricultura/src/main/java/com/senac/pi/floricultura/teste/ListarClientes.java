@@ -25,7 +25,7 @@ public class ListarClientes extends HttpServlet{
             writer.println("<meta charset=\"UTF-8\">");
             writer.println("<title>Teste Listar Clientes</title>");
             writer.println("<style type=\"text/css\">");
-            writer.println("@import url(\"\\css\\estilo.css\");");
+            writer.println("@import url(\"css\\estilo.css\");");
             writer.println("</style>");
         writer.println("</head>");
         writer.println("<body>");
