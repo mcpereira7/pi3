@@ -13,12 +13,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" type="text/css" href="css/estilo.css">
+        <link rel="stylesheet" type="text/css" href="css/estilo1.css">
 
     </head>
     <body>
         <%
-            List<PessoaFisica> istPessoa = ServicoCliente.listarClientes();
+            List<PessoaFisica> listPessoa = ServicoCliente.listarClientes();
         %>
         <h1>Lista de clientes Cadastrados</h1>
         <table>
@@ -29,19 +29,20 @@
                     <td>Telefone</td>
                 </tr>
             </theader>
-            <tbody>
+            
                     <%
-                        for (PessoaFisica pf : istPessoa) {
+                        for (PessoaFisica pf : listPessoa) {
                     %>
                 <tr>
                     <td><%=pf.getNome()%></td>
                     <td><%=pf.getEmail()%></td>
                     <td><%=pf.getTelefone()%></td>
+                    <td><form action="dadosCliente" method="POST"><input type="submit" name="edit" value="<%=pf.getId()%>"></form></td>
                 </tr>
                 <%
                     }
                 %>
-            </tbody>
+            
         </table>
     </body>
 </html>

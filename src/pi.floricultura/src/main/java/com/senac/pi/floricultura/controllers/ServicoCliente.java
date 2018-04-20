@@ -31,14 +31,19 @@ public class ServicoCliente {
     public static void atualizaClientePF(PessoaFisica cliente) {
         
         try {
+            PessoaDAO.atualizarPF(cliente);
             
         } catch (Exception e) {
         }
       
     }
 
-    public static List<PessoaFisica> procuraClientePF(Integer cod, String nome){
-           
+    public static PessoaFisica procuraClientePF(Integer cod){
+           try {
+            return PessoaDAO.buscarPF(cod);
+            
+        } catch (Exception e) {
+        }
         return null;
     }
     

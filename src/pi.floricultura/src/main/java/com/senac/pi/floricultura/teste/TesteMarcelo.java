@@ -52,9 +52,13 @@ public class TesteMarcelo {
 
         List<PessoaFisica> lista = ServicoCliente.listarClientes();
         
-        for (int i = 0; i< lista.size(); i++) {
-            System.out.println(lista.get(i).getNome());
-        }
+         for (PessoaFisica pf : lista) {
+             System.out.println(pf.getNome());
+             
+         }
+//        for (int i = 0; i< lista.size(); i++) {
+//            System.out.println(lista.get(i).getNome() + " | " + lista.get(i).getEmail() + " | " + lista.get(i).getTelefone());
+//        }
        
     }
     
