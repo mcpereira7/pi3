@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -18,22 +17,24 @@ import java.util.List;
 public class Venda {
 
     private int id;
-    private int idVenda;
+    private int codigo;
     private Date data;
     private int idPessoa;
     private int idVendedor;
-    private List<ItensVenda> itensVenda = new ArrayList<>();
+    private ArrayList<ItensVenda> itensVenda;
     private double valorTotal;
 
     public Venda() {
+        this.itensVenda = new ArrayList<>();
     }
 
     public Venda(ResultSet rs) throws SQLException, Exception {
-        idVenda = rs.getInt("id");
+        this.itensVenda = new ArrayList<>();
+        codigo = rs.getInt("id");
         //   cliente = DAO.ClienteDAO.obter(rs.getInt("idCliente"));
         valorTotal = rs.getFloat("ValorTotal");
         data = rs.getDate("Data");
-        itensVenda = com.senac.pi.floricultura.DAO.VendaDAO.getItensVenda(rs.getInt("idVenda"));
+        itensVenda = (ArrayList<ItensVenda>) com.senac.pi.floricultura.DAO.VendaDAO.getItensVenda(rs.getInt("idVenda"));
 
     }
 
@@ -56,12 +57,12 @@ public class Venda {
         this.id = id;
     }
 
-    public int getCodVenda() {
-        return idVenda;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setCodVenda(int codVenda) {
-        this.idVenda = codVenda;
+    public void setCodigo(int codVenda) {
+        this.codigo = codVenda;
     }
 
     public Date getDataVenda() {
@@ -88,11 +89,11 @@ public class Venda {
         this.idVendedor = idVendedor;
     }
 
-    public List<ItensVenda> getListaItensVenda() {
+    public ArrayList<ItensVenda> getListaItensVenda() {
         return itensVenda;
     }
 
-    public void setListaItensVenda(List<ItensVenda> listaProdutos) {
+    public void setListaItensVenda(ArrayList<ItensVenda> listaProdutos) {
         this.itensVenda = listaProdutos;
     }
 

@@ -17,13 +17,16 @@ import java.util.List;
  */
 public class ServicoVenda {
 
-
     public static void ConcluirVenda(Venda entrada) throws VendaException {
         try {
+            
             // falta serviço produto  ServicoProduto.AtualizaEstoque(entrada.getListaItensVenda());
-            com.senac.pi.floricultura.DAO.VendaDAO.inserir(entrada);
+            VendaDAO.inserir(entrada);
+            
+            //Inserir itensVenda com o id da venda
             int id = com.senac.pi.floricultura.DAO.VendaDAO.getLastVendaID();
-            com.senac.pi.floricultura.DAO.VendaDAO.insertItensVenda(entrada.getListaItensVenda(), id);
+            VendaDAO.insertItensVenda(entrada.getListaItensVenda(), id);
+            
         } catch (Exception e) {
             throw new VendaException("Erro na fonte de dados.", e.getCause());
         }
@@ -32,7 +35,7 @@ public class ServicoVenda {
     public static List<Venda> ConsultaVendaByData(Date de, Date ate)
             throws VendaException {
         try {
-            return com.senac.pi.floricultura.DAO.VendaDAO.getVendaByDates(de, ate);
+            return VendaDAO.getVendaByDates(de, ate);
         } catch (Exception e) {
             throw new VendaException("Erro na fonte de dados.", e.getCause());
         }
@@ -55,4 +58,5 @@ public class ServicoVenda {
             throw new VendaException("Erro na fonte de dados.", e.getCause());
         }
     }
+    
 }

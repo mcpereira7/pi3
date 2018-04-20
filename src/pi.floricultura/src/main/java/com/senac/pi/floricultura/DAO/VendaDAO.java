@@ -40,7 +40,7 @@ public class VendaDAO {
 
             //int idCliente = ClienteDAO.obterByCod(venda.getCliente().getCodCliente()).getId();
             stmt = cn.prepareStatement(sql);
-            stmt.setInt(1, venda.getCodVenda());
+            stmt.setInt(1, venda.getCodigo());
             stmt.setInt(2, venda.getIdPessoa());
             stmt.setDouble(3, venda.getValorTotal());
             stmt.setDate(4, (java.sql.Date) venda.getDataVenda()); //Provavelmente vai dar erro
@@ -97,7 +97,7 @@ public class VendaDAO {
 
                 //venda.setCodVenda(rs.getInt("id"));
                 venda.setDataVenda(rs.getDate("Data"));
-                venda.setValorTotal(rs.getFloat("ValorTotal"));
+                venda.setValorTotal(rs.getDouble("ValorTotal"));
 
                 resultado.add(venda);
             }
