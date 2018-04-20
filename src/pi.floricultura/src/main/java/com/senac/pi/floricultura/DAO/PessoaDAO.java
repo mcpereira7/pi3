@@ -219,6 +219,25 @@ public class PessoaDAO {
 
     }
     
+    public static void excluirById(int id) throws SQLException, Exception {
+        PreparedStatement stmt = null;
+
+        String sql = "UPDATE Pessoa SET disable=? WHERE (id_pessoa =?) ";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            stmt.setBoolean(1, true);
+            stmt.setInt(2, id);
+            stmt.execute();
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt);
+        }
+
+    }
+    
     public static PessoaFisica buscarPF(int cod) throws SQLException, Exception {
          PessoaFisica pf = null;
         ResultSet rs = null;

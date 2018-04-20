@@ -27,6 +27,7 @@
                     <td>Nome</td>
                     <td>E-mail</td>
                     <td>Telefone</td>
+                    <td>Ação</td>
                 </tr>
             </theader>
             
@@ -37,7 +38,10 @@
                     <td><%=pf.getNome()%></td>
                     <td><%=pf.getEmail()%></td>
                     <td><%=pf.getTelefone()%></td>
-                    <td><form action="dadosCliente" method="POST"><input type="submit" name="edit" value="<%=pf.getId()%>"></form></td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="<%=pf.getId()%>">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="<%=pf.getId()%>">EX</form>
+                    </td>
                 </tr>
                 <%
                     }
