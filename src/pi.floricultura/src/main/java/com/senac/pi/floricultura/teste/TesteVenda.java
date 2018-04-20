@@ -43,6 +43,7 @@ public class TesteVenda {
             novaVenda.setValorTotal(total);
 
             VendaDAO.inserir(novaVenda);
+            VendaDAO.insertItensVenda(novaVenda.getListaItensVenda(), novaVenda.getCodigo());
 
         } catch (VendaException e) {
             throw new VendaException("Erro");
