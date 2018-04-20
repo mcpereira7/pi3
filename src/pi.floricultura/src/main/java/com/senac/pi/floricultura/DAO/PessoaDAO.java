@@ -291,7 +291,8 @@ public class PessoaDAO {
                 + "       ,e.CEP, e.log, e.numero, e.complemento, e.bairro, e.cidade, e.uf\n"
                 + "FROM pessoa p \n"
                 + "JOIN pessoafisica pf ON p.id_Pessoa=pf.id_Pessoa\n"
-                + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa";
+                + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa"
+                + " WHERE p.Disable = false";
 
         cn = ConnectionFactory.getConnection();
 

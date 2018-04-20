@@ -1,73 +1,173 @@
+
+
+
+
+
+
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro Cliente PF</title>
-        <link rel="stylesheet" type="text/css" href="/css/estilo1.css" media="all">
+        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo1.css">
+
     </head>
     <body>
-        <h1>Cadastro Cliente PF</h1>
-        <form action="cadastrarCliente" method="POST">
-            <div class="dadosPessoais">
-                <label for="Nome">Nome:</label> 
-                <input type="text" name="nome" id="Nome">
-
-                <label for="apelido">Apelido:</label>
-                <input type="text" name="apelido" id="apelido">
-
-                <label for="cpf">CPF:</label>
-                <input type="text" name="cpf" id="cpf">
-
-                <label for="rg">RG: </label>
-                <input type="text" name="rg" id="rg">
-
-                <label for="dtNasc">Data Nasc:</label>
-                <input type="date" name="dtNasc" id="dtNasc">
-                
-                <label>Sexo</label>
-		<label class="checkbox">
-		<input type="radio" name="sexo" value="masculino"> Masculino
-		<input type="radio" name="sexo" value="feminino"> Feminino
-                <input type="radio" name="sexo" value="Outro"> Outro
-		</label>
-            </div>
-            <div class="contato">
-                <label for="email">E-mail:</label>
-                <input type="email" name="email" id="email">
-                
-                <label for="tel">Telefone:</label>
-                <input type="tel" name="tel" id="tel">
-                
-                <label for="cel">Celular:</label>
-                <input type="tel" name="cel" id="cel">
-            </div>
-            <div class="endereco">
-                <h3>Endereço</h3>
-
-                <label for="log">Logradouro:</label>
-                <input type="text" name="log" id="log">
-                
-                <label for="num">Numero:</label>
-                <input type="text" name="numero" id="num">
-                
-                <label for="comp">Complementeo:</label>
-                <input type="text" name="comp" id="comp">
-                
-                <label for="bairro">Bairo:</label> 
-                <input type="text" name="bairro" id="bairro">
-                
-                <label for="cid">Cidade:</label> 
-                <input type="text" id="cid" name="cid">
-                
-                <label for="cep">CEP:</label> 
-                <input type="text" name="cep" id="cep">
-                
-                <label for="uf">UF:</label>
-                <input type="text" id="uf" name="uf">
-            </div>
+        
+        <h1>Lista de clientes Cadastrados</h1>
+        <table>
+            <theader>
+                <tr>
+                    <td>Nome</td>
+                    <td>E-mail</td>
+                    <td>Telefone</td>
+                    <td>Ação</td>
+                </tr>
+            </theader>
             
-            <input type="submit" name="btCadastrar" id="btCadastrar" value="Cadastrar">
+                    
+                <tr>
+                    <td>GGGGG BBBB kkkkkkkk</td>
+                    <td>gggggg@bbbbb.kkk</td>
+                    <td>1151515151</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="4">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="4">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>BLABLABLA BBBB kkkkkkkk</td>
+                    <td>bla@mudou.sx</td>
+                    <td>11111111111111</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="8">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="8">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Marcelo Pereria</td>
+                    <td>marcelo.pereira@rerum.com.br</td>
+                    <td>1151822004</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="17">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="17">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Vinicius</td>
+                    <td>vini@nodomain.com</td>
+                    <td>1155556666</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="18">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="18">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Vinicius</td>
+                    <td>vini@nodomain.com</td>
+                    <td>1155556666</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="20">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="20">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Vinicius</td>
+                    <td>vini@nodomain.com</td>
+                    <td>1155556666</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="21">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="21">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>GGGGG BBBB kkkkkkkk</td>
+                    <td>bbbbb@bbb.bb</td>
+                    <td>1111111111</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="26">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="26">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Marcelo Pereria</td>
+                    <td>marcelo.pereira@rerum.com.br</td>
+                    <td>null</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="30">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="30">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Marcelo Pereria</td>
+                    <td>marcelo.pereira@rerum.com.br</td>
+                    <td>null</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="31">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="31">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Marcelo Pereria</td>
+                    <td>marcelo.pereira@rerum.com.br</td>
+                    <td>+551151822004</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="32">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="32">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Marcelo Pereria</td>
+                    <td>marcelo.pereira@rerum.com.br</td>
+                    <td>+551151822004</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="33">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="33">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Marcelo Pereria</td>
+                    <td>marcelo.pereira@rerum.com.br</td>
+                    <td>+551151822004</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="34">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="34">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Robervaldo</td>
+                    <td>robervaldo@naosei.nada</td>
+                    <td>+551151822004</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="35">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="35">EX</form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>GGGGG BBBB kkkkkkkk</td>
+                    <td>ggggg@bbb.kk</td>
+                    <td>111111111111111</td>
+                    <td>
+                        <form action="dadosCliente" method="POST"><input type="submit" name="edit" value="37">ED</form>
+                        <form action="excluirPessoa" method="POST"><input type="submit" name="excluir" value="37">EX</form>
+                    </td>
+                </tr>
+                
             
-        </form>
+        </table>
     </body>
 </html>
