@@ -5,10 +5,11 @@
  */
 package com.senac.pi.floricultura.model;
 
+import com.senac.pi.floricultura.DAO.VendaDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Venda {
 
     private int id;
     private int codigo;
-    private Date data;
+    private Calendar data;
     private int idPessoa;
     private int idVendedor;
     private ArrayList<ItensVenda> itensVenda;
@@ -33,8 +34,8 @@ public class Venda {
         codigo = rs.getInt("id");
         //   cliente = DAO.ClienteDAO.obter(rs.getInt("idCliente"));
         valorTotal = rs.getFloat("ValorTotal");
-        data = rs.getDate("Data");
-        itensVenda = (ArrayList<ItensVenda>) com.senac.pi.floricultura.DAO.VendaDAO.getItensVenda(rs.getInt("idVenda"));
+        data = (Calendar) rs.getObject("Data");
+        itensVenda = (ArrayList<ItensVenda>) VendaDAO.getItensVenda(rs.getInt("idVenda"));
 
     }
 
@@ -65,11 +66,11 @@ public class Venda {
         this.codigo = codVenda;
     }
 
-    public Date getDataVenda() {
+    public Calendar getDataVenda() {
         return data;
     }
 
-    public void setDataVenda(Date dataVenda) {
+    public void setDataVenda(Calendar dataVenda) {
         this.data = dataVenda;
     }
 

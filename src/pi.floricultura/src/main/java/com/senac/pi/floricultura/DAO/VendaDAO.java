@@ -29,8 +29,8 @@ public class VendaDAO {
             throws SQLException, Exception {
 
         PreparedStatement stmt = null;
-
-        String sql = "INSERT INTO vendas (cod_Venda, id_Cliente, ValorTotal, Data, id_Vendedor)"
+        
+        String sql = "INSERT INTO vendas (Codigo, id_Cliente, ValorTotal, Data, id_Vendedor)"
                 + "VALUES (?, ?, ?, ?, ?)";
 
         cn = ConnectionFactory.getConnection();
@@ -43,7 +43,7 @@ public class VendaDAO {
             stmt.setInt(1, venda.getCodigo());
             stmt.setInt(2, venda.getIdPessoa());
             stmt.setDouble(3, venda.getValorTotal());
-            stmt.setDate(4, (java.sql.Date) venda.getDataVenda()); //Provavelmente vai dar erro
+            stmt.setDate(4, new java.sql.Date(venda.getDataVenda().getTimeInMillis())); //Provavelmente vai dar erro
             stmt.setInt(5, venda.getIdVendedor());
 
             stmt.execute();
@@ -59,14 +59,16 @@ public class VendaDAO {
         ResultSet rs = null;
         PreparedStatement stmt = null;
 
-        String sql = "SELECT COUNT(id) AS quantidade FROM vendas";
+        String sql = "SELECT COUNT(id_Venda) AS quantidade FROM vendas";
 
         cn = ConnectionFactory.getConnection();
 
         try {
             stmt = cn.prepareStatement(sql);
             rs = stmt.executeQuery();
-
+            
+            rs.next();
+            
             int quantidade = rs.getInt("quantidade");
 
             return quantidade;
@@ -96,7 +98,7 @@ public class VendaDAO {
                 Venda venda = new Venda();
 
                 //venda.setCodVenda(rs.getInt("id"));
-                venda.setDataVenda(rs.getDate("Data"));
+                venda.setDataVenda((Calendar) rs.getObject("Data"));
                 venda.setValorTotal(rs.getDouble("ValorTotal"));
 
                 resultado.add(venda);
@@ -174,7 +176,7 @@ public class VendaDAO {
 
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO ItensVenda (idVenda, idProduto, Quantidade, Valor)"
+        String sql = "INSERT INTO ItensVenda (id_Venda, id_Produto, Quantidade, Valor)"
                 + "VALUES (?, ?, ?, ?)";
 
         cn = ConnectionFactory.getConnection();
@@ -187,7 +189,7 @@ public class VendaDAO {
                 stmt.setInt(1, idVenda);
                 stmt.setInt(2, itensVenda.getIdProduto());
                 stmt.setInt(3, itensVenda.getQuantidade());
-                stmt.setFloat(4, (float) itensVenda.getValor());
+                stmt.setDouble(4, itensVenda.getValor());
 
                 stmt.execute();
             }

@@ -19,10 +19,6 @@ import java.util.Calendar;
  */
 public class TesteVenda {
 
-    public static void main(String[] args) throws Exception {
-        createVenda();
-    }
-
     public static void createVenda() throws Exception {
 
         Venda novaVenda = new Venda();
@@ -31,9 +27,9 @@ public class TesteVenda {
 
         try {
             novaVenda.setCodigo(ServicoVenda.geraCodVenda());
-            novaVenda.setDataVenda(Calendar.getInstance().getTime());
+            novaVenda.setDataVenda(Calendar.getInstance());
             novaVenda.setIdPessoa(10);
-            novaVenda.setIdVendedor(20);
+            novaVenda.setIdVendedor(1);
             novaVenda.setListaItensVenda(createCarrinho(3));
 
             //Calculo do total
@@ -58,7 +54,7 @@ public class TesteVenda {
         for (int i = 0; i < numberOfProducts; i++) {
 
             ItensVenda item = new ItensVenda();
-            item.setIdProduto(i);
+            item.setIdProduto(i + 1);
             item.setQuantidade(i + 1);
             item.setValor(i * 2.5);
 

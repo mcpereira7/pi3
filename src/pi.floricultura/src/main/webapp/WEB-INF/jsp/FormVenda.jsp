@@ -10,7 +10,7 @@
 <%
     Venda venda = new Venda();
     
-    ItensVenda carrinho = null;
+    ItensVenda item = null;
     
     
 %>
@@ -19,7 +19,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Venda</title>
+        <title>Form Venda</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="css/estilo.css" />
         <script src="js/main.js"></script>
@@ -27,11 +27,13 @@
 
     <body>
 
-        <form action="insertVenda" method="POST">
+        <form action="${pageContext.request.contextPath}/insert-venda" method="post">
 
             Cliente: <input type="text" name="cliente" id="cliente"><br>
 
             Produto: <input type="text" name="produto" id="produto"><br>
+            
+            <input type="submit" value="Salvar"/>
             
             
         </form>
