@@ -6,6 +6,7 @@
 package com.senac.pi.floricultura.teste;
 
 import com.senac.pi.floricultura.controllers.ServicoCliente;
+import com.senac.pi.floricultura.model.Endereco;
 import com.senac.pi.floricultura.model.PessoaFisica;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,7 +39,7 @@ public class AlterarCliente extends HttpServlet{
         }
         String sexo = req.getParameter("sexo");
         String cod = req.getParameter("cod");
-        
+        String cend = req.getParameter("cend");
         PessoaFisica pf = new PessoaFisica(req.getParameter("cpf")
                 , Integer.parseInt(sexo)
                 , dtNasc
@@ -50,11 +51,22 @@ public class AlterarCliente extends HttpServlet{
                 , 1
                 , dtCad
                 , false);
-        
+        // endereço PessoaFisica
+        String log = req.getParameter("log");
+        String numero = req.getParameter("numero");
+        String complemento = req.getParameter("comp");
+        String bairro = req.getParameter("bairro");
+        String cidade = req.getParameter("cid");
+        String cep = req.getParameter("cep");
+        String uf = req.getParameter("uf");
+        Endereco end = new Endereco(pf.getId(), cep, log, numero, complemento, bairro, cidade, cidade);
+//        end.setIdEndereco(Integer.parseInt(cend));
         
         try {
             pf.setId(Integer.parseInt(cod));
+            end.setIdEndereco(Integer.parseInt(cend));
             ServicoCliente.atualizaClientePF(pf);
+            ServicoCliente.buscaEnderecoPF(pf.getId());
             PrintWriter writer = resp.getWriter();
             writer.println("<html><body>Registro Atualizado com Sucesso</body></html>");
         } catch (Exception e) {

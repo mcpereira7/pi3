@@ -5,8 +5,10 @@
  */
 package com.senac.pi.floricultura.controllers;
 
+import com.senac.pi.floricultura.DAO.EnderecoDAO;
 import com.senac.pi.floricultura.model.PessoaFisica;
 import com.senac.pi.floricultura.DAO.PessoaDAO;
+import com.senac.pi.floricultura.model.Endereco;
 import com.senac.pi.floricultura.model.PessoaJuridica;
 import java.sql.SQLException;
 import java.util.List;
@@ -94,4 +96,29 @@ public class ServicoCliente {
         return null;
     }
     
+    //Endereco Pessoa
+    public static void atualizaEnderecoPF(Endereco end) {
+        
+        try {
+            EnderecoDAO.atualizarEndereco(end);
+            
+        } catch (Exception e) {
+        }
+      
+    }
+    
+     public static Endereco buscaEnderecoPF(int cod) {
+        
+        try {
+            return EnderecoDAO.buscarEndereco(cod);
+            
+        } catch (Exception e) {
+        }
+      return null;
+    }
+    
 }
+
+
+
+

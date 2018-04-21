@@ -5,7 +5,9 @@
  */
 package com.senac.pi.floricultura.teste;
 
+import com.senac.pi.floricultura.DAO.EnderecoDAO;
 import com.senac.pi.floricultura.controllers.ServicoCliente;
+import com.senac.pi.floricultura.model.Endereco;
 import com.senac.pi.floricultura.model.PessoaFisica;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -27,8 +29,9 @@ public class GetPessoaFisica extends HttpServlet{
         
          int cod = Integer.parseInt(req.getParameter("edit"));
          PessoaFisica pf =  ServicoCliente.procuraClientePF(cod);
-         
+         Endereco end = ServicoCliente.buscaEnderecoPF(cod);
          req.setAttribute("pf", pf);
+         req.setAttribute("end", end);
          RequestDispatcher dispatcher = req.getRequestDispatcher("/AlterarClientePF.jsp");
          dispatcher.forward(req, resp);
          

@@ -60,34 +60,34 @@
                 <h3>Endereço</h3>
 
                 <label for="log">Logradouro:</label>
-                <input type="text" name="log" id="log">
+                <input type="text" name="log" id="log" value="${end.getLog()}">
                 
                 <label for="num">Numero:</label>
-                <input type="text" name="numero" id="num">
+                <input type="text" name="numero" id="num" value="${end.getNumero()}">
                 
                 <label for="comp">Complementeo:</label>
-                <input type="text" name="comp" id="comp">
+                <input type="text" name="comp" id="comp" value="${end.getComplemento()}">
                 
                 <label for="bairro">Bairo:</label> 
-                <input type="text" name="bairro" id="bairro">
+                <input type="text" name="bairro" id="bairro" value="${end.getBairro()}">
                 
                 <label for="cid">Cidade:</label> 
-                <input type="text" id="cid" name="cid">
+                <input type="text" id="cid" name="cid" value="${end.getCidade()}">
                 
                 <label for="cep">CEP:</label> 
-                <input type="text" name="cep" id="cep">
+                <input type="text" name="cep" id="cep" value="${end.getCep()}">
                 
                 <label for="uf">UF:</label>
-                <input type="text" id="uf" name="uf">
+                <input type="text" id="uf" name="uf" value="${end.getEstado()}">
                 
                 
             </div>
             
         
-        <input type="submit" name="btCadastrar" id="btCadastrar" value="Cadastrar">
+        <input type="submit" name="btCadastrar" id="btCadastrar" value="Salvar">
         <input hidden="true" type="text" name="cobj" value="${pf.getCodObjeto()}">
         <input hidden="true" type="text" name="cod" value="${pf.getId()}">
-        
+        <input hidden="true" type="text" name="cend" value="${end.getIdEndereco()}">
         </form>
     </body>
 </html>
