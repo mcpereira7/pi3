@@ -32,14 +32,14 @@ public class Venda {
     public Venda(ResultSet rs) throws SQLException, Exception {
         this.itensVenda = new ArrayList<>();
         codigo = rs.getInt("id");
-        //   cliente = DAO.ClienteDAO.obter(rs.getInt("idCliente"));
+        // cliente = DAO.ClienteDAO.obter(rs.getInt("idCliente"));
         valorTotal = rs.getFloat("ValorTotal");
         data = (Calendar) rs.getObject("Data");
         itensVenda = (ArrayList<ItensVenda>) VendaDAO.getItensVenda(rs.getInt("idVenda"));
 
     }
 
-    /*public void setProdutoNoItensVenda(Produto entrada) {
+    public void setProdutoNoItensVenda(Produto entrada) {
 
         ItensVenda item = new ItensVenda();
 
@@ -49,7 +49,8 @@ public class Venda {
         item.setPreco(entrada.getPreco());
 
         itensVenda.add(item);
-    } */
+    }
+
     public int getId() {
         return id;
     }

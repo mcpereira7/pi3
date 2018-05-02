@@ -8,14 +8,53 @@ package com.senac.pi.floricultura.controllers;
 import com.senac.pi.floricultura.DAO.VendaDAO;
 import com.senac.pi.floricultura.exceptions.VendaException;
 import com.senac.pi.floricultura.model.Venda;
+import java.awt.Component;
+import java.awt.HeadlessException;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Vinicius
  */
 public class ServicoVenda {
+    
+     public static List<Cliente> ConsultaClienteByNomeOuCodigo(String campoDaConsulta,
+            List<ItensVenda> listaItensVenda, List<Cliente> listaDeClientes, Component tela)
+            throws VendaException {
+
+        try {
+            if (!campoDaConsulta.isEmpty()) {
+                if (!listaItensVenda.isEmpty() || !listaDeClientes.isEmpty()) {
+                    JOptionPane.showMessageDialog(tela, "Venda em andamento.");
+                    return null;
+                } else {
+                    if (isParsable(campoDaConsulta)) {
+
+                        listaDeClientes = ServicoCliente.procuraCliente(Integer.parseInt(campoDaConsulta), campoDaConsulta);
+
+                        if (listaDeClientes.size() > 1) {
+                            JOptionPane.showMessageDialog(tela, "Foi encontrado multiplos clientes com o mesmo nome.");
+                            return listaDeClientes;
+                        } else {
+                            return listaDeClientes;
+                        }
+
+                    } else {
+                        listaDeClientes = ServicoCliente.procuraCliente(-1, campoDaConsulta);
+                        return listaDeClientes;
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(tela, "Digite um nome ou valor valido.");
+                return null;
+            }
+        } catch (ClienteException | DataSourceException | HeadlessException | NumberFormatException e) {
+            throw new VendaException("Erro na fonte de dados.", e.getCause());
+        }
+    }
+
 
     public static void ConcluirVenda(Venda entrada) throws VendaException {
         try {

@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,7 +30,7 @@ public class VendaDAO {
             throws SQLException, Exception {
 
         PreparedStatement stmt = null;
-        
+
         String sql = "INSERT INTO vendas (Codigo, id_Cliente, ValorTotal, Data, id_Vendedor)"
                 + "VALUES (?, ?, ?, ?, ?)";
 
@@ -66,9 +67,9 @@ public class VendaDAO {
         try {
             stmt = cn.prepareStatement(sql);
             rs = stmt.executeQuery();
-            
+
             rs.next();
-            
+
             int quantidade = rs.getInt("quantidade");
 
             return quantidade;
@@ -161,6 +162,49 @@ public class VendaDAO {
             while (rs.next()) {
                 //Construtor adaptado
                 Venda venda = new Venda(rs);
+                resultado.add(venda);
+            }
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+
+        return resultado;
+    }
+
+    public static List<Venda> getVendaRelatorio(Date de, Date ate, String campoOrdenacao, boolean ASC)
+            throws SQLException, Exception {
+
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        List<Venda> resultado = new ArrayList<>();
+
+        String sql = "SELECT * FROM vendas WHERE Data BETWEEN ? AND ? ORDER BY ? ?";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+
+            stmt = cn.prepareStatement(sql);
+
+            Timestamp t = new Timestamp(de.getTime());
+            Timestamp t2 = new Timestamp(ate.getTime());
+
+            stmt.setTimestamp(1, t);
+            stmt.setTimestamp(2, t2);
+            stmt.setString(3, campoOrdenacao);
+            stmt.setString(4, ASC ? "ASC" : "DESC");
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Venda venda = new Venda();
+                venda.setId(rs.getInt("Id"));
+                venda.setDataVenda(rs.getDate("Data"));
+                venda.setPessoa(DAO.ClienteDAO.obter(rs.getInt("idPessoa")));
+                venda.setListaItensVenda(DAO.VendaDAO.getItensVenda(rs.getInt("id")));
+                venda.setValorTotal(rs.getFloat("ValorTotal"));
+
                 resultado.add(venda);
             }
 
