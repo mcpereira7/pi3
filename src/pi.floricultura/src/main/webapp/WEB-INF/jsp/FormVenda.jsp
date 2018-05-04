@@ -29,9 +29,9 @@
 
         <form action="${pageContext.request.contextPath}/insert-venda" method="post">
 
-            Cliente: <input type="text" name="cliente" id="cliente"><br>
+            Client: <input type="text" name="cliente" id="cliente"><br>
 
-            Produto: <input type="text" name="produto" id="produto"><br>
+            Product: <input type="text" name="produto" id="produto"><br>
             
             <input type="submit" value="Salvar"/>
             

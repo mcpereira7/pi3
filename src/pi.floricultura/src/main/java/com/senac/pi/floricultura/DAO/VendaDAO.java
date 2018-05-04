@@ -200,9 +200,9 @@ public class VendaDAO {
             while (rs.next()) {
                 Venda venda = new Venda();
                 venda.setId(rs.getInt("Id"));
-                venda.setDataVenda(rs.getDate("Data"));
-                venda.setPessoa(DAO.ClienteDAO.obter(rs.getInt("idPessoa")));
-                venda.setListaItensVenda(DAO.VendaDAO.getItensVenda(rs.getInt("id")));
+                //venda.setDataVenda(rs.getDate("Data"));
+                //venda.setPessoa(DAO.ClienteDAO.obter(rs.getInt("idPessoa")));
+                //venda.setListaItensVenda(DAO.VendaDAO.getItensVenda(rs.getInt("id")));
                 venda.setValorTotal(rs.getFloat("ValorTotal"));
 
                 resultado.add(venda);

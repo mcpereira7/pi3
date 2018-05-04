@@ -39,17 +39,18 @@ public class Venda {
 
     }
 
-    public void setProdutoNoItensVenda(Produto entrada) {
-
-        ItensVenda item = new ItensVenda();
-
-        item.setCodProduto(entrada.getId());
-        item.setNome(entrada.getNome());
-        item.setQuantidade(entrada.getQuantidadeVenda());
-        item.setPreco(entrada.getPreco());
-
-        itensVenda.add(item);
-    }
+    //Ainda não tem produto
+//    public void setProdutoNoItensVenda(Produto entrada) {
+//
+//        ItensVenda item = new ItensVenda();
+//
+//        item.setCodProduto(entrada.getId());
+//        item.setNome(entrada.getNome());
+//        item.setQuantidade(entrada.getQuantidadeVenda());
+//        item.setPreco(entrada.getPreco());
+//
+//        itensVenda.add(item);
+//    }
 
     public int getId() {
         return id;
