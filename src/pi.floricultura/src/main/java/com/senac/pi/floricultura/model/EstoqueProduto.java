@@ -38,6 +38,6 @@ public class EstoqueProduto {
     }
     
     public boolean possuiCadastroEstoque(){
-        return EstoqueProdutoDAO.possuiCadastroEstoque(this.id_produto,this.id_pessoa);
+        return EstoqueProdutoDAO.PossuiCadastroEstoque(this.id_produto,this.id_pessoa);
     }
 }

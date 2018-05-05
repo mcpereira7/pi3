@@ -12,7 +12,7 @@ import java.util.List;
 public class EstoqueProdutoDAO {
 
     //Metodo para verificar se já existe uma linha no banco para o produto + pessoa informado no objeto.
-    public static boolean possuiCadastroEstoque(int id_produto, int id_pessoa) {
+    public static boolean PossuiCadastroEstoque(int id_produto, int id_pessoa) {
         ResultSet rs = null;
         PreparedStatement stmt = null;
 
@@ -22,8 +22,8 @@ public class EstoqueProdutoDAO {
 
         try {
             stmt = cn.prepareStatement(sql);
-            stmt.setInt(0, id_produto);
-            stmt.setInt(1, id_pessoa);
+            stmt.setInt(1, id_produto);
+            stmt.setInt(2, id_pessoa);
 
             rs = stmt.executeQuery();
 
@@ -47,9 +47,9 @@ public class EstoqueProdutoDAO {
         try {
             stmt = cn.prepareStatement(sql);
 
-            stmt.setInt(0, estoqueProduto.getId_produto());
-            stmt.setInt(0, estoqueProduto.getId_pessoa());
-            stmt.setInt(0, estoqueProduto.getQuantidade());
+            stmt.setInt(1, estoqueProduto.getId_produto());
+            stmt.setInt(2, estoqueProduto.getId_pessoa());
+            stmt.setInt(3, estoqueProduto.getQuantidade());
             stmt.execute();
 
         } catch (Exception e) {
@@ -70,12 +70,12 @@ public class EstoqueProdutoDAO {
         try {
             stmt = cn.prepareStatement(sql);
 
-            stmt.setInt(0, estoqueProduto.getId_produto());
-            stmt.setInt(1, estoqueProduto.getId_pessoa());
-            stmt.setInt(2, estoqueProduto.getQuantidade());
+            stmt.setInt(1, estoqueProduto.getId_produto());
+            stmt.setInt(2, estoqueProduto.getId_pessoa());
+            stmt.setInt(3, estoqueProduto.getQuantidade());
             //WHERE
-            stmt.setInt(3, estoqueProduto.getId_produto());
-            stmt.setInt(4, estoqueProduto.getId_pessoa());
+            stmt.setInt(4, estoqueProduto.getId_produto());
+            stmt.setInt(5, estoqueProduto.getId_pessoa());
             stmt.execute();
 
         } catch (Exception e) {
