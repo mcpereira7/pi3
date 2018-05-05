@@ -24,11 +24,11 @@ public class MovimentoEstoqueDAO {
         try {
             stmt = cn.prepareStatement(sql);
             
-            stmt.setInt(0, movimentoEstoque.getId_produto());
-            stmt.setInt(0, movimentoEstoque.getId_pessoa());
-            stmt.setInt(0, movimentoEstoque.getQuantidade());
-            stmt.setInt(0, movimentoEstoque.getTipo());
-            stmt.setInt(0, movimentoEstoque.getNatureza());
+            stmt.setInt(1, movimentoEstoque.getId_produto());
+            stmt.setInt(2, movimentoEstoque.getId_pessoa());
+            stmt.setInt(3, movimentoEstoque.getQuantidade());
+            stmt.setInt(4, movimentoEstoque.getTipo());
+            stmt.setInt(5, movimentoEstoque.getNatureza());
             //stmt.setDate(0, movimentoEstoque.getData()); ver como converte a data (é um saco!)
             
             stmt.execute();
