@@ -56,7 +56,7 @@
                         <%
                             List<PessoaFisica> listPessoa = ServicoCliente.listarClientes();
                         %>
-                        
+
                         <table>
                             <theader>
                                 <tr>
@@ -98,11 +98,9 @@
             <div id="sidebar">
                 <div class="inner">
 
-                    <!-- Search -->
-                    <section id="search" class="alt">
-                        <form method="post" action="#">
-                            <input type="text" name="query" id="query" placeholder="Search" />
-                        </form>
+                    <!-- Top -->
+                    <section id="topSidBar" class="alt">
+                        <img class="imgTopSB" src="img/logo_flor_vetorizada.png"/>
                     </section>
 
                     <!-- Menu -->
@@ -112,8 +110,6 @@
                         </header>
                         <ul>
                             <li><a href="index.html">Homepage</a></li>
-                            <!--										<li><a href="generic.html"></a></li>
-                                                                                                            <li><a href="elements.html">Elements</a></li>-->
                             <li>
                                 <span class="opener">Vendas</span>
                                 <ul>
