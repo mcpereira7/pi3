@@ -7,13 +7,6 @@
 <%@page import="com.senac.pi.floricultura.model.Venda"%>
 <%@page import="com.senac.pi.floricultura.model.ItensVenda"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    Venda venda = new Venda();
-    
-    ItensVenda item = null;
-    
-    
-%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -27,16 +20,7 @@
 
     <body>
 
-        <form action="${pageContext.request.contextPath}/insert-venda" method="post">
-
-            Client: <input type="text" name="cliente" id="cliente"><br>
-
-            Product: <input type="text" name="produto" id="produto"><br>
-            
-            <input type="submit" value="Salvar"/>
-            
-            
-        </form>
+        
 
     </body>
 
