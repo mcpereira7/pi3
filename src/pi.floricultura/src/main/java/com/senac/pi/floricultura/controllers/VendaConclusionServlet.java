@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author mesa
  */
-@WebServlet(name = "CreateVendaServlet", urlPatterns = {"/create-venda"})
-public class CreateVendaServlet extends HttpServlet {
+@WebServlet(name = "VendaConclusionServlet", urlPatterns = {"/venda-conclusion"})
+public class VendaConclusionServlet extends HttpServlet {
 
     //Mostra o formulário da venda
     @Override
@@ -30,7 +30,7 @@ public class CreateVendaServlet extends HttpServlet {
         //Recebe os dados na sessao
         HttpSession sessao = request.getSession();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/CreateVenda.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaConclusion.jsp");
         dispatcher.forward(request, response);
 
     }

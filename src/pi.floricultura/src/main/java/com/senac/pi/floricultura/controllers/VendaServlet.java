@@ -35,7 +35,7 @@ public class VendaServlet extends HttpServlet {
         
         HttpSession sessao = request.getSession();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("VendaForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaForm.jsp");
         dispatcher.forward(request, response);
         
     }

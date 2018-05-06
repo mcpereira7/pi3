@@ -57,15 +57,15 @@ public class ServicoVenda {
 //        }
 //    }
 
-    public static void ConcluirVenda(Venda entrada) throws VendaException {
+    public static void ConcluirVenda(Venda novaVenda) throws VendaException {
         try {
 
             // falta serviço produto  ServicoProduto.AtualizaEstoque(entrada.getListaItensVenda());
-            VendaDAO.inserir(entrada);
+            VendaDAO.inserir(novaVenda);
 
             //Inserir itensVenda com o id da venda
             int id = com.senac.pi.floricultura.DAO.VendaDAO.getLastVendaID();
-            VendaDAO.insertItensVenda(entrada.getListaItensVenda(), id);
+            VendaDAO.insertItensVenda(novaVenda.getListaItensVenda(), id);
 
         } catch (Exception e) {
             throw new VendaException("Erro na fonte de dados.", e.getCause());
