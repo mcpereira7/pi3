@@ -33,4 +33,8 @@ public class ServicoGrupoPermissao {
             disable = false;
         }
     }
+    
+    public static List<GrupoPermissao> ListarPermissoes(){
+        return grupoPermissaoDAO.ListarGruposPermissoes();
+    }
 }
