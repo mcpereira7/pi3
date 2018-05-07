@@ -6,10 +6,13 @@
 package com.senac.pi.floricultura.controllers;
 
 import com.senac.pi.floricultura.DAO.VendaDAO;
+import com.senac.pi.floricultura.exceptions.VendaException;
 import com.senac.pi.floricultura.model.Venda;
 import com.senac.pi.floricultura.teste.TesteVenda;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,14 +49,13 @@ public class VendaConclusionServlet extends HttpServlet {
 
         System.out.println("doPost VendaConclusionServlet");
 
-        //Criar Venda a partir do dados do VendaForm
-        Venda novaVenda = ServicoVenda.CreateVendaByRequest(request);
-
-//        try {
-//            TesteVenda.createVenda();
-//        } catch (Exception ex) {
-//            System.out.println(ex.getMessage());
-//        }
+        try {
+            //Criar Venda a partir do dados do VendaForm
+            Venda novaVenda = ServicoVenda.CreateVendaByRequest(request);
+            
+        } catch (VendaException ex) {
+            Logger.getLogger(VendaConclusionServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
