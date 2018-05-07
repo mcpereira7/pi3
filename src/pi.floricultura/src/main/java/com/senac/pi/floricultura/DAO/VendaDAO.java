@@ -54,6 +54,34 @@ public class VendaDAO {
         }
     }
 
+    public static int getIdVendaByCodigo(int Codigo)
+            throws SQLException, Exception {
+
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+
+        String sql = "SELECT id_Venda FROM vendas WHERE Codigo = ?";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+
+            stmt.setInt(1, Codigo);
+
+            rs = stmt.executeQuery();
+
+            rs.next();
+
+            int id = rs.getInt(1);
+
+            return id;
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+    }
+
     public static int countVendas()
             throws SQLException, Exception {
 
@@ -119,7 +147,7 @@ public class VendaDAO {
 
         int id = -1;
 
-        String sql = "SELECT Id Ultimo FROM vendas WHERE Data = (SELECT MAX(Data) FROM vendas)";
+        String sql = "SELECT id_Venda Ultimo FROM vendas WHERE Data = (SELECT MAX(Data) FROM vendas)";
 
         cn = ConnectionFactory.getConnection();
 

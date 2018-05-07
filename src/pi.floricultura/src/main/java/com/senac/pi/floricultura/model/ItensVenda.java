@@ -20,6 +20,12 @@ public class ItensVenda {
 
     }
 
+    public ItensVenda(int idProduto, int quantidade, double valor) {
+        this.idProduto = idProduto;
+        this.quantidade = quantidade;
+        this.valor = valor;
+    }
+
     public int getIdVenda() {
         return idVenda;
     }

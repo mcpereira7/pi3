@@ -5,8 +5,11 @@
  */
 package com.senac.pi.floricultura.controllers;
 
+import com.senac.pi.floricultura.DAO.VendaDAO;
+import com.senac.pi.floricultura.model.Venda;
 import com.senac.pi.floricultura.teste.TesteVenda;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +33,8 @@ public class VendaConclusionServlet extends HttpServlet {
         //Recebe os dados na sessao
         HttpSession sessao = request.getSession();
 
+        System.out.println("Esta aqui");
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaConclusion.jsp");
         dispatcher.forward(request, response);
 
@@ -39,13 +44,16 @@ public class VendaConclusionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("Chegou aqui");
+        System.out.println("doPost VendaConclusionServlet");
 
-        try {
-            TesteVenda.createVenda();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        //Criar Venda a partir do dados do VendaForm
+        Venda novaVenda = ServicoVenda.CreateVendaByRequest(request);
+
+//        try {
+//            TesteVenda.createVenda();
+//        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//        }
     }
 
 }

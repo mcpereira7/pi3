@@ -32,12 +32,13 @@ public class VendaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        System.out.println("Passou no doGet VendaServlet.\n\n\n");
         HttpSession sessao = request.getSession();
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaForm.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 
     /**
@@ -52,6 +53,8 @@ public class VendaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        System.out.println("Passou no doPost VendaServlet.\n\n\n");
+
     }
 
 }

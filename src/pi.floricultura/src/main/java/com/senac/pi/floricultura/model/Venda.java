@@ -22,21 +22,26 @@ public class Venda {
     private Calendar data;
     private int idPessoa;
     private int idVendedor;
-    private ArrayList<ItensVenda> itensVenda;
+    private ArrayList<ItensVenda> listaItensVenda;
     private double valorTotal;
 
     public Venda() {
-        this.itensVenda = new ArrayList<>();
+        this.listaItensVenda = new ArrayList<>();
+    }
+
+    public Venda(Calendar data, int idPessoa, int idVendedor, ArrayList<ItensVenda> listaItensVenda) {
+        this.data = data;
+        this.idPessoa = idPessoa;
+        this.idVendedor = idVendedor;
+        this.listaItensVenda = listaItensVenda;
     }
 
     public Venda(ResultSet rs) throws SQLException, Exception {
-        this.itensVenda = new ArrayList<>();
         codigo = rs.getInt("id");
         // cliente = DAO.ClienteDAO.obter(rs.getInt("idCliente"));
         valorTotal = rs.getFloat("ValorTotal");
         data = (Calendar) rs.getObject("Data");
-        itensVenda = (ArrayList<ItensVenda>) VendaDAO.getItensVenda(rs.getInt("idVenda"));
-
+        listaItensVenda = (ArrayList<ItensVenda>) VendaDAO.getItensVenda(rs.getInt("idVenda"));
     }
 
     //Ainda não tem produto
@@ -49,9 +54,8 @@ public class Venda {
 //        item.setQuantidade(entrada.getQuantidadeVenda());
 //        item.setPreco(entrada.getPreco());
 //
-//        itensVenda.add(item);
+//        listaItensVenda.add(item);
 //    }
-
     public int getId() {
         return id;
     }
@@ -93,11 +97,11 @@ public class Venda {
     }
 
     public ArrayList<ItensVenda> getListaItensVenda() {
-        return itensVenda;
+        return listaItensVenda;
     }
 
     public void setListaItensVenda(ArrayList<ItensVenda> listaProdutos) {
-        this.itensVenda = listaProdutos;
+        this.listaItensVenda = listaProdutos;
     }
 
     public double getValorTotal() {
@@ -106,6 +110,16 @@ public class Venda {
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public void sumValorTotal() {
+        double total = 0;
+
+        for (ItensVenda item : this.listaItensVenda) {
+            total += (item.getValor() * item.getQuantidade());
+        }
+
+        this.valorTotal = total;
     }
 
 }
