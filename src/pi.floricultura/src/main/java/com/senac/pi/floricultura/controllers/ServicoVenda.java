@@ -13,6 +13,7 @@ import com.senac.pi.floricultura.model.Venda;
 import java.awt.Component;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -77,6 +78,7 @@ public class ServicoVenda {
 
             //Vendedor
             //int idVendedor = Pegar o id do usuario logado
+            
             //Produtos
             String[] idProdutos = request.getParameterValues("produto");
 
@@ -95,7 +97,7 @@ public class ServicoVenda {
 
                 int idProduto = Integer.parseInt(idProdutos[i]);
                 int quantidade = Integer.parseInt(quantProdutos[i]);
-                double valor = ServicoProduto.getPrecoProdutoById(idProduto);
+                double valor = ServicoProduto.getPrecoProdutoById(idProduto);//Retornando -1 por enquanto
 
                 ItensVenda item = new ItensVenda(idProduto, quantidade, valor);
 
@@ -107,6 +109,7 @@ public class ServicoVenda {
 
             novaVenda.setCodigo(ServicoVenda.geraCodVenda());
             novaVenda.setIdPessoa(idPessoa);
+            novaVenda.setDataVenda(Calendar.getInstance());
             //novaVenda.setIdVendedor(idVendedor); Ainda sem metodo
             novaVenda.setListaItensVenda(lista);
             novaVenda.sumValorTotal(); //Adiciona o valorTotal a venda

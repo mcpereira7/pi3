@@ -11,6 +11,7 @@ import com.senac.pi.floricultura.model.Venda;
 import com.senac.pi.floricultura.teste.TesteVenda;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -52,7 +53,15 @@ public class VendaConclusionServlet extends HttpServlet {
         try {
             //Criar Venda a partir do dados do VendaForm
             Venda novaVenda = ServicoVenda.CreateVendaByRequest(request);
-            
+
+            //Adiciona a venda no request
+            request.setAttribute("novaVenda", novaVenda);
+            request.setAttribute("dataVenda", new Date());
+
+            //Redireciona para a pagina de conclusao de venda
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaConclusion.jsp");
+            dispatcher.forward(request, response);
+
         } catch (VendaException ex) {
             Logger.getLogger(VendaConclusionServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
