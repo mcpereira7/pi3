@@ -32,7 +32,27 @@
                     <!-- Content -->
                     <section>
                         
-                        <header class="main">
+                            <c:forEach items = "${listaPermissoes}" var = "grupoPermissao">
+                                <h2>${grupoPermissao.nome}</h2>
+                                
+                                <table>
+                                    <theader>
+                                        <tr>
+                                            <td>Nome</td>
+                                            <td>Caminho</td>
+                                        </tr>
+                                    </theader>
+                                
+                                    <c:forEach items = "${grupoPermissao.listaTelas}" var = "listaTelas">
+                                        <tr>
+                                            <td>${listaTelas.nome}</td>
+                                            <td>${listaTelas.caminho}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                            </c:forEach>
+                        
+<!--                        <header class="main">
                             <h1>Corpo MSG</h1>
                         </header>
 
@@ -42,7 +62,7 @@
                         <hr class="major" />
 
                         <h1>Corpo MSG</h1>
-                        <hr class="major" />
+                        <hr class="major" />-->
 
 
                     </section>
@@ -122,6 +142,6 @@
         <script src="js/skel.min.js"></script>
         <script src="js/util.js"></script>
         <script src="js/main.js"></script>
-
+        <script src="js/permissoes.js"></script>
     </body>
 </html>
