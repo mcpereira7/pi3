@@ -1,12 +1,113 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+    Editorial by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Hello World!</h1>
+
+<head>
+    <title>PaginaPrincial</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script>
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /*loop through a collection of all HTML elements:*/
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("include-html");
+                if (file) {
+                    /*make an HTTP request using the attribute value as the file name:*/
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+                            if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+                            /*remove the attribute, and call this function once more:*/
+                            elmnt.removeAttribute("include-html");
+                            includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /*exit the function:*/
+                    return;
+                }
+            }
+        };
+    </script>
+</head>
+
+<body>
+    
+    <!-- Wrapper -->
+    <div id="wrapper">
         
-        <a href="./index.jsp">INDEX JSP</a>
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                
+                <!-- Header -->
+                <header id="header">
+                    <a href="index.html" class="logo">
+                        <strong>Editorial</strong> by HTML5 UP</a>
+                        <ul class="icons">
+                            <li>
+                                <a href="#">
+                                    <span class="label">User Name</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label">User Foto</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label">Sair</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </header>
+                    
+                    <!-- Content -->
+                    <section>
+                        <header class="main">
+                            <h1>Corpo MSG</h1>
+                        </header>
+                        
+                        <hr class="major" />
+                        <h1>Corpo MSG</h1>
+                        
+                        <hr class="major" />
+                        
+                        <h1>Corpo MSG</h1>
+                        <hr class="major" />
+                        
+                        
+                    </section>
+                    
+                </div>
+            </div>
+            
+            <div data-ng-include="sidebar.html"></div>
+            <!-- <div id="sidebar" include-html="sidebar.html"></div> -->
+            <!-- <iframe src="sidebar.html" frameborder="0"></iframe> -->
+            <!-- <div class="sidebar-content" id="sidebar"></div> -->
+            
+        </div>
+        
+        <!-- Scripts -->
+        <!-- <script>includeHTML();</script> -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/util.js"></script>
+        <script src="js/main.js"></script>
+        
     </body>
-</html>
+    
+    </html>

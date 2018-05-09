@@ -143,7 +143,7 @@ CREATE TABLE ItensVenda
 	id_Venda INTEGER NOT NULL,
 	id_Produto INTEGER NOT NULL,
 	Quantidade INTEGER NOT NULL,
-	Valor FLOAT(0) NOT NULL,
+	Valor DOUBLE NOT NULL,
 	PRIMARY KEY (id_Venda, id_Produto),
 	KEY (id_Produto),
 	KEY (id_Venda)
@@ -155,12 +155,14 @@ CREATE TABLE ItensVenda
 CREATE TABLE MovimentoEstoque
 (
 	id_Movimento INTEGER NOT NULL AUTO_INCREMENT,
-	Data DATE NOT NULL,
+	id_produto INTEGER NOT NULL,
+	Data DATETIME NOT NULL,
 	Quantidade INTEGER NOT NULL,
 	cod_ObjetoPessoa VARCHAR(40) NOT NULL,
 	Tipo INTEGER NOT NULL,
 	Natureza INTEGER NOT NULL,
-	PRIMARY KEY (id_Movimento)
+	PRIMARY KEY (id_Movimento),
+	UNIQUE UQ_MovimentoEstoque_id_produto(id_produto)
 
 ) 
 ;
@@ -276,7 +278,7 @@ CREATE TABLE Vendas
 	id_Venda INTEGER NOT NULL AUTO_INCREMENT,
 	Codigo INTEGER NOT NULL,
 	id_Cliente INTEGER,
-	ValorTotal FLOAT(0) NOT NULL,
+	ValorTotal DOUBLE NOT NULL,
 	Data DATE NOT NULL,
 	id_Vendedor INTEGER NOT NULL,
 	PRIMARY KEY (id_Venda),
