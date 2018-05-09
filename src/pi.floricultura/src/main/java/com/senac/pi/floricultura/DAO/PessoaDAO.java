@@ -17,7 +17,7 @@ public class PessoaDAO {
 
     private static Connection cn = null;
 
-        public static void InserirPessoa (Pessoa pessoa, Connection cn){
+    public static void InserirPessoa(Pessoa pessoa, Connection cn) {
         PreparedStatement stmtPessoa = null;
 
         String sqlPessoa = "INSERT INTO Pessoa (id_Pessoa,cod_Objeto, Nome, Apelido, TipoPessoa, dt_Cadastro, Disable) VALUES(?,?,?,?,?,?,?);";
@@ -112,7 +112,7 @@ public class PessoaDAO {
         PreparedStatement stmtPessoa = null;
 
         String sqlPessoa = "UPDATE Pessoa SET cod_objeto = ?, Nome = ?, Apelido = ?"
-                + ", TipoPessoa = ?, dt_Cadastro = ? WHERE is_pessoa = ?";
+                + ", TipoPessoa = ?, dt_Cadastro = ?, id_pessoa = ? WHERE id_pessoa = ?";
 
         cn = ConnectionFactory.getConnection();
 
@@ -124,6 +124,7 @@ public class PessoaDAO {
             stmtPessoa.setInt(4, pessoa.getTipo());
             stmtPessoa.setDate(5, new Date(pessoa.getData().getTime()));
             stmtPessoa.setInt(6, pessoa.getId());
+            stmtPessoa.setInt(7, pessoa.getId());
             stmtPessoa.execute();
 
             ResultSet rs = stmtPessoa.getGeneratedKeys();
@@ -141,6 +142,7 @@ public class PessoaDAO {
         PreparedStatement stmtPessoaFisica = null;
 
         String sqlPessoaFisica = "UPDATE PessoaFisica SET id_pessoa = ?, CPF = ?, dt_Nasc = ?, Sexo = ?"
+                + ", email = ?, telefone = ?, telefone2 = ? "
                 + "WHERE id_pessoa = ?";
 
         cn = ConnectionFactory.getConnection();
@@ -154,7 +156,10 @@ public class PessoaDAO {
             stmtPessoaFisica.setString(2, pessoa.getCpf());
             stmtPessoaFisica.setDate(3, new Date(pessoa.getDtNasc().getTime()));
             stmtPessoaFisica.setInt(4, pessoa.getSexo());
-            stmtPessoaFisica.setInt(5, pessoa.getId());
+            stmtPessoaFisica.setString(5, pessoa.getEmail());
+            stmtPessoaFisica.setString(6, pessoa.getTelefone());
+            stmtPessoaFisica.setString(7, pessoa.getTelefone2());
+            stmtPessoaFisica.setInt(8, pessoa.getId());
             stmtPessoaFisica.execute();
         } catch (Exception e) {
 
@@ -214,8 +219,27 @@ public class PessoaDAO {
 
     }
 
-    public static List<PessoaFisica> listarClientesPF() throws SQLException, Exception {
-        List<PessoaFisica> listaClientesPF = new ArrayList<>();
+    public static void excluirById(int id) throws SQLException, Exception {
+        PreparedStatement stmt = null;
+
+        String sql = "UPDATE Pessoa SET disable=? WHERE (id_pessoa =?) ";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            stmt.setBoolean(1, true);
+            stmt.setInt(2, id);
+            stmt.execute();
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt);
+        }
+
+    }
+
+    public static PessoaFisica buscarPF(int cod) throws SQLException, Exception {
+        PessoaFisica pf = null;
         ResultSet rs = null;
         PreparedStatement stmt = null;
 
@@ -224,17 +248,19 @@ public class PessoaDAO {
                 + "       ,e.CEP, e.log, e.numero, e.complemento, e.bairro, e.cidade, e.uf\n"
                 + "FROM pessoa p \n"
                 + "JOIN pessoafisica pf ON p.id_Pessoa=pf.id_Pessoa\n"
-                + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa";
+                + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa "
+                + "WHERE p.id_pessoa=?";
 
         cn = ConnectionFactory.getConnection();
 
         try {
             stmt = cn.prepareStatement(sql);
+            stmt.setInt(1, cod);
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                PessoaFisica pf = new PessoaFisica();
-                
+                pf = new PessoaFisica();
+
                 pf.setId(rs.getInt("id_Pessoa"));
                 pf.setCodObjeto(rs.getString("cod_objeto"));
                 pf.setNome(rs.getString("Nome"));
@@ -247,7 +273,95 @@ public class PessoaDAO {
                 pf.setEmail(rs.getString("email"));
                 pf.setTelefone(rs.getString("telefone"));
                 pf.setTelefone2(rs.getString("telefone2"));
-                
+
+            }
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+        return pf;
+    }
+
+//    efetuar busca por CPF
+    public static List<PessoaFisica> buscarPFbyCPF(String cpf) throws SQLException, Exception {
+        List<PessoaFisica> pfl = new ArrayList<>();
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        String sql=null;
+        
+            sql = "SELECT p.id_Pessoa, p.cod_objeto, p.Nome, p.Apelido, p.TipoPessoa, p.dt_Cadastro\n"
+                    + "	   ,pf.CPF, pf.dt_Nasc, pf.sexo, pf.email, pf.telefone, pf.telefone2\n"
+                    + "       ,e.CEP, e.log, e.numero, e.complemento, e.bairro, e.cidade, e.uf\n"
+                    + "FROM pessoa p \n"
+                    + "JOIN pessoafisica pf ON p.id_Pessoa=pf.id_Pessoa\n"
+                    + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa "
+                    + "WHERE pf.CPF=?";
+        
+            
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            stmt.setString(1, cpf);
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                PessoaFisica pf = new PessoaFisica();
+
+                pf.setId(rs.getInt("id_Pessoa"));
+                pf.setCodObjeto(rs.getString("cod_objeto"));
+                pf.setNome(rs.getString("Nome"));
+                pf.setApelido(rs.getString("Apelido"));
+                pf.setTipo(rs.getInt("TipoPessoa"));
+                pf.setData(rs.getDate("dt_cadastro"));
+                pf.setCpf(rs.getString("CPF"));
+                pf.setDtNasc(rs.getDate("dt_Nasc"));
+                pf.setSexo(rs.getInt("sexo"));
+                pf.setEmail(rs.getString("email"));
+                pf.setTelefone(rs.getString("telefone"));
+                pf.setTelefone2(rs.getString("telefone2"));
+                pfl.add(pf);
+            }
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+        return pfl;
+    }
+
+    public static List<PessoaFisica> listarClientesPF() throws SQLException, Exception {
+        List<PessoaFisica> listaClientesPF = new ArrayList<>();
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+
+        String sql = "SELECT p.id_Pessoa, p.cod_objeto, p.Nome, p.Apelido, p.TipoPessoa, p.dt_Cadastro\n"
+                + "	   ,pf.CPF, pf.dt_Nasc, pf.sexo, pf.email, pf.telefone, pf.telefone2\n"
+                + "       ,e.CEP, e.log, e.numero, e.complemento, e.bairro, e.cidade, e.uf\n"
+                + "FROM pessoa p \n"
+                + "JOIN pessoafisica pf ON p.id_Pessoa=pf.id_Pessoa\n"
+                + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa"
+                + " WHERE p.Disable = false";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                PessoaFisica pf = new PessoaFisica();
+
+                pf.setId(rs.getInt("id_Pessoa"));
+                pf.setCodObjeto(rs.getString("cod_objeto"));
+                pf.setNome(rs.getString("Nome"));
+                pf.setApelido(rs.getString("Apelido"));
+                pf.setTipo(rs.getInt("TipoPessoa"));
+                pf.setData(rs.getDate("dt_cadastro"));
+                pf.setCpf(rs.getString("CPF"));
+                pf.setDtNasc(rs.getDate("dt_Nasc"));
+                pf.setSexo(rs.getInt("sexo"));
+                pf.setEmail(rs.getString("email"));
+                pf.setTelefone(rs.getString("telefone"));
+                pf.setTelefone2(rs.getString("telefone2"));
+
                 listaClientesPF.add(pf);
             }
         } finally {

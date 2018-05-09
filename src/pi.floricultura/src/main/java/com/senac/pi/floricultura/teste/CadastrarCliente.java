@@ -46,8 +46,8 @@ public class CadastrarCliente extends HttpServlet{
         }
         int sexo = req.getIntHeader("sxType");
         String email = req.getParameter("email");
-        String telefone = req.getParameter("telefone1");
-        String telefone2 = req.getParameter("telefone2");
+        String telefone = req.getParameter("tel");
+        String telefone2 = req.getParameter("cel");
         
         // endereço PessoaFisica
         String log = req.getParameter("log");

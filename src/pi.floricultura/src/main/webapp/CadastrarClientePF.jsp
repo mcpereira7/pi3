@@ -1,12 +1,25 @@
+<%-- 
+    Document   : CadastrarClientePF
+    Created on : 18/04/2018, 11:06:44
+    Author     : Marcelo Pereira
+--%>
+
+<%@page import="com.senac.pi.floricultura.controllers.ServicoCliente"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.senac.pi.floricultura.model.GerarCodigo"%>
+<%@page import="com.senac.pi.floricultura.model.PessoaFisica"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <meta charset="utf-8">
-        <title>Cadastrar Cliente</title>
-        
-        <link rel="stylesheet" type="text/css" href="css/estilo1.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cadastro Cliente PF</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo1.css" media="all">
     </head>
     <body>
+        
+        
         <h1>Cadastro Cliente PF</h1>
         <form action="cadastrarCliente" method="POST">
             <div class="dadosPessoais">
@@ -27,9 +40,9 @@
                 
                 <label>Sexo</label>
 		<label class="checkbox">
-		<input type="radio" name="sexo" value="masculino"> Masculino
-		<input type="radio" name="sexo" value="feminino"> Feminino
-                <input type="radio" name="sexo" value="Outro"> Outro
+                <input type="radio" name="sexo" value=1> Masculino
+		<input type="radio" name="sexo" value=2> Feminino
+                <input type="radio" name="sexo" value=3> Outro
 		</label>
             </div>
             <div class="contato">
@@ -67,7 +80,33 @@
                 <input type="text" id="uf" name="uf">
             </div>
             
-            <input type="submit" name="btCadastrar" id="btCadastrar" value="Cadastrar">
+            
+            
+            <%
+                PessoaFisica pf = new PessoaFisica();
+                pf.setNome( request.getParameter("Nome"));
+                pf.setApelido(request.getParameter("apelido"));
+                pf.setCodObjeto(new GerarCodigo().setCodigoCli());
+                pf.setTipo(1);
+                
+                SimpleDateFormat formato = new SimpleDateFormat( "yyyy-MM-d" );
+                Date data = new Date(System.currentTimeMillis());
+                String date = formato.format(data);
+                
+                pf.setData(formato.parse(date));
+                pf.setCpf(request.getParameter("cpf"));
+                pf.setRg(request.getParameter("rg"));
+                pf.setSexo(1);
+                data = formato.parse(date);
+                pf.setDtNasc(data);
+                pf.setEmail(request.getParameter("email"));
+                pf.setTelefone(request.getParameter("tel"));
+                pf.setTelefone2(request.getParameter("cel"));
+                
+        %>
+        
+        <input type="submit" name="btCadastrar" id="btCadastrar" value="Cadastrar">
+            
         </form>
     </body>
 </html>
