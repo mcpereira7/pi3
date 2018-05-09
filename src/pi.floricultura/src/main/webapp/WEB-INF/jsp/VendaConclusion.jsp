@@ -1,7 +1,7 @@
 <%-- 
-    Document   : FormVenda
-    Created on : 17/04/2018, 20:59:34
-    Author     : andre.ayamamoto
+Document   : FormVenda
+Created on : 17/04/2018, 20:59:34
+Author     : andre.ayamamoto
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,29 +20,27 @@
 
     <body>
 
+        <form action="${pageContext.request.contextPath}/venda-conclusion" method="get">
 
-        <h1>Venda</h1>
-        <fmt:setLocale value="pt-BR"></fmt:setLocale>
-        <p>Codigo: <c:out value="${novaVenda.codigo}" /></p>
-        <p>Data: <fmt:formatDate value="${dataVenda}"  type="date" dateStyle="short"/></p>
-        <p>Cliente: <c:out value="${novaVenda.idPessoa}" /></p>
-        <p>Vendedor: <c:out value="${novaVenda.idVendedor}" /></p>
-        <p>Total: <fmt:formatNumber value="${novaVenda.valorTotal}" type="currency"/></p>
+            <h1>Venda</h1>
+            <fmt:setLocale value="pt-BR"></fmt:setLocale>
+            <p>Codigo: <c:out value="${novaVenda.codigo}" /></p>
+            <p>Data: <fmt:formatDate value="${dataVenda}"  type="date" dateStyle="short"/></p>
+            <p>Cliente: <c:out value="${novaVenda.idPessoa}" /></p>
+            <p>Vendedor: <c:out value="${novaVenda.idVendedor}" /></p>
+            <p>Total: <fmt:formatNumber value="${novaVenda.valorTotal}" type="currency"/></p>
 
-        <c:forEach items="${novaVenda.listaItensVenda}" var="item">
+            <c:forEach items="${novaVenda.listaItensVenda}" var="item">
 
-            <p>Produto: <c:out value="${item.idProduto}"/> / 
-                Quantidade: <c:out value="${item.quantidade}"/> / 
-                Unidade: <fmt:formatNumber value="${item.valor}" type="currency"/> / 
-                Ao todo: <fmt:formatNumber value="${item.valor * item.quantidade}" type="currency"/></p><br>
+                <p>Produto: <c:out value="${item.idProduto}"/> / 
+                    Quantidade: <c:out value="${item.quantidade}"/> / 
+                    Unidade: <fmt:formatNumber value="${item.valor}" type="currency"/> / 
+                    Ao todo: <fmt:formatNumber value="${item.valor * item.quantidade}" type="currency"/></p><br>
 
-        </c:forEach>
+            </c:forEach>
 
-        <div>
-
-        </div>
-
-
+            <input type="submit" value="Concluir">
+        </form>
     </body>
 
 </html>

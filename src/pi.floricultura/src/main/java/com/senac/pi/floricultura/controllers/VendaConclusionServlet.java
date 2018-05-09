@@ -12,6 +12,7 @@ import com.senac.pi.floricultura.teste.TesteVenda;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -34,14 +35,21 @@ public class VendaConclusionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //Recebe os dados na sessao
-        HttpSession sessao = request.getSession();
+        try {
 
-        System.out.println("Esta aqui");
+            //Conclui a venda e envia pro banco
+            Object venda = request.getSession().getAttribute("novaVenda");
+            Venda concluir = (Venda) venda;
+            //ServicoVenda.ConcluirVenda(concluir);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaConclusion.jsp");
-        dispatcher.forward(request, response);
+            //Apago a venda da sessao
+            request.getSession().removeAttribute("novaVenda");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaConclusion.jsp");
+            dispatcher.forward(request, response);
 
+        } catch (Exception e) {
+        }
+        
     }
 
     @Override
@@ -50,11 +58,15 @@ public class VendaConclusionServlet extends HttpServlet {
 
         System.out.println("doPost VendaConclusionServlet");
 
+        HttpSession sessao = request.getSession();
+
         try {
+
             //Criar Venda a partir do dados do VendaForm
             Venda novaVenda = ServicoVenda.CreateVendaByRequest(request);
 
             //Adiciona a venda no request
+            sessao.setAttribute("novaVenda", novaVenda);
             request.setAttribute("novaVenda", novaVenda);
             request.setAttribute("dataVenda", new Date());
 

@@ -62,7 +62,7 @@ public class ServicoVenda {
 //            throw new VendaException("Erro na fonte de dados.", e.getCause());
 //        }
 //    }
-    public static Venda CreateVendaByRequest(HttpServletRequest request) 
+    public static Venda CreateVendaByRequest(HttpServletRequest request)
             throws VendaException {
 
         try {
@@ -71,7 +71,6 @@ public class ServicoVenda {
             int idPessoa = 0;
             if (request.getParameter("cliente") != null && !request.getParameter("cliente").equals("")) {
                 idPessoa = Integer.parseInt(request.getParameter("cliente"));
-                System.out.println(idPessoa);
             } else {
                 System.out.println("Cliente nao inserido.");
             }
@@ -113,7 +112,7 @@ public class ServicoVenda {
             //novaVenda.setIdVendedor(idVendedor); Ainda sem metodo
             novaVenda.setListaItensVenda(lista);
             novaVenda.sumValorTotal(); //Adiciona o valorTotal a venda
-            
+
             return novaVenda;
 
         } catch (VendaException | NumberFormatException e) {

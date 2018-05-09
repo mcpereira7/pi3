@@ -21,10 +21,12 @@ Author     : andred
             } else {
 
                 var newDiv = document.createElement('div');
+                
+                var inputProdutoCodigo = "<br>Product " + (count + 1) + ": <input type='text' name='produto' id='produto" + (count + 1) + "' />";
+                var inputProdutoQuantidade = "  Quantidade: <input type='number' name='quantidadeProduto' id='quantProduto" + (count + 1) + "'/>";
+                var buttonToRemoveThisDiv = "<input onclick='removeInputProduct(this)' type='button' value='-' /><br>";
 
-                newDiv.innerHTML = "<br>Product " + (count + 1) + ": <input type='text' name='produto' id='produto" + (count + 1) + "' />" +
-                        "  Quantidade: <input type='number' name='quantidadeProduto' id='quantProduto" + (count + 1) + "'/>" +
-                        "<input onclick='removeInputProduct(this)' type='button' value='-' /><br>";
+                newDiv.innerHTML = inputProdutoCodigo + inputProdutoQuantidade + buttonToRemoveThisDiv;
 
                 document.getElementById(divName).appendChild(newDiv);
 
