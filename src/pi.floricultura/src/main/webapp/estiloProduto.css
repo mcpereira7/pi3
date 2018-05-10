@@ -2,7 +2,7 @@ body{
 	background: white;
 }
 
-form{
-	position: center;
-	padding: 10px 50px 10px 50px
+#form{
+	border: solid;
+	padding: 10px 50px 10px 50px;
 }

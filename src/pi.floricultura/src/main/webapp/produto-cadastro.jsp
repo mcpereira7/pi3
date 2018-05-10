@@ -1,11 +1,11 @@
+<%-- 
+    Document   : produto-cadastro
+    Created on : 09/05/2018, 18:39:13
+    Author     : Aline
+--%>
+<%@page import="pi3."%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
-
 <html>
     <head>
         <title>CADASTRO DE PRODUTOS </title>
@@ -23,7 +23,5 @@ and open the template in the editor.
                 Descrição: <input type="text" name="descricao" placeholder="(inclua descrição do produto"><br><br>
                 <input type="submit" value="cadastrar">
             </form>
-        </div>
-    </body>
-    
+        </div>    </body>
 </html>

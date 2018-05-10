@@ -7,11 +7,7 @@ package Model;
 
 import java.util.Date;
 
-/**
- *
- * @author Red
- */
-abstract class produto {
+public class produto {
 
     //Atributos
     private int id; //id do banco de dados, auto-increment
@@ -22,10 +18,10 @@ abstract class produto {
     private String tipo;
     private int quantidadeVenda;
     private int quantidadeEstoque;//Se precisar
+    private Date dataCadastro;
     private boolean Disable;
 
     //Sem Construtor Padrão
-    
     //Venda de produtos
     public int Venda(int quantidadeVenda) {
         if (getQuantidadeEstoque() > 0) {
@@ -33,9 +29,8 @@ abstract class produto {
         }
         return getQuantidadeEstoque();
     }
-    
-    //métodos
 
+    //métodos
     public int getId() {
         return id;
     }
@@ -79,7 +74,7 @@ abstract class produto {
     public String getTipo() {
         return tipo;
     }
-    
+
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
@@ -107,5 +102,13 @@ abstract class produto {
     public void setDisable(boolean Disable) {
         this.Disable = Disable;
     }
-    
+
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
 }
