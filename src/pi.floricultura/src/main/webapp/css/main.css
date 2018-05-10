@@ -2474,7 +2474,9 @@ input[type="checkbox"] + label:before {
 input[type="radio"] + label:before {
     border-radius: 100%;
 }
-
+.checkbox{
+    outline-style: auto;
+}
 ::-webkit-input-placeholder {
     color: #9fa3a6 !important;
     opacity: 1.0;

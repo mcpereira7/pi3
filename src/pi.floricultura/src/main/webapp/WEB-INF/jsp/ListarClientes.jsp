@@ -12,24 +12,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" type="text/css" href="../../css/main.css">
-
-    </head>
-    <!-- Scripts -->
-        <script src="../../js/jquery.min.js"></script>
-        <script src="../../js/skel.min.js"></script>
-        <script src="../../js/util.js"></script>
-        <script src="../../js/main.js"></script>
-        
-    <body>
-    <head>
-        <title>Pagina Generica</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="css/main.css" />
     </head>
+    <!-- Scripts -->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/skel.min.js"></script>
+    <script src="../../js/util.js"></script>
+    <script src="../../js/main.js"></script>
     <body>
 
         <!-- Wrapper -->
@@ -83,19 +75,19 @@
                                 for (PessoaFisica pf : listPessoa) {
                             %-->
                             <c:forEach var="cli" items="${listaCliPF}">
-                            <tr>
-                                <td><c:out value="${cli.nome}"></c:out></td>
-                                <td><c:out value="${cli.email}"></c:out></td>
-                                <td><c:out value="${cli.telefone}"></c:out></td>
-                                <td>
-                                    <form action="dadosCliente" method="POST">
-                                        <input type="image" src="../../img/edit_icon.png" 
-                                               name="edit" value="${cli.id}"></form>
-                                    <form action="excluirPessoa" method="POST">
-                                        <input type="image" src="../../img/delete_icon.jpg"
-                                               name="excluir" value="${cli.id}"></form>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td><c:out value="${cli.nome}"></c:out></td>
+                                    <td><c:out value="${cli.email}"></c:out></td>
+                                    <td><c:out value="${cli.telefone}"></c:out></td>
+                                        <td>
+                                            <form action="dadosCliente" method="POST">
+                                                <input type="image" src="../../img/edit_icon.png" 
+                                                       name="edit" value="${cli.id}"></form>
+                                        <form action="excluirPessoa" method="POST">
+                                            <input type="image" src="../../img/delete_icon.jpg"
+                                                   name="excluir" value="${cli.id}"></form>
+                                    </td>
+                                </tr>
                             </c:forEach>
                             <!--%
                                 }
@@ -205,7 +197,5 @@
             </div>
 
         </div>
-
     </body>
-</body>
 </html>
