@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package com.senac.pi.floricultura.model;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ public class produto {
     private String descricao;
     private String tipo;
     private int quantidadeVenda;
-    private int quantidadeEstoque;//Se precisar
+    private int quantidadeEstoque;
     private Date dataCadastro;
     private boolean Disable;
 
