@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Venda {
     private int id;
     private int codigo;
     private Calendar data;
+    private Date dtDate;
     private int idPessoa;
     private int idVendedor;
     private ArrayList<ItensVenda> listaItensVenda;
@@ -38,10 +40,27 @@ public class Venda {
 
     public Venda(ResultSet rs) throws SQLException, Exception {
         codigo = rs.getInt("id");
-        // cliente = DAO.ClienteDAO.obter(rs.getInt("idCliente"));
+        idPessoa = rs.getInt("id_Cliente");
         valorTotal = rs.getFloat("ValorTotal");
         data = (Calendar) rs.getObject("Data");
+        dtDate = data.getTime();
         listaItensVenda = (ArrayList<ItensVenda>) VendaDAO.getItensVenda(rs.getInt("idVenda"));
+    }
+
+    public Calendar getData() {
+        return data;
+    }
+
+    public void setData(Calendar data) {
+        this.data = data;
+    }
+
+    public Date getDtDate() {
+        return dtDate;
+    }
+
+    public void setDtDate(Date dtDate) {
+        this.dtDate = dtDate;
     }
 
     //Ainda não tem produto
