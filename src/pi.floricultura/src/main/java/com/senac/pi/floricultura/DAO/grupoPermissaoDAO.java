@@ -2,10 +2,13 @@ package com.senac.pi.floricultura.DAO;
 import com.mysql.jdbc.Statement;
 import com.senac.pi.floricultura.connection.ConnectionFactory;
 import com.senac.pi.floricultura.model.GrupoPermissao;
+import com.senac.pi.floricultura.model.TelaPermissoes;
 import com.senac.pi.floricultura.utilitarios.AuxiliaresDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class grupoPermissaoDAO {
     
@@ -191,5 +194,72 @@ public class grupoPermissaoDAO {
         } finally {
             ConnectionFactory.closeConnection(cn, stmt);
         }
+    }
+    
+    public static List<TelaPermissoes> ListarPermissoesByGrupo(Integer id_grupo){
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        String[] strWhere = new String[2];
+        String sql = "";
+        List<TelaPermissoes> listaPermissoes = new ArrayList<>();
+
+        sql = "SELECT * FROM GrupoPermissaoTelas INNER JOIN Telas ON GrupoPermissaoTelas.id_tela = Telas.id_tela "
+                + "WHERE id_grupo = ?";
+
+        Connection cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            stmt.setInt(1, id_grupo);
+            
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                TelaPermissoes Permissao = new TelaPermissoes(
+                        rs.getInt("id_tela"), 
+                        rs.getString("nome"), 
+                        rs.getString("caminho"), 
+                        false);
+                listaPermissoes.add(Permissao);
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+        return listaPermissoes;
+    }
+    
+    public static List<GrupoPermissao> ListarGruposPermissoes(){
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        String[] strWhere = new String[2];
+        String sql = "";
+        List<GrupoPermissao> listaGrupoPermissao = new ArrayList<>();
+
+        sql = "SELECT * FROM GrupoPermissao";
+
+        Connection cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                GrupoPermissao grupoPermissao = new GrupoPermissao(
+                        rs.getInt("id_grupo"),
+                        rs.getString("nome"),
+                        ListarPermissoesByGrupo(rs.getInt("id_grupo"))
+                );
+                listaGrupoPermissao.add(grupoPermissao);
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+        return listaGrupoPermissao;
     }
 }

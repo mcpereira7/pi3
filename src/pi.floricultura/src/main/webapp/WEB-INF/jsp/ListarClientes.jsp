@@ -15,7 +15,7 @@
         <title>JSP Page</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
     </head>
     <!-- Scripts -->
     <script src="../../js/jquery.min.js"></script>
@@ -197,5 +197,6 @@
             </div>
 
         </div>
+
     </body>
 </html>
