@@ -8,6 +8,7 @@ package com.senac.pi.floricultura.controllers;
 import com.senac.pi.floricultura.DAO.VendaDAO;
 import com.senac.pi.floricultura.exceptions.VendaException;
 import com.senac.pi.floricultura.model.Cliente;
+import com.senac.pi.floricultura.model.EstoqueProduto;
 import com.senac.pi.floricultura.model.ItensVenda;
 import com.senac.pi.floricultura.model.Pessoa;
 import com.senac.pi.floricultura.model.PessoaFisica;
@@ -82,7 +83,6 @@ public class ServicoVenda {
 
             //Vendedor
             //int idVendedor = Pegar o id do usuario logado
-            
             //Produtos
             String[] idProdutos = request.getParameterValues("produto");
 
@@ -112,9 +112,8 @@ public class ServicoVenda {
             Venda novaVenda = new Venda();
 
             novaVenda.setCodigo(ServicoVenda.geraCodVenda());
-            
+
             //Pegar id_pessoa por cpf
-            
             novaVenda.setIdPessoa(idpessoa);
             novaVenda.setDataVenda(Calendar.getInstance());
             //novaVenda.setIdVendedor(idVendedor); Ainda sem metodo
@@ -129,10 +128,48 @@ public class ServicoVenda {
 
     }
 
+    public static List<EstoqueProduto> AlteraEstoqueAtual(Venda novaVenda) {
+
+        List<EstoqueProduto> listaAtualizada = new ArrayList<>();
+
+        //O hardcode 7 seria a  filial
+        int filial = 7;
+
+        List<EstoqueProduto> listaAtual = ServicoEstoqueProduto.ListarEstoquePorIdsProduto(novaVenda.getListaItensVenda(), filial);
+
+        //Alterar a listaAtual
+        for (ItensVenda item : novaVenda.getListaItensVenda()) {
+            for (EstoqueProduto estoqueProduto : listaAtual) {
+                if (item.getIdProduto() == estoqueProduto.getId_produto()) {
+                    listaAtualizada.add(
+                            new EstoqueProduto(
+                                    estoqueProduto.getId_produto(),
+                                    filial,
+                                    (estoqueProduto.getQuantidade() - item.getQuantidade())
+                            ));
+                }
+            }
+        }
+        //Fim da ateracao
+
+        return listaAtualizada;
+
+    }
+
     public static void ConcluirVenda(Venda novaVenda) throws VendaException {
         try {
+            //O 7 nesse hardcode seria a filial
+            int filial = 7;
 
-            // falta serviço produto  ServicoProduto.AtualizaEstoque(entrada.getListaItensVenda());
+            //Altera o estoque atual subtraindo com a quantidade em venda
+            List<EstoqueProduto> listaAtualizada = AlteraEstoqueAtual(novaVenda);
+
+            //Antes de inserir a venda atualizar o estoque
+            for (EstoqueProduto produtoComQuantidadeAlterada : listaAtualizada) {
+                //Atualizacao do estoque
+                ServicoEstoqueProduto.AtualizarEstoque(produtoComQuantidadeAlterada);
+            }
+
             VendaDAO.inserir(novaVenda);
 
             //Inserir itensVenda com o id da venda

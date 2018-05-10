@@ -51,7 +51,7 @@ Author     : andre.ayamamoto
                     
                     <!-- Content -->
                     <section>
-                        <form id="venda-form" action="${pageContext.request.contextPath}/venda-conclusion" method="post">
+                        <form id="venda-form" action="${pageContext.request.contextPath}/venda-conclusion" method="GET">
                             
                             <header class="main">
                                 <h1>Venda</h1>

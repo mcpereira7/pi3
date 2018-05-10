@@ -6,6 +6,7 @@ import com.senac.pi.floricultura.utilitarios.AuxiliaresDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,12 +60,60 @@ public class EstoqueProdutoDAO {
         }
     }
 
+    public static List<EstoqueProduto> ListaProdutosEstoqueById(int[] idsProduto, int idPessoaJuridica)
+            throws SQLException {
+        
+        PreparedStatement stmt = null;
+        ResultSet rs;
+
+        List<EstoqueProduto> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM estoqueproduto WHERE id_pessoa = ? and (";
+
+        int counter = 0;
+        for (int i : idsProduto) {
+            if (counter == 0) {
+                sql += "id_Produto = " + i;
+            } else {
+                sql += " or id_Produto = " + i;
+            }
+            if (counter == idsProduto.length - 1) {
+                sql += ")";
+            }
+            counter++;
+        }
+
+        Connection cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            stmt.setInt(1, idPessoaJuridica);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                EstoqueProduto estoqueProduto = new EstoqueProduto(
+                        rs.getInt("id_Produto"),
+                        rs.getInt("id_pessoa"),
+                        rs.getInt("Quantidade"));
+
+                lista.add(estoqueProduto);
+            }
+
+            return lista;
+
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao listar os produtos em estoque", e.getCause());
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt);
+        }
+    }
+
     public static void AtualizarEstoque(EstoqueProduto estoqueProduto) {
         PreparedStatement stmt = null;
 
-        String sql = "UPDATE estoqueItem SET id_produto = ?, id_pessoa = ?, quantidade = ? "
-                + "WHERE id_produto = ?, idPessoa = ?";
-
+        String sql = "UPDATE estoqueproduto SET id_Produto = ?, id_pessoa = ?, Quantidade = ? "
+                + "WHERE id_Produto = ? AND id_pessoa = ?";
+        
         Connection cn = ConnectionFactory.getConnection();
 
         try {
