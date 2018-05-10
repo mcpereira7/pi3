@@ -7,8 +7,10 @@ package com.senac.pi.floricultura.controllers;
 
 import com.senac.pi.floricultura.DAO.VendaDAO;
 import com.senac.pi.floricultura.exceptions.VendaException;
+import com.senac.pi.floricultura.model.Cliente;
 import com.senac.pi.floricultura.model.ItensVenda;
 import com.senac.pi.floricultura.model.Pessoa;
+import com.senac.pi.floricultura.model.PessoaFisica;
 import com.senac.pi.floricultura.model.Venda;
 import java.awt.Component;
 import java.sql.SQLException;
@@ -68,12 +70,15 @@ public class ServicoVenda {
         try {
 
             //Cliente
-            int idPessoa = 0;
+            String cpf = "";
             if (request.getParameter("cliente") != null && !request.getParameter("cliente").equals("")) {
-                idPessoa = Integer.parseInt(request.getParameter("cliente"));
+                cpf = request.getParameter("cliente");
             } else {
                 System.out.println("Cliente nao inserido.");
             }
+            //Pegar idCliente por cpf
+            List<PessoaFisica> listaClientes = ServicoCliente.ConsultarClientes(cpf);
+            int idpessoa = listaClientes.get(0).getId();
 
             //Vendedor
             //int idVendedor = Pegar o id do usuario logado
@@ -107,7 +112,10 @@ public class ServicoVenda {
             Venda novaVenda = new Venda();
 
             novaVenda.setCodigo(ServicoVenda.geraCodVenda());
-            novaVenda.setIdPessoa(idPessoa);
+            
+            //Pegar id_pessoa por cpf
+            
+            novaVenda.setIdPessoa(idpessoa);
             novaVenda.setDataVenda(Calendar.getInstance());
             //novaVenda.setIdVendedor(idVendedor); Ainda sem metodo
             novaVenda.setListaItensVenda(lista);
