@@ -37,7 +37,13 @@
                 <body>
 
                     <section>
-
+                        <form action="/RelatorioServlet" method="POST">
+                            <label for="dtIni">Data Inicio</label>
+                            <input type="date" name="dtIni" id="dtIni">
+                            <label for="dtFim">Data Fim</label>
+                            <input type="date" name="dtFim" id="dtFim">
+                            <input type="submit" name="gerar" id="gerar" value="Gerar Relatório">
+                        </form>
                         <c:forEach items = "${listaVenda}" var = "VendaDAO">
                             <h2><c:out value="$(VendaDao.nome}"></c:out></h2>
 
@@ -53,12 +59,12 @@
                                         </tr>
                                     </theader>
 
-                                <c:forEach items = "${Venda.listaVenda}" var = "listaVenda">
+                                <c:forEach items = "${listaVenda}" var = "Venda">
                                     <tr>
                                         <td><c:out value="$(Venda.id}"></c:out></td>
                                         <td><c:out value="$(Venda.idCliente}"></c:out></td>
                                         <td><c:out value="$(Venda.listaItensVenda}"></c:out></td>
-                                        <td><c:out value="$(Venda.Data}"></c:out></td>
+                                        <td><c:out value="$(Venda.dtDate}"></c:out></td>
                                         <td><c:out value="$(Venda.ValorTotal}"></c:out></td>
                                         </tr>
                                 </c:forEach>
