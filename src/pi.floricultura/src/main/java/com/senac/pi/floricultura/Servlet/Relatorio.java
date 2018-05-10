@@ -6,8 +6,10 @@
 package com.senac.pi.floricultura.Servlet;
 
 import com.senac.pi.floricultura.controllers.ServicoVenda;
+import com.senac.pi.floricultura.model.Venda;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
