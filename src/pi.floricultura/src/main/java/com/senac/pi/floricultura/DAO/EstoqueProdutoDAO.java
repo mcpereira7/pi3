@@ -112,7 +112,7 @@ public class EstoqueProdutoDAO {
         PreparedStatement stmt = null;
 
         String sql = "UPDATE estoqueproduto SET id_Produto = ?, id_pessoa = ?, Quantidade = ? "
-                + "WHERE id_Produto = ? AND id_pessoa = ?";
+                + "WHERE id_Produto = ? AND id_pessoa = ?;";
         
         Connection cn = ConnectionFactory.getConnection();
 
