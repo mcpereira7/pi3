@@ -15,11 +15,12 @@
 
             <!-- Main -->
             <div id="main">
+                
                 <div class="inner">
 
                     <!-- Header -->
                     <header id="header">
-                        <a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
+                        <h4 class="logo"><strong>Lista de Permissões</strong></h4>
                         <ul class="icons">
                             <li><a href="#"><span class="label">User Name</span></a></li>
                             <li><a href="#"><span class="label">User Foto</span></a></li>
@@ -32,39 +33,38 @@
                     <!-- Content -->
                     <section>
                         
-                            <c:forEach items = "${listaPermissoes}" var = "grupoPermissao">
-                                <h2>${grupoPermissao.nome}</h2>
+                        <c:forEach items = "${listaPermissoes}" var = "grupoPermissao">
+                            <h2>${grupoPermissao.nome}</h2>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td><strong>Nome</strong></td>
+                                        <td><strong>Caminho</strong></td>
+                                    </tr>
+                                </thead>
+
+                                <c:forEach items = "${grupoPermissao.listaTelas}" var = "listaTelas">
+                                    <tr>
+                                        <td>${listaTelas.nome}</td>
+                                        <td>${listaTelas.caminho}</td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                            
+                            <div style = "text-align: right; float: right">
+                                <form style=""action="${pageContext.request.contextPath}/PermissoesExcluir" method="GET">
+                                    <input type="submit" value="Excluir Grupo" name="excluirGrupo" />
+                                </form>
+                                <form style="float: right; margin-left: 15px" action="${pageContext.request.contextPath}/PermissoesEditar" method="GET">
+                                    <input type="submit" value="Editar Grupo" name="editarGrupo" />
+                                </form>
                                 
-                                <table>
-                                    <theader>
-                                        <tr>
-                                            <td>Nome</td>
-                                            <td>Caminho</td>
-                                        </tr>
-                                    </theader>
-                                
-                                    <c:forEach items = "${grupoPermissao.listaTelas}" var = "listaTelas">
-                                        <tr>
-                                            <td>${listaTelas.nome}</td>
-                                            <td>${listaTelas.caminho}</td>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
-                            </c:forEach>
+                            </div>
+                            <hr>
+                        </c:forEach>
                         
-<!--                        <header class="main">
-                            <h1>Corpo MSG</h1>
-                        </header>
-
-                        <hr class="major" />
-                        <h1>Corpo MSG</h1>
-
-                        <hr class="major" />
-
-                        <h1>Corpo MSG</h1>
-                        <hr class="major" />-->
-
-
+                        
                     </section>
 
                 </div>
