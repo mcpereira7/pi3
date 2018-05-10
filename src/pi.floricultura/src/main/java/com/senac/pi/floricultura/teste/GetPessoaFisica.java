@@ -5,7 +5,6 @@
  */
 package com.senac.pi.floricultura.teste;
 
-import com.senac.pi.floricultura.DAO.EnderecoDAO;
 import com.senac.pi.floricultura.controllers.ServicoCliente;
 import com.senac.pi.floricultura.model.Endereco;
 import com.senac.pi.floricultura.model.PessoaFisica;
