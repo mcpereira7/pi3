@@ -35,7 +35,6 @@ public class VendaDAO {
                 + "VALUES (?, ?, ?, ?, ?)";
 
         cn = ConnectionFactory.getConnection();
-        //Preciso da consulta de Pessoa
 
         try {
 
