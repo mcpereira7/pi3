@@ -34,12 +34,14 @@
                     <section>
                         Nome do Grupo <input type="text" name="Nome do Grupo" value="" />
                         <br>
-                        
-                        Tela <select name="tela">
-                            <c:forEach items = "${listaTelas}" var = "tela">
-                                <option value="${tela.id}">${tela.nome}</option>
-                            </c:forEach>
-                        </select>
+                        <div id="telaDiv">
+                            Tela <select name="tela">
+                                <c:forEach items = "${listaTelas}" var = "tela">
+                                    <option value="${tela.id}">${tela.nome}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <input type="button" value="Nova Tela" onclick="addSelect('telaDiv', ${listaTelas})">
                     </section>
 
                 </div>
@@ -51,7 +53,7 @@
 
                     <!-- Search -->
                     <section id="topSidBar" class="alt">
-                        <img class="imgTopSB" src="img/logo_flor_vetorizada.png"/>
+<!--                        <img class="imgTopSB" src=""/>-->
                     </section>
 
                     <!-- Menu -->
@@ -115,7 +117,7 @@
         <script src="js/skel.min.js"></script>
         <script src="js/util.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/permissoes.js"></script>
+        <script src="js/permissaoCriar.js"></script>
     </body>
 </html>
 
