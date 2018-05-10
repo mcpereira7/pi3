@@ -53,7 +53,8 @@ public class PessoaDAO {
     public static void inserirPF(PessoaFisica cliente) throws SQLException, Exception {
         PreparedStatement stmtPessoaFisica = null;
 
-        String sqlPessoaFisica = "INSERT INTO PessoaFisica (id_pessoa, CPF, dt_Nasc, Sexo, email, telefone, telefone2) VALUES (?,?,?,?,?,?,?)";
+        String sqlPessoaFisica = "INSERT INTO PessoaFisica (id_pessoa, CPF, dt_Nasc"
+                + ", Sexo, email, telefone, telefone2) VALUES (?,?,?,?,?,?,?)";
 
         cn = ConnectionFactory.getConnection();
 
@@ -249,7 +250,7 @@ public class PessoaDAO {
                 + "FROM pessoa p \n"
                 + "JOIN pessoafisica pf ON p.id_Pessoa=pf.id_Pessoa\n"
                 + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa "
-                + "WHERE p.id_pessoa=?";
+                + "WHERE p.id_pessoa=? AND p.disable=false";
 
         cn = ConnectionFactory.getConnection();
 
