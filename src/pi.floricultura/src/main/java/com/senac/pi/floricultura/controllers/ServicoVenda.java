@@ -7,14 +7,10 @@ package com.senac.pi.floricultura.controllers;
 
 import com.senac.pi.floricultura.DAO.VendaDAO;
 import com.senac.pi.floricultura.exceptions.VendaException;
-import com.senac.pi.floricultura.model.Cliente;
 import com.senac.pi.floricultura.model.EstoqueProduto;
 import com.senac.pi.floricultura.model.ItensVenda;
-import com.senac.pi.floricultura.model.Pessoa;
 import com.senac.pi.floricultura.model.PessoaFisica;
 import com.senac.pi.floricultura.model.Venda;
-import java.awt.Component;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,7 +18,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.JOptionPane;
 
 /**
  *
