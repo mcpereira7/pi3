@@ -18,17 +18,17 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Produto", urlPatterns = {"/produto"})
 public class ProdutoServlet extends HttpServlet {
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/jsp/cadastroProduto.jsp").forward(request, response);
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         try {
             Produto produto = new Produto();
             produto.setNome(request.getParameter("nome"));
@@ -37,14 +37,14 @@ public class ProdutoServlet extends HttpServlet {
             produto.setQuantidadeEstoque(Integer.parseInt(request.getParameter("quantidade")));
             produto.setPreco(Float.parseFloat(request.getParameter("preco")));
             produto.setDescricao(request.getParameter("descricao"));
-
+            
             ServicoProduto.cadastrarProduto(produto);
             System.out.println(produto);
 //        } catch (SQLException e) {
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         request.getRequestDispatcher("/WEB-INF/jsp/cadastroProduto.jsp").forward(request, response);
     }
 }
