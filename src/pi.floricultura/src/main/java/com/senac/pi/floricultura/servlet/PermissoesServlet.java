@@ -1,4 +1,4 @@
-package com.senac.pi.floricultura.se;
+package com.senac.pi.floricultura.servlet;
 
 import com.senac.pi.floricultura.controllers.ServicoGrupoPermissao;
 import com.senac.pi.floricultura.model.GrupoPermissao;
