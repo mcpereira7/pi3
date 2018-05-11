@@ -144,6 +144,7 @@
             newDiv.appendChild(texto);
             
             var selectList = document.createElement("select");
+            selectList.name = "tela";
             selectList.id = "tela";
             newDiv.appendChild(selectList);
 
