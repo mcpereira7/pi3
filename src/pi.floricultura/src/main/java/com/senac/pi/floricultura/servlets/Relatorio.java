@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Vinicius Presoto
  */
-@WebServlet(name = "Relatorio", urlPatterns = {"/Relatorio"})
+@WebServlet(name = "Relatorio", urlPatterns = {"/Relatoriooopopop"})
 public class Relatorio extends HttpServlet {
 
     @Override
