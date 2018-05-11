@@ -79,7 +79,7 @@
                                     <td><c:out value="${cli.nome}"></c:out></td>
                                     <td><c:out value="${cli.email}"></c:out></td>
                                     <td><c:out value="${cli.telefone}"></c:out></td>
-                                    <td id="btsAltExc">
+                                        <td id="btsAltExc">
                                             <form action="dadosCliente" method="POST" class="listCli">
                                                 <input type="image" src="../../img/edit_icon.png" 
                                                        name="edit" value="${cli.id}"></form>
@@ -110,7 +110,7 @@
 
                     <!-- Top -->
                     <section id="topSidBar" class="alt">
-                        <img class="imgTopSB" src="img/logo_flor_vetorizada_03.png"/>
+                        <img class="imgTopSB" src="../../img/bck_girassol_01.jpg"/>
                     </section>
 
                     <!-- Menu -->
