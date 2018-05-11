@@ -112,7 +112,7 @@ public class grupoPermissaoDAO {
     public static boolean VerificaGrupoPermissaoTelas(Integer id_grupo, Integer id_tela, boolean disable) throws Exception{
         ResultSet rs = null;
         PreparedStatement stmt = null;
-        String[] strWhere = new String[3];
+        String[] strWhere = new String[2];
         String sql = "";
         
         if (id_grupo != null) {
@@ -122,7 +122,7 @@ public class grupoPermissaoDAO {
         }
         
         if (id_tela != null) {
-            strWhere[0] = "id_grupo = " + id_grupo;
+            strWhere[1] = "id_tela = " + id_tela;
         }else{
             throw new Exception("A tela deve ser informada!");
         }

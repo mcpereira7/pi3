@@ -1,29 +1,25 @@
 var count = 1;
 var limit = 10;
 
-function addSelect(divName, listaTelas) {
+function addSelect(divName, lista) {
 
     var newDiv = document.createElement('div');
     
-//                            Tela <select name="tela">
-//                            <c:forEach items = "${listaTelas}" var = "tela">
- //                               <option value="${//tela.id}">${tela.nome}</option>
-   //                         </c:forEach>//
-//                        </select>
+    var selectList = document.createElement("select");
+    selectList.id = "tela";
+    newDiv.appendChild(selectList);
     
-    var select = "Tela <select name='tela'>";
-    var option = "";
-    
-    for (var tela in listaTelas) {
-        option += "<option value='" + tela.id + "'>" + tela.nome + "</option>"
+    for (var tela in lista) {
+        var option = document.createElement("option");
+        option.value = tela.id;
+        option.text = tela.nome;
+        selectList.appendChild(option);
     }
     
-    newDiv.innerHTML = select + option + "</br>";
+    //newDiv.innerHTML = select + option + "</br>";
 
     document.getElementById(divName).appendChild(newDiv);
     
-    document.getElementById()
-
 }
 
 function removeInputProduct(input) {
