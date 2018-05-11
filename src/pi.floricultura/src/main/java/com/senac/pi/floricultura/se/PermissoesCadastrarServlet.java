@@ -1,4 +1,4 @@
-package com.senac.pi.floricultura.servlet;
+package com.senac.pi.floricultura.se;
 
 import com.senac.pi.floricultura.controllers.ServicoTela;
 import java.io.IOException;
