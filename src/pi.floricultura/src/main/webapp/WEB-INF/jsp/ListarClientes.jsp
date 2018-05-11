@@ -141,10 +141,15 @@
                             <li>
                                 <span class="opener">Cliente</span>
                                 <ul>
-                                    <li><a href="/pi.floricultura/ListarClientes">Consultar</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
+                                    <li><a href="/floricultura/ListarClientes">Consultar</a></li>
+                                    <li><a href="/floricultura/cadCli">Cadastro</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="opener">Filiais</span>
+                                <ul>
+                                    <li><a href="/floricultura/CadastroFilial">Cadastrar</a></li>
+                                    <li><a href="/floricultura/ListaFiliais">Unidades</a></li>
                                 </ul>
                             </li>
                         </ul>
