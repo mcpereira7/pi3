@@ -5,7 +5,7 @@
  */
 package com.senac.pi.floricultura.DAO;
 
-import com.senac.pi.floricultura.model.produto;
+import com.senac.pi.floricultura.model.Produto;
 import com.senac.pi.floricultura.connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,7 +48,7 @@ public class ProdutoDAO {
         }
     }
 
-    public static void inserir(produto produto) throws SQLException, Exception {
+    public static void inserir(Produto produto) throws SQLException, Exception {
         PreparedStatement stmtProduto = null;
 
         String sqlProduto = "INSERT INTO Produto(idProduto, nome, descricao, preco, tipo, disable)"
@@ -69,7 +69,7 @@ public class ProdutoDAO {
         }
     }
 
-    public static void atualizarProduto(produto produto) throws SQLException, Exception {
+    public static void atualizarProduto(Produto produto) throws SQLException, Exception {
         PreparedStatement stmtProduto = null;
 
         String sqlProduto = "UPDATE Produto(idProduto, nome, descricao, tipo, dt_Cadastro, disable)"
@@ -77,7 +77,7 @@ public class ProdutoDAO {
 
     }
 
-    public static void excluirProduto(produto produto) throws SQLException, Exception {
+    public static void excluirProduto(Produto produto) throws SQLException, Exception {
         PreparedStatement stmt = null;
 
         String sql = "UPDATE Produto SET disable=? WHERE (id_produto =?) ";

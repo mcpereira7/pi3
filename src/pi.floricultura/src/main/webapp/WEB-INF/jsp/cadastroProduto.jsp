@@ -7,7 +7,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.senac.pi.floricultura.model.GerarCodigo"%>
-<%@page import="com.senac.pi.floricultura.model.produto" %>
+<%@page import="com.senac.pi.floricultura.model.Produto" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-BR">

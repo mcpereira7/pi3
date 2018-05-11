@@ -6,7 +6,7 @@
 package com.senac.pi.floricultura.Servlet;
 
 import com.senac.pi.floricultura.controllers.ServicoProduto;
-import com.senac.pi.floricultura.model.produto;
+import com.senac.pi.floricultura.model.Produto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -33,15 +33,16 @@ public class ProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-            produto produto = new produto();
+            Produto produto = new Produto();
             produto.setNome(request.getParameter("nome"));
-//            produto.setTipo(request.getParameter("tipo")); 
+//            Produto.setTipo(request.getParameter("tipo")); 
             produto.setTipo(1);
             produto.setQuantidadeEstoque(Integer.parseInt(request.getParameter("quantidade")));
             produto.setPreco(Float.parseFloat(request.getParameter("preco")));
             produto.setDescricao(request.getParameter("descricao"));
             
             ServicoProduto.cadastrarProduto(produto);
+            System.out.println(produto);
 //        } catch (SQLException e) {
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);

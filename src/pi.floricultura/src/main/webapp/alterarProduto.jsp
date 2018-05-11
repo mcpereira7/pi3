@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.senac.pi.floricultura.model.produto"%>
+<%@page import="com.senac.pi.floricultura.model.Produto"%>
 <%@page import="com.senac.pi.floricultura.controllers.ServicoProduto"%>
 <%@page import="java.util.Date"%>
 <link rel="stylesheet" type="text/css" href="css/estilo1.css" media="all">
@@ -24,14 +24,14 @@
                 Quantidade: <input type="number" name="quantidade" step="1" min=0 size="5" value="${produto.getQuantidadeEstoque()}"><br><br>
                 Tipo: <input type="radio" name="tipo" value="Flores"> Flores <input type="radio" name="tipoe" value="Ervas"> Ervas <input type="radio" name="tipoe" value="Outros"> Outros<br><br>
                 Descrição: <input type="text" name="descricao" value="${produto.getDescricao()}"><br><br>
-                <%
-                    produto produto = new produto();
+                <!--%
+                    Produto produto = new Produto();
                     produto.setNome(request.getParameter("nome"));
                     produto.setTipo(request.getParameter("tipo"));
                     produto.setQuantidadeEstoque(Integer.parseInt(request.getParameter("quantidade")));
                     produto.setPreco(Float.parseFloat(request.getParameter("preco")));
                     produto.setDescricao(request.getParameter("descricao"));
-                %>
+                %-->
 
                 <input type="submit" value="cadastrar">
             </form>
