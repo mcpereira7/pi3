@@ -118,7 +118,7 @@ Author     : Marcelo Pereira
 
                     <!-- Search -->
                     <section id="topSidBar" class="alt">
-                        <img class="imgTopSB" src="../../img/bck_girassol_01.jpg"/>
+                        <img class="imgTopSB" src="img/bck_girassol_01.jpg"/>
                     </section>
 
                     <!-- Menu -->
