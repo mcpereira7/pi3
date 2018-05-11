@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.senac.pi.floricultura.Servlet;
+package com.senac.pi.floricultura.Servlets;
 
 import com.senac.pi.floricultura.controllers.ServicoVenda;
 import com.senac.pi.floricultura.model.Venda;

@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.senac.pi.floricultura.Servlet;
+package com.senac.pi.floricultura.Servlets;
 
 import com.senac.pi.floricultura.controllers.ServicoProduto;
 import com.senac.pi.floricultura.model.Produto;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;

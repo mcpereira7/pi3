@@ -17,13 +17,10 @@
         <title>Alterar Produto</title>
     </head>
     <body>
-        <div class="table">
-            <form>
-                Nome: <input readonly name="nome" value="${produto.getNome()}">
-                Preço: <input type="number" step="0.01" min=5 name="preco" value="${produto.getPreco()}">
-                Quantidade: <input type="number" name="quantidade" step="1" min=0 size="5" value="${produto.getQuantidadeEstoque()}"><br><br>
-                Tipo: <input type="radio" name="tipo" value="Flores"> Flores <input type="radio" name="tipoe" value="Ervas"> Ervas <input type="radio" name="tipoe" value="Outros"> Outros<br><br>
-                Descrição: <input type="text" name="descricao" value="${produto.getDescricao()}"><br><br>
+        <div>
+            <form action="/search" method="get"> <!-- formulário de procura-->
+                <input type="text" name="procura" value="{SearchQuery"/>
+                
                 <!--%
                     Produto produto = new Produto();
                     produto.setNome(request.getParameter("nome"));
@@ -33,7 +30,7 @@
                     produto.setDescricao(request.getParameter("descricao"));
                 %-->
 
-                <input type="submit" value="cadastrar">
+                <input type="submit" value="procurar">
             </form>
         </div>
     </body>
