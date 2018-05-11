@@ -1,14 +1,11 @@
 <%-- 
-    Document   : ListarClientes
-    Created on : 17/04/2018, 15:56:08
-    Author     : Marcelo Pereira
+    Document   : ListarFilial
+    Created on : 11/05/2018, 16:35:34
+    Author     : Marcelo Pereira <macope727@gmail.com>
 --%>
 
-<%@page import="java.util.List"%>
-<%@page import="com.senac.pi.floricultura.controllers.ServicoCliente"%>
-<%@page import="com.senac.pi.floricultura.model.PessoaFisica"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -41,57 +38,19 @@
                     <!-- Content -->
                     <section>
                         <header class="main">
-                            <h1>Consulta Clientes</h1>
+                            <h1>Nossas Filiais</h1>
                         </header>
-                        <!-- Search -->
-                        <section id="search" class="alt">
-                            <form method="POST" action="ConsultarCliente">
-                                <input type="text" name="cpf" id="cpf" placeholder="CPF apenas números" />
-                            </form>
-                        </section>
 
-                        <hr class="major" />
-
-
-                        <!--%
-                            List<PessoaFisica> listPessoa = ServicoCliente.listarClientes();
-                        %-->
-                        <table>
-                            <theader>
-                                <tr>
-                                    <td>Nome</td>
-                                    <td>E-mail</td>
-                                    <td>Telefone</td>
-                                    <td>Ação</td>
-                                </tr>
-                            </theader>
-
-                            <!--%
-                                for (PessoaFisica pf : listPessoa) {
-                            %-->
-                            <c:forEach var="cli" items="${listaCliPF}">
-                                <tr>
-                                    <td><c:out value="${cli.nome}"></c:out></td>
-                                    <td><c:out value="${cli.email}"></c:out></td>
-                                    <td><c:out value="${cli.telefone}"></c:out></td>
-                                        <td id="btsAltExc">
-                                            <form action="dadosCliente" method="POST" class="listCli">
-                                                <input type="image" src="../../img/edit_icon.png" 
-                                                       name="edit" value="${cli.id}"></form>
-                                        <form action="excluirPessoa" method="POST" class="listCli">
-                                            <input type="image" src="../../img/delete_icon.jpg"
-                                                   name="excluir" value="${cli.id}"></form>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            <!--%
-                                }
-                            %-->
-
-                        </table>
-
-
-                        <hr class="major" />
+                        <c:forEach var="filial" items="${listFilial}">
+                            <div class="cursos">
+                                <a href="#" id="mapaFilial">  <img src="img/maps/FLSP01.PNG" style="width: 230px; height: 300px;">
+                                    <p><c:out value="${filial.codigoFilial}"></c:out></p>
+                                    <p>Gerente: <c:out value="${filial.responsavel}"></c:out></p>
+                                    <p>&#9742 <c:out value="${filial.telefone}"></c:out> <br> 
+                                    &#9742 <c:out value="${filial.telefone2}"></c:out></p>
+                                </a>
+                            </div>
+                        </c:forEach>
 
 
                     </section>
@@ -121,18 +80,12 @@
                                 <span class="opener">Vendas</span>
                                 <ul>
                                     <li> <a href="${pageContext.request.contextPath}/venda">Nova Venda</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <span class="opener">Produto</span>
                                 <ul>
                                     <li><a href="#">Lorem Dolor</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
                                 </ul>
                             </li>
                             <li>
