@@ -79,11 +79,11 @@
                                     <td><c:out value="${cli.nome}"></c:out></td>
                                     <td><c:out value="${cli.email}"></c:out></td>
                                     <td><c:out value="${cli.telefone}"></c:out></td>
-                                        <td>
-                                            <form action="dadosCliente" method="POST">
+                                    <td id="btsAltExc">
+                                            <form action="dadosCliente" method="POST" class="listCli">
                                                 <input type="image" src="../../img/edit_icon.png" 
                                                        name="edit" value="${cli.id}"></form>
-                                        <form action="excluirPessoa" method="POST">
+                                        <form action="excluirPessoa" method="POST" class="listCli">
                                             <input type="image" src="../../img/delete_icon.jpg"
                                                    name="excluir" value="${cli.id}"></form>
                                     </td>

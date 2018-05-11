@@ -31,9 +31,15 @@ public class GetPessoaFisica extends HttpServlet{
          Endereco end = ServicoCliente.buscaEnderecoPF(cod);
          req.setAttribute("pf", pf);
          req.setAttribute("end", end);
-         RequestDispatcher dispatcher = req.getRequestDispatcher("/AlterarClientePF.jsp");
+         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/AlterarClientePF.jsp");
          dispatcher.forward(req, resp);
          
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/AlterarClientePF.jsp");
+         dispatcher.forward(req, resp);
     }
     
     

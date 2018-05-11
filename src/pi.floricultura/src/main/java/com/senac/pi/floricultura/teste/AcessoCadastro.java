@@ -17,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Marcelo Pereira <macope727@gmail.com>
  */
-@WebServlet(urlPatterns = "/cadCli")
+@WebServlet(name = "AcessoCadastro", urlPatterns = {"/cadCli"})
 public class AcessoCadastro extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/CadastrarClientePF.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/jsp/CadastrarClientePF.jsp");
         dispatcher.forward(req, resp);
     }
 
