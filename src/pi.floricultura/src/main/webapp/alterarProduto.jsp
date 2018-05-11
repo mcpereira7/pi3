@@ -18,20 +18,22 @@
     </head>
     <body>
         <div>
-            <form action="/search" method="get"> <!-- formulário de procura-->
-                <input type="text" name="procura" value="{SearchQuery"/>
-                
-                <!--%
-                    Produto produto = new Produto();
-                    produto.setNome(request.getParameter("nome"));
-                    produto.setTipo(request.getParameter("tipo"));
-                    produto.setQuantidadeEstoque(Integer.parseInt(request.getParameter("quantidade")));
-                    produto.setPreco(Float.parseFloat(request.getParameter("preco")));
-                    produto.setDescricao(request.getParameter("descricao"));
-                %-->
+            <section id="search" class="alt">
+                <form action="/search" method="get"> <!-- formulário de procura-->
+                    <input type="text" name="procura" value="{SearchQuery}"/>
 
-                <input type="submit" value="procurar">
-            </form>
+                    <!--%
+                        Produto produto = new Produto();
+                        produto.setNome(request.getParameter("nome"));
+                        produto.setTipo(request.getParameter("tipo"));
+                        produto.setQuantidadeEstoque(Integer.parseInt(request.getParameter("quantidade")));
+                        produto.setPreco(Float.parseFloat(request.getParameter("preco")));
+                        produto.setDescricao(request.getParameter("descricao"));
+                    %-->
+
+                    <input type="submit" value="procurar">
+                </form>
+            </section>
         </div>
     </body>
 </html>
