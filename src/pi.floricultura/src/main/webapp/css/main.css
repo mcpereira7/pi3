@@ -2100,6 +2100,14 @@ body, input, select, textarea {
     }
 
 }
+#btsAltExc{
+    align-items: stretch;
+    display: inherit;
+}
+.listCli input{
+    width: 12px;
+    height: 14px;
+}
 
 a {
     -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
@@ -2497,7 +2505,9 @@ input[type="checkbox"] + label:before {
 input[type="radio"] + label:before {
     border-radius: 100%;
 }
-
+.checkbox{
+    outline-style: auto;
+}
 ::-webkit-input-placeholder {
     color: #9fa3a6 !important;
     opacity: 1.0;
@@ -3566,10 +3576,12 @@ button:disabled,
 }
 #topSidBar .imgTopSB{
     width: 24.4em;
-    height: 6em;
-    margin-top: -1.5em;
+    height: 6.2em;
+    margin-top: -1.7em;
     margin-left: -2em;
     background-color: #00C446;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
 }
 #search form {
     text-decoration: none;
