@@ -5,7 +5,9 @@
  */
 package com.senac.pi.floricultura.controllers;
 
+import com.senac.pi.floricultura.model.Produto;
 import com.senac.pi.floricultura.DAO.ProdutoDAO;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +17,28 @@ import java.util.logging.Logger;
  * @author aayan
  */
 public class ServicoProduto {
+
+    public static void cadastrarProduto(Produto produto) throws SQLException, Exception {
+        try {
+            ProdutoDAO.inserir(produto);
+        } catch (SQLException e) {
+            System.err.println("Erro");
+        }
+    }
+
+    public static void atualizarProduto(Produto produto) {
+        try {
+            ProdutoDAO.atualizarProduto(produto);
+        } catch (Exception e) {
+        }
+    }
+
+    public static void excluidProduto(Produto produto) {
+        try {
+            ProdutoDAO.excluirProduto(produto);
+        } catch (Exception e) {
+        }
+    }
 
     public static double getPrecoProdutoById(int idProduto) {
 

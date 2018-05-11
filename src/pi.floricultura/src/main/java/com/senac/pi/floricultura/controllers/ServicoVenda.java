@@ -80,7 +80,7 @@ public class ServicoVenda {
             //int idVendedor = Pegar o id do usuario logado
             //Produtos
             String[] codigosProduto = request.getParameterValues("produto");
-            
+
             //Pegar idProduto por codigo do produto
             List<Integer> idProdutos = ServicoProduto.getProdutoIdByCodigo(codigosProduto);
 
@@ -230,7 +230,6 @@ public class ServicoVenda {
 //            while (codigo == VendaDAO.countVendas()) {
 //                codigo++;
 //            }
-
             return codigo;
 
         } catch (Exception e) {

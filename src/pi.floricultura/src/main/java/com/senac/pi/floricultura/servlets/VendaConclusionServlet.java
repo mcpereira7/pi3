@@ -3,7 +3,7 @@
  * Github: aayandre
  * Senac
  */
-package com.senac.pi.floricultura.servlet;
+package com.senac.pi.floricultura.servlets;
 
 import com.senac.pi.floricultura.controllers.ServicoVenda;
 import com.senac.pi.floricultura.exceptions.VendaException;

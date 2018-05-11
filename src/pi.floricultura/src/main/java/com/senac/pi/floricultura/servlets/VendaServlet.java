@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.senac.pi.floricultura.servlet;
+package com.senac.pi.floricultura.servlets;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;

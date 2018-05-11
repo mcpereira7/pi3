@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.senac.pi.floricultura.servlet;
+package com.senac.pi.floricultura.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author leand
  */
-@WebServlet(name = "PermissoesEditarServlet", urlPatterns = {"/PermissoesEditar"})
-public class PermissoesEditarServlet extends HttpServlet {
+@WebServlet(name = "PermissoesExcluirServlet", urlPatterns = {"/PermissoesExcluir"})
+public class PermissoesExcluirServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class PermissoesEditarServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PermissoesEditarServlet</title>");            
+            out.println("<title>Servlet PermissoesExcluirServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PermissoesEditarServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PermissoesExcluirServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

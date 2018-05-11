@@ -1,4 +1,4 @@
-package com.senac.pi.floricultura.servlet;
+package com.senac.pi.floricultura.servlets;
 
 import com.senac.pi.floricultura.controllers.ServicoTela;
 import com.senac.pi.floricultura.controllers.ServicoGrupoPermissao;
