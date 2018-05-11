@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Marcelo Pereira <macope727@gmail.com>
  */
 @WebServlet(urlPatterns = {"/CadastroFilial"})
-public class CadastroFilialServlet extends HttpServlet{
+public class CadastroFilialservlet extends HttpServlet{
 
     
     @Override
