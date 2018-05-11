@@ -4110,3 +4110,100 @@ button:disabled,
     margin-top: 0;
     padding-top: 0;
 }
+
+/* Bloco do Login */
+.main-login {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width: 100%;
+    height: 91vh;
+    padding: 25px 2%;
+    text-align: center;
+    background-color: #f7f8fa;
+    box-sizing: border-box;
+}
+.login-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 500px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 3px 3px 3px 3px #cfc4c4;
+    padding: 10px;
+}
+.login-box-head {
+    margin: 5px;
+    width: 100%;
+    height: 25%;
+    /* border: 1px solid black; */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    box-sizing: border-box;
+}
+.login-box-head p {
+    padding: 10px 14px;
+    width: 450px;
+    font-size: 22px;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+.login-box-head-face {
+    color: white;
+    background-color: rgb(61, 61, 184);
+    text-align: center;
+}
+.login-box-head-google {
+    color: rgb(92, 90, 90);
+    background-color: rgb(221, 221, 221);
+    text-align: center;
+}
+.login-box-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    width: 100%;
+    height: 50%;
+    /* border: 1px solid black; */
+    font-size: 22px;
+    box-sizing: border-box;
+    padding: 40px 10px 10px 10px;
+}
+.login-box-content input {
+    height: 50px;
+    width: 380px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background-color: #e2e0e0;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    font-size: 19px;
+}
+/* .login-box-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    width: 100%;
+    height: 25%;
+    border: 1px solid black;
+} */
+/* .login-box-btn input {
+    text-decoration: none;
+    color: #505763;
+    border-radius: 4px;
+    font-size: 22px;
+    padding: 10px 30px;
+    background-color: coral;
+    text-align: center; 
+} */
