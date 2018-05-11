@@ -79,7 +79,7 @@
                                     <td><c:out value="${cli.nome}"></c:out></td>
                                     <td><c:out value="${cli.email}"></c:out></td>
                                     <td><c:out value="${cli.telefone}"></c:out></td>
-                                    <td id="btsAltExc">
+                                        <td id="btsAltExc">
                                             <form action="dadosCliente" method="POST" class="listCli">
                                                 <input type="image" src="../../img/edit_icon.png" 
                                                        name="edit" value="${cli.id}"></form>
@@ -110,7 +110,7 @@
 
                     <!-- Top -->
                     <section id="topSidBar" class="alt">
-                        <img class="imgTopSB" src="img/logo_flor_vetorizada_03.png"/>
+                        <img class="imgTopSB" src="../../img/bck_girassol_01.jpg"/>
                     </section>
 
                     <!-- Menu -->
@@ -141,10 +141,15 @@
                             <li>
                                 <span class="opener">Cliente</span>
                                 <ul>
-                                    <li><a href="/pi.floricultura/ListarClientes">Consultar</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
+                                    <li><a href="/floricultura/ListarClientes">Consultar</a></li>
+                                    <li><a href="/floricultura/cadCli">Cadastro</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="opener">Filiais</span>
+                                <ul>
+                                    <li><a href="/floricultura/CadastroFilial">Cadastrar</a></li>
+                                    <li><a href="/floricultura/ListaFiliais">Unidades</a></li>
                                 </ul>
                             </li>
                         </ul>

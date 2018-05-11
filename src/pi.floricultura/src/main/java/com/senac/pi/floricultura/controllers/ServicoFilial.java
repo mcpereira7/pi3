@@ -5,13 +5,8 @@
  */
 package com.senac.pi.floricultura.controllers;
 
-import com.senac.pi.floricultura.DAO.EnderecoDAO;
 import com.senac.pi.floricultura.DAO.FilialDAO;
-import com.senac.pi.floricultura.model.PessoaFisica;
-import com.senac.pi.floricultura.DAO.PessoaDAO;
-import com.senac.pi.floricultura.model.Endereco;
 import com.senac.pi.floricultura.model.Filial;
-import com.senac.pi.floricultura.model.PessoaJuridica;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,6 +20,7 @@ public class ServicoFilial {
     public static void cadastrar(Filial filial) throws SQLException, Exception {
         try {
             FilialDAO.inserirFilial(filial);
+            FilialDAO.inserirFilialName(filial);
 
         } catch (SQLException e) {
             //mostra no console qualquer erro que ocorra no 'MOCK'
