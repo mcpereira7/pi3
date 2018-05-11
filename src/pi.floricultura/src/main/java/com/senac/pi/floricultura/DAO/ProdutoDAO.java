@@ -51,7 +51,7 @@ public class ProdutoDAO {
     public static void inserir(produto produto) throws SQLException, Exception {
         PreparedStatement stmtProduto = null;
 
-        String sqlProduto = "INSERT INTO Produto(idProduto, nome, descricao, tipo, dt_Cadastro, disable)"
+        String sqlProduto = "INSERT INTO Produto(idProduto, nome, descricao, preco, tipo, disable)"
                 + "VALUES(?,?,?,?,?,?)";
 
         try {
@@ -59,7 +59,10 @@ public class ProdutoDAO {
             stmtProduto.setInt(1, produto.getId());
             stmtProduto.setString(2, produto.getNome());
             stmtProduto.setString(3, produto.getDescricao());
-            stmtProduto.setString(4, produto.getTipo());
+            stmtProduto.setFloat(4, produto.getPreco());
+            stmtProduto.setInt(5, produto.getTipo());
+            stmtProduto.setBoolean(6, false);
+            stmtProduto.execute();
         } catch (Exception e) {
         } finally {
             com.senac.pi.floricultura.connection.ConnectionFactory.closeConnection(cn, stmtProduto);

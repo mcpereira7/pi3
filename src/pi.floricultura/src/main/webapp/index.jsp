@@ -14,6 +14,7 @@
     <body>
         <h1>INDEX JSP</h1>
         <a href="${pageContext.request.contextPath}/venda">Nova venda</a>
+        <a hred="${pageContext.request.contextPath}/produto">Cadastro de Produtos</a>
         
     </body>
 </html>

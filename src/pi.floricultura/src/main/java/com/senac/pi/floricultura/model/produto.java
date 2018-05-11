@@ -15,13 +15,14 @@ public class produto {
     private String nome;
     private String fornecedor;
     private String descricao;
-    private String tipo;
+    private int tipo;
     private int quantidadeVenda;
     private int quantidadeEstoque;
     private Date dataCadastro;
-    private boolean Disable;
+    private boolean disable;
 
     //Sem Construtor Padrão
+    
     //Venda de produtos
     public int Venda(int quantidadeVenda) {
         if (getQuantidadeEstoque() > 0) {
@@ -71,11 +72,11 @@ public class produto {
         this.descricao = descricao;
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 
@@ -96,11 +97,11 @@ public class produto {
     }
 
     public boolean isDisable() {
-        return Disable;
+        return disable;
     }
 
     public void setDisable(boolean Disable) {
-        this.Disable = Disable;
+        this.disable = Disable;
     }
 
     public Date getDataCadastro() {

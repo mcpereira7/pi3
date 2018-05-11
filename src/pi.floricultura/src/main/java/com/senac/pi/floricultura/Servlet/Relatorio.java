@@ -26,7 +26,6 @@ public class Relatorio extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Venda> venda = ServicoVenda.ConsultaVendaByData(request.getParameter("dataInicial"), request.getParameter("dataFinal"));
         request.getRequestDispatcher("WEB-INF/jsp/Relatorio.jsp").forward(request, response);
     }
 
