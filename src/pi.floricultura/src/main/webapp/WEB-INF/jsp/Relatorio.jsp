@@ -1,20 +1,20 @@
 <%-- 
-Document   : FormVenda
-Created on : 17/04/2018, 20:59:34
-Author     : andre.ayamamoto
+    Document   : relatorio
+    Created on : 09/05/2018, 19:38:03
+    Author     : Vinicius Presoto
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Conclusao de Venda</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="screen" href="${pageContext.request.contextPath}/css/main.css" />
+        <title>Pagina Generica</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="css/main.css" />
     </head>
 
     <body>
@@ -51,46 +51,42 @@ Author     : andre.ayamamoto
 
                     <!-- Content -->
                     <section>
-                        <form id="venda-form" action="${pageContext.request.contextPath}/venda-conclusion" method="GET">
+                        <form id="venda-form" action="${pageContext.request.contextPath}/Relatorio" method="post">
 
                             <header class="main">
-                                <h1>Venda</h1>
+                                <h1>Relatório</h1>
                             </header>
+
                             <fmt:setLocale value="pt-BR"></fmt:setLocale>
-                                <hr class="major" />
+                                <label for="dtIni">Data Inicio</label>
+                                <input type="date" name="dataInicial" id="dataInicial">
+                                <label for="dtFim">Data Fim</label>
+                                <input type="date" name="dataFinal" id="dataFinal">
+                                <input type="submit" name="gerar" id="gerar" value="Gerar Relatório">
+                            </form>
 
-                                <p>Codigo:
-                                <c:out value="${novaVenda.codigo}" />
-                            </p>
-                            <p>Data:
-                                <fmt:formatDate value="${dataVenda}" type="date" dateStyle="short" />
-                            </p>
-                            <p>Cliente:
-                                <c:out value="${clienteCPF}" />
-                            </p>
-                            <p>Vendedor:
-                                <c:out value="${novaVenda.idVendedor}" />
-                            </p>
-                            <p>Total:
-                                <fmt:formatNumber value="${novaVenda.valorTotal}" type="currency" />
-                            </p>
-                            <hr class="major" />
+                            <h2>Relatório de Vendas</h2>
 
-                            <c:forEach items="${novaVenda.listaItensVenda}" var="item">
-
-                                <p>
-                                    Produto: <c:out value="${item.codigoProduto}" /> / 
-                                    Quantidade: <c:out value="${item.quantidade}" /><br>
-                                    Unidade: <fmt:formatNumber value="${item.valor}" type="currency" /> / 
-                                    Ao todo: <fmt:formatNumber value="${item.valor * item.quantidade}" type="currency"/>
-                                </p>
-                                <br>
-
+                            <table>
+                                <theader>
+                                    <tr>
+                                        <th>Código Venda</th>
+                                        <th>CPF Cliente</th>
+                                        <th>Data da Venda</th>
+                                        <th>Valor Total</th>
+                                    </tr>
+                                </theader>
+                                
+                            <c:forEach items = "${listaVenda}" var = "venda">
+                                <tr>
+                                    <td><c:out value="${venda.codigo}"/></td>
+                                    <td><c:out value="${venda.cpfPessoa}"/></td>
+                                    <td><fmt:formatDate value="${venda.dtDate}" type="date" dateStyle="short" /></td>
+                                    <td><fmt:formatNumber value="${venda.valorTotal}" type="currency" /></td>
+                                </tr>
                             </c:forEach>
 
-                            <input type="submit" value="Concluir">
-
-                        </form>
+                        </table>
 
                     </section>
 
@@ -124,7 +120,7 @@ Author     : andre.ayamamoto
                                         <a href="${pageContext.request.contextPath}/venda">Nova Venda</a>
                                     </li>
                                     <li>
-                                       <a href="${pageContext.request.contextPath}/Relatorio">Relatório</a>
+                                        <a href="${pageContext.request.contextPath}/Relatorio">Relatório</a>
                                     </li>
                                     <li>
                                         <a href="#">Tempus Magna</a>
@@ -183,12 +179,11 @@ Author     : andre.ayamamoto
 
         </div>
 
-        <!-- Scripts -->
         <script src="js/jquery.min.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/util.js"></script>
         <script src="js/main.js"></script>
 
-    </body>
 
+    </body>
 </html>

@@ -84,26 +84,30 @@ public class ServicoVenda {
             //Vendedor
             //int idVendedor = Pegar o id do usuario logado
             //Produtos
-            String[] idProdutos = request.getParameterValues("produto");
+            String[] codigosProduto = request.getParameterValues("produto");
+            
+            //Pegar idProduto por codigo do produto
+            List<Integer> idProdutos = ServicoProduto.getProdutoIdByCodigo(codigosProduto);
 
             //Quantidade de produtos
             String[] quantProdutos = request.getParameterValues("quantidadeProduto");
 
             //Verifica o tamanho dos arrays adquiridos do request
-            if (idProdutos.length != quantProdutos.length) {
+            if (codigosProduto.length != quantProdutos.length) {
                 System.out.println("Os ParameterValues nao tem o mesmo tamanho");
             }
 
             //Lista de ItensVenda
             ArrayList<ItensVenda> lista = new ArrayList<>();
 
-            for (int i = 0; i < idProdutos.length; i++) {
+            for (int i = 0; i < codigosProduto.length; i++) {
 
-                int idProduto = Integer.parseInt(idProdutos[i]);
+                int idProduto = idProdutos.get(i);
+                int codigo = Integer.parseInt(codigosProduto[i]);
                 int quantidade = Integer.parseInt(quantProdutos[i]);
-                double valor = ServicoProduto.getPrecoProdutoById(idProduto);//Retornando -1 por enquanto
+                double valor = ServicoProduto.getPrecoProdutoById(idProduto);
 
-                ItensVenda item = new ItensVenda(idProduto, quantidade, valor);
+                ItensVenda item = new ItensVenda(idProduto, quantidade, valor, codigo);
 
                 lista.add(item);
             }
@@ -181,10 +185,40 @@ public class ServicoVenda {
         }
     }
 
+    public static List<ItensVenda> GetItensVendaByVendaId(Venda venda) {
+
+        List<ItensVenda> lista = new ArrayList<>();
+
+        try {
+            lista = (ArrayList) VendaDAO.getItensVenda(venda.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(ServicoVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+
     public static List<Venda> ConsultaVendaByData(Date de, Date ate)
             throws VendaException {
         try {
-            return VendaDAO.getVendaByDates(de, ate);
+
+            List<Venda> listaVendas = new ArrayList<>();
+            List<Venda> listaVendasComItens = new ArrayList<>();
+            List<ItensVenda> listaItens = new ArrayList<>();
+
+            listaVendas = VendaDAO.getVendaByDates(de, ate);
+
+            for (Venda venda : listaVendas) {
+
+//                if(!listaItens.isEmpty()) {
+//                    listaItens.clear();
+//                }
+                listaItens = GetItensVendaByVendaId(venda);
+                venda.setListaItensVenda((ArrayList<ItensVenda>) listaItens);
+                listaVendasComItens.add(venda);
+            }
+
+            return listaVendasComItens;
+
         } catch (Exception e) {
             throw new VendaException("Erro na fonte de dados.", e.getCause());
         }
@@ -194,12 +228,13 @@ public class ServicoVenda {
             throws VendaException {
         try {
 
-            int codigo = VendaDAO.countVendas();
+            //int codigo = VendaDAO.countVendas();
+            int codigo = VendaDAO.getMaxCodigo();
             codigo++;
 
-            while (codigo == VendaDAO.countVendas()) {
-                codigo++;
-            }
+//            while (codigo == VendaDAO.countVendas()) {
+//                codigo++;
+//            }
 
             return codigo;
 

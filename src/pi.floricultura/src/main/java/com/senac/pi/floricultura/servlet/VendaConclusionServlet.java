@@ -45,7 +45,7 @@ public class VendaConclusionServlet extends HttpServlet {
 
             //Apago a venda da sessao
             request.getSession().removeAttribute("novaVenda");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaConclusion.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
             dispatcher.forward(request, response);
 
         } catch (IOException | ServletException | VendaException e) {

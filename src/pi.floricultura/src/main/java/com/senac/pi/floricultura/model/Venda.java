@@ -5,7 +5,6 @@
  */
 package com.senac.pi.floricultura.model;
 
-import com.senac.pi.floricultura.DAO.VendaDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ public class Venda {
     private Calendar data;
     private Date dtDate;
     private int idPessoa;
+    private String cpfPessoa;
     private int idVendedor;
     private ArrayList<ItensVenda> listaItensVenda;
     private double valorTotal;
@@ -39,12 +39,17 @@ public class Venda {
     }
 
     public Venda(ResultSet rs) throws SQLException, Exception {
-        codigo = rs.getInt("id");
+
+        id = rs.getInt("id_Venda");
+        codigo = rs.getInt("Codigo");
         idPessoa = rs.getInt("id_Cliente");
+        cpfPessoa = rs.getString("CPF");
         valorTotal = rs.getFloat("ValorTotal");
-        data = (Calendar) rs.getObject("Data");
+        //Datas
+        java.sql.Date novo = rs.getDate("Data");
+        data = Calendar.getInstance();
+        data.setTime(novo);
         dtDate = data.getTime();
-        listaItensVenda = (ArrayList<ItensVenda>) VendaDAO.getItensVenda(rs.getInt("idVenda"));
     }
 
     public Calendar getData() {
@@ -63,18 +68,6 @@ public class Venda {
         this.dtDate = dtDate;
     }
 
-    //Ainda não tem produto
-//    public void setProdutoNoItensVenda(Produto entrada) {
-//
-//        ItensVenda item = new ItensVenda();
-//
-//        item.setCodProduto(entrada.getId());
-//        item.setNome(entrada.getNome());
-//        item.setQuantidade(entrada.getQuantidadeVenda());
-//        item.setPreco(entrada.getPreco());
-//
-//        listaItensVenda.add(item);
-//    }
     public int getId() {
         return id;
     }
@@ -105,6 +98,14 @@ public class Venda {
 
     public void setIdPessoa(int pessoa) {
         this.idPessoa = pessoa;
+    }
+
+    public String getCpfPessoa() {
+        return cpfPessoa;
+    }
+
+    public void setCpfPessoa(String cpfPessoa) {
+        this.cpfPessoa = cpfPessoa;
     }
 
     public int getIdVendedor() {

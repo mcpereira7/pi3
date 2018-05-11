@@ -9,9 +9,9 @@ import com.senac.pi.floricultura.controllers.ServicoVenda;
 import com.senac.pi.floricultura.exceptions.VendaException;
 import com.senac.pi.floricultura.model.Venda;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author aayan
  */
-@WebServlet(name = "RelatorioServlet", urlPatterns = {"/RelatorioServlet"})
+@WebServlet(name = "RelatorioServlet", urlPatterns = {"/Relatorio"})
 public class RelatorioServlet extends HttpServlet {
 
     /**
@@ -43,7 +43,7 @@ public class RelatorioServlet extends HttpServlet {
             throws ServletException, IOException {
 
         //request.getRequestDispatcher("WEB-INF/jsp/Relatorio.jsp").forward(request, response);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/relatorio.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Relatorio.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -59,23 +59,22 @@ public class RelatorioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date dtIni = null;
-        Date dtFim = null;
-        String auxData = dtFormat.format(request.getParameter("dtIni"));
-
-        List<Venda> venda = null;
         try {
-            dtIni = dtFormat.parse(auxData);
-            auxData = dtFormat.format(request.getParameter("dtFim"));
-            dtFim = dtFormat.parse(auxData);
-            venda = ServicoVenda.ConsultaVendaByData(dtIni, dtFim);
-            request.setAttribute("listaVenda", venda);
+
+            List<Venda> listaVendas = new ArrayList<>();
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            
+            Date dataInicial = (Date) format.parse(request.getParameter("dataInicial"));
+            Date dataFinal = (Date) format.parse(request.getParameter("dataFinal"));
+
+            listaVendas = ServicoVenda.ConsultaVendaByData(dataInicial, dataFinal);
+            request.setAttribute("listaVenda", listaVendas);
 
         } catch (VendaException | ParseException ex) {
             Logger.getLogger(RelatorioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/relatorio.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Relatorio.jsp");
         dispatcher.forward(request, response);
     }
 

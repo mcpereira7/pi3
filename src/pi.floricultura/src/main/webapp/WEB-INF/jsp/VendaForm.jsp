@@ -63,7 +63,7 @@ Author     : aayan
                             <hr class="general" />
                             
                             <div id="vendaDiv">
-                                <h4>Produto 1:</h4>
+                                <h4>Código Produto 1:</h4>
                                 <input type="text" name="produto" id="produto1" />
                                 <br> <h4>Quantidade:</h4>
                                 <input type="number" min="0" name="quantidadeProduto" id="quantProduto1" style="width: 70% !important"/>
@@ -106,7 +106,7 @@ Author     : aayan
                                             <a href="${pageContext.request.contextPath}/venda">Nova Venda</a>
                                         </li>
                                         <li>
-                                            <a href="#">Ipsum Adipiscing</a>
+                                           <a href="${pageContext.request.contextPath}/Relatorio">Relatório</a>
                                         </li>
                                         <li>
                                             <a href="#">Tempus Magna</a>
@@ -184,7 +184,7 @@ Author     : aayan
                             var styleProductName = "";
                             var styleProductQuantit = " style= 'width:70% !important'";
                             var styleProductRemoveButton = " style= 'height: 2.5em; line-height: 2.5em;'";
-                            var inputProdutoCodigo = "<hr class='general'/><br><h4>Produto " + (count + 1) + ":</h4><input type='text' name='produto' id='produto" + (count + 1) + "' />";
+                            var inputProdutoCodigo = "<hr class='general'/><br><h4>Código Produto " + (count + 1) + ":</h4><input type='text' name='produto' id='produto" + (count + 1) + "' />";
                             var inputProdutoQuantidade = " <h4>Quantidade: </h4><input type='number' min='0' name='quantidadeProduto' id='quantProduto" + (count + 1) + "' "+ styleProductQuantit +"/>";
                             var buttonToRemoveThisDiv = "&nbsp&nbsp<input onclick='removeInputProduct(this)' type='button' value='-' "+ styleProductRemoveButton +" /><br>";
                             
