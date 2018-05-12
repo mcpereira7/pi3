@@ -45,6 +45,7 @@ public class PermissoesCadastrarServlet extends HttpServlet {
         try {
             //Servico
             ServicoGrupoPermissao.AtualizarGrupoPermissaoTelas(grupo);
+            response.sendRedirect(request.getContextPath() + "/index.html");
         } catch (Exception ex) {
             Logger.getLogger(PermissoesCadastrarServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

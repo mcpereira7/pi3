@@ -20,7 +20,7 @@
 
                     <!-- Header -->
                     <header id="header">
-                        <h4 class="logo"><strong>Lista de Permissões</strong></h4>
+                        <h4 class="logo"><strong>Editar Permissões</strong></h4>
                         <ul class="icons">
                             <li><a href="#"><span class="label">User Name</span></a></li>
                             <li><a href="#"><span class="label">User Foto</span></a></li>
@@ -32,36 +32,25 @@
 
                     <!-- Content -->
                     <section>
-                        <c:forEach items = "${listaPermissoes}" var = "grupoPermissao">
-                            <h2>${grupoPermissao.nome}</h2>
-
+                            <h2>${sessionScope.grupoEditar.nome}</h2>
                             <table>
                                 <thead>
                                     <tr>
                                         <td><strong>Nome</strong></td>
                                         <td><strong>Caminho</strong></td>
+                                        <td><strong>Excluir</strong></td>
                                     </tr>
                                 </thead>
 
-                                <c:forEach items = "${grupoPermissao.listaTelas}" var = "listaTelas">
+                                <c:forEach items = "${sessionScope.grupoEditar.listaTelas}" var = "listaTelas">
                                     <tr>
                                         <td>${listaTelas.nome}</td>
                                         <td>${listaTelas.caminho}</td>
+                                        <td> <input type="checkbox" name="excluir" value="Excluir"/> </td>
                                     </tr>
                                 </c:forEach>
                             </table>
-                            
-                            <div style = "text-align: right">
-                                <form style="float: right; margin-left: 15px" action="${pageContext.request.contextPath}/PermissoesExcluir" method="POST">
-                                    <input type="submit" value="Excluir Grupo" name="excluirGrupo" />
-                                </form>
-                                <form action="${pageContext.request.contextPath}/PermissoesEditar" method="POST">
-                                    <input type="hidden" name ="idGrupoEditar" value="${grupoPermissao.id_grupo}" />
-                                    <input type="submit" value="Editar Grupo" name="editarGrupo" />
-                                </form>
-                            </div>
                             <hr>
-                        </c:forEach>
                     </section>
 
                 </div>

@@ -196,6 +196,37 @@ public class grupoPermissaoDAO {
         }
     }
     
+    public static GrupoPermissao GruposPermissoesByGrupo(Integer id_grupo){
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        String sql = "";
+        
+        sql = "SELECT * FROM GrupoPermissao WHERE id_grupo = ?";
+
+        Connection cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            stmt.setInt(1, id_grupo);
+            rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                GrupoPermissao grupoPermissao = new GrupoPermissao(
+                        rs.getInt("id_grupo"),
+                        rs.getString("nome"),
+                        ListarPermissoesByGrupo(rs.getInt("id_grupo"))
+                );
+                return grupoPermissao;
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+        return null;
+    }
+    
     public static List<TelaPermissoes> ListarPermissoesByGrupo(Integer id_grupo){
         ResultSet rs = null;
         PreparedStatement stmt = null;
@@ -234,7 +265,6 @@ public class grupoPermissaoDAO {
     public static List<GrupoPermissao> ListarGruposPermissoes(){
         ResultSet rs = null;
         PreparedStatement stmt = null;
-        String[] strWhere = new String[2];
         String sql = "";
         List<GrupoPermissao> listaGrupoPermissao = new ArrayList<>();
 
