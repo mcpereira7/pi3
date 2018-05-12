@@ -18,6 +18,7 @@ public class Usuario extends Pessoa {
     private String user;
     private String password;
     private int idGrupo;
+    private boolean signedUp = false;
 
     public Usuario() {
 
@@ -67,6 +68,14 @@ public class Usuario extends Pessoa {
 
     public void setIdGrupo(int idGrupo) {
         this.idGrupo = idGrupo;
+    }
+
+    public boolean getSignedUp() {
+        return signedUp;
+    }
+
+    public void setLoged() {
+        this.signedUp = true;
     }
 
 }

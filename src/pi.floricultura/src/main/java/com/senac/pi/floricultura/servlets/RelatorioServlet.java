@@ -8,6 +8,7 @@ package com.senac.pi.floricultura.servlets;
 import com.senac.pi.floricultura.controllers.ServicoVenda;
 import com.senac.pi.floricultura.exceptions.VendaException;
 import com.senac.pi.floricultura.model.Venda;
+import com.senac.pi.floricultura.utilitarios.Auxiliares;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,17 +64,17 @@ public class RelatorioServlet extends HttpServlet {
 
             List<Venda> listaVendas = new ArrayList<>();
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            
-            Date dataInicial = (Date) format.parse(request.getParameter("dataInicial"));
-            Date dataFinal = (Date) format.parse(request.getParameter("dataFinal"));
+            Date dataInicial = Auxiliares.InputDateToUtilDate(request.getParameter("dataInicial"));
+            Date dataFinal = Auxiliares.InputDateToUtilDate(request.getParameter("dataFinal"));
 
             listaVendas = ServicoVenda.ConsultaVendaByData(dataInicial, dataFinal);
             request.setAttribute("listaVenda", listaVendas);
 
         } catch (VendaException | ParseException ex) {
             Logger.getLogger(RelatorioServlet.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Relatorio.jsp");
         dispatcher.forward(request, response);
     }

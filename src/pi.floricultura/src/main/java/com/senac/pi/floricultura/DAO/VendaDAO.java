@@ -326,9 +326,4 @@ public class VendaDAO {
         return ItensVenda;
     }
 
-    public static Calendar toCalendar(Date data) {
-        Calendar dataCal = Calendar.getInstance();
-        dataCal.setTime(data);
-        return dataCal;
-    }
 }
