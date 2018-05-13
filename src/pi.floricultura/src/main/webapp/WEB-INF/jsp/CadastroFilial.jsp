@@ -23,16 +23,8 @@
                 <div class="inner">
 
                     <!-- Header -->
-                    <header id="header">
-                        <a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
-                        <ul class="icons">
-                            <li><a href="#"><span class="label">User Name</span></a></li>
-                            <li><a href="#"><span class="label">User Foto</span></a></li>
-                            <li><a href="#"><span class="label">Sair</span></a></li>
-                            <!--										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                                                                                                            <li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>-->
-                        </ul>
-                    </header>
+                    <%@include file="/header.jsp" %>
+                    <strong class="page-name">Funcao da Pagina</strong>
 
                     <!-- Content -->
                     <section>
@@ -97,6 +89,7 @@
                 </div>
             </div>
 
+            <!-- Sidebar -->
             <%@include file="/sidebar.jsp" %>
 
         </div>

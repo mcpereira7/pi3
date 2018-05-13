@@ -24,6 +24,7 @@ Author     : aayan
             <div id="main">
                 <div class="inner">
 
+                    <!-- Header -->
                     <%@include file="/header.jsp" %>
                     <strong class="page-name">Nova Venda</strong>
 
@@ -59,6 +60,7 @@ Author     : aayan
                 </div>
             </div>
 
+            <!-- Sidebar -->
             <%@include file="/sidebar.jsp" %>
 
         </div>

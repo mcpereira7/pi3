@@ -29,6 +29,7 @@
             <div id="main">
                 <div class="inner">
 
+                    <!-- Header -->
                     <%@include file="/header.jsp" %>
                     <strong class="page-name">Funcao da Pagina</strong>
 
@@ -43,6 +44,7 @@
                 </div>
             </div>
 
+            <!-- Sidebar -->
             <%@include file="/sidebar.jsp" %>
 
         </div>

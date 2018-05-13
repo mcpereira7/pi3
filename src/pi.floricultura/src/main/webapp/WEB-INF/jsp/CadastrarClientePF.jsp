@@ -28,14 +28,8 @@ Author     : Marcelo Pereira
                 <div class="inner">
 
                     <!-- Header -->
-                    <header id="header">
-                        <a href="index.html" class="logo"><strong>Cadastro Cliente</strong></a>
-                        <ul class="icons">
-                            <li><a href="#"><span class="label">User Name</span></a></li>
-                            <li><a href="#"><span class="label">User Foto</span></a></li>
-                            <li><a href="#"><span class="label">Sair</span></a></li>
-                        </ul>
-                    </header>
+                    <%@include file="/header.jsp" %>
+                    <strong class="page-name">Funcao da Pagina</strong>
 
                     <!-- Content -->
                     <section>
@@ -112,6 +106,7 @@ Author     : Marcelo Pereira
                 </div>
             </div>
 
+            <!-- Sidebar -->
             <%@include file="/sidebar.jsp" %>
 
         </div>

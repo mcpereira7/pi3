@@ -26,6 +26,7 @@ Author     : andre.ayamamoto
             <div id="main">
                 <div class="inner">
 
+                    <!-- Header -->
                     <%@include file="/header.jsp" %>
                     <strong class="page-name">Conclusão de Venda</strong>
 
@@ -77,8 +78,8 @@ Author     : andre.ayamamoto
                 </div>
             </div>
 
+            <!-- Sidebar -->
             <%@include file="/sidebar.jsp" %>
-
 
         </div>
 
