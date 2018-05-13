@@ -39,10 +39,10 @@ public class UsuarioDAO {
             Usuario logado = new Usuario(rs);
 
             return logado;
-            
+
         } finally {
             ConnectionFactory.closeConnection(cn, stmt, rs);
         }
     }
-    
+
 }

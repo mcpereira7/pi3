@@ -17,8 +17,15 @@ import javax.servlet.http.HttpSession;
  *
  * @author aayan
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/logout"})
+public class LogoutServlet extends HttpServlet {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession sessao = request.getSession();
+        sessao.invalidate();
+        response.sendRedirect(request.getContextPath());
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -31,16 +38,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        // Logica para evitar que o usuario logado acesse pagina de login
-        HttpSession sessao = request.getSession();
-        if (sessao.getAttribute("usuario") != null) {
-            response.sendRedirect(request.getContextPath() + "/home.jsp");
-            return;
-        }
-        request.getRequestDispatcher("index.jsp")
-                .forward(request, response);
-
+        processRequest(request, response);
     }
 
     /**
@@ -54,20 +52,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String user = request.getParameter("user");
-        String password = request.getParameter("password");
-
-        /*Validar as informações
-        Usar um servoco de login para verificar se o usuario existe no banco
-        e verificar sua senha
-         */
-        //Se estiver tudo ok 
-        HttpSession sessao = request.getSession();
-        sessao.setAttribute("user", user);
-
-        response.sendRedirect(request.getContextPath() + "/home");
-
+        processRequest(request, response);
     }
-
 }

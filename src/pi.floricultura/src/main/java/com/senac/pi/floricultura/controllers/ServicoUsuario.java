@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  */
 public class ServicoUsuario {
 
+    //Nao utilizar esse metodo ainda
     public static Usuario LogarUsuario(String user, String password) {
 
         Usuario usuario = null;

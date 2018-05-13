@@ -64,7 +64,7 @@ Author     : aayan
                 <!-- Content -->
                 <section class="main-login">
                     <div class="login-block">
-                        <form action="${pageContext.request.contextPath}/Login">
+                        <form action="${pageContext.request.contextPath}/login">
                             <div class="login-box-head">
                                 <p class="login-box-head-face">Umbrella Corp.</p>
                                 <p class="login-box-head-google">Floricultura</p>
