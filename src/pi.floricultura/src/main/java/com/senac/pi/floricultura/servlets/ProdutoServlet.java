@@ -22,7 +22,7 @@ public class ProdutoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/jsp/cadastroProduto.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/ProdutoForm.jsp").forward(request, response);
     }
     
     @Override
@@ -45,6 +45,6 @@ public class ProdutoServlet extends HttpServlet {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        request.getRequestDispatcher("/WEB-INF/jsp/cadastroProduto.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/ProdutoForm.jsp").forward(request, response);
     }
 }
