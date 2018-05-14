@@ -51,17 +51,17 @@ public class ProdutoDAO {
     public static void inserir(Produto produto) throws SQLException, Exception {
         PreparedStatement stmtProduto = null;
 
-        String sqlProduto = "INSERT INTO Produto(idProduto, nome, descricao, preco, tipo, disable)"
+        String sqlProduto = "INSERT INTO Produto(Nome, Descricao, Preco, Tipo, Disable)"
                 + "VALUES(?,?,?,?,?,?)";
 
         try {
             stmtProduto = cn.prepareStatement(sqlProduto);
-            stmtProduto.setInt(1, produto.getId());
-            stmtProduto.setString(2, produto.getNome());
-            stmtProduto.setString(3, produto.getDescricao());
-            stmtProduto.setFloat(4, produto.getPreco());
-            stmtProduto.setInt(5, produto.getTipo());
-            stmtProduto.setBoolean(6, false);
+            stmtProduto.setString(1, produto.getNome());
+            stmtProduto.setString(2, produto.getDescricao());
+            stmtProduto.setFloat(3, produto.getPreco());
+//            stmtProduto.setInt(4, produto.getTipo());
+            stmtProduto.setInt(4, 1);
+            stmtProduto.setBoolean(5, false);
             stmtProduto.execute();
         } catch (Exception e) {
         } finally {

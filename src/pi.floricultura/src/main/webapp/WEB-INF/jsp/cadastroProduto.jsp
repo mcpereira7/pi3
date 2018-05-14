@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <title>Pagina Generica</title>
+        <title>Cadastro de Produtos</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="css/main.css" />
@@ -47,10 +47,10 @@
                             <form action="produto" method="post">
                                 Nome: <input type="text" name="nome"><br>
                                 Preço: <input type="number" placeholder="5.00" step="0.01" min=5 name="preco">
-                                Quantidade: <input type="number" name="quantidade" placeholder="00" step="1" min=0 size="5"><br><br>
-                                Tipo: <input type="radio" name="tipo" value="Flores"> Flores <input type="radio" name="tipoe" value="Ervas"> Ervas <input type="radio" name="tipoe" value="Outros"> Outros<br><br>
+                                Quantidade: <input type="number" name="quantidade" placeholder="00" step="1" minlength="5"><br><br>
+                                Tipo: <input type="radio" name="tipo" value="Flores"> Flores <input type="radio" name="tipo" value="Ervas">Temperos <input type="radio" name="tipo" value="Outros"> Outros<br><br>
                                 Descrição: <input type="text" name="descricao" placeholder="(inclua descrição do produto"><br><br>
-                                
+
                                 <!--%
 
                                 %-->
