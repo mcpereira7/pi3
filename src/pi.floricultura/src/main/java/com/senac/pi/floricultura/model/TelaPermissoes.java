@@ -7,7 +7,12 @@ public class TelaPermissoes extends Tela{
         super(id, nome, caminho);
         this.excluido = excluir;
     }
-
+    
+    public TelaPermissoes(int id, boolean excluir) {
+        super(id);
+        this.excluido = excluir;
+    }
+    
     public boolean isExcluido() {
         return excluido;
     }

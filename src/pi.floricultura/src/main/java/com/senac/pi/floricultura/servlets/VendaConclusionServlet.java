@@ -3,16 +3,13 @@
  * Github: aayandre
  * Senac
  */
-package com.senac.pi.floricultura.controllers;
+package com.senac.pi.floricultura.servlets;
 
-import com.senac.pi.floricultura.DAO.VendaDAO;
+import com.senac.pi.floricultura.controllers.ServicoVenda;
 import com.senac.pi.floricultura.exceptions.VendaException;
 import com.senac.pi.floricultura.model.Venda;
-import com.senac.pi.floricultura.teste.TesteVenda;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -40,16 +37,21 @@ public class VendaConclusionServlet extends HttpServlet {
             //Conclui a venda e envia pro banco
             Object venda = request.getSession().getAttribute("novaVenda");
             Venda concluir = (Venda) venda;
-            //ServicoVenda.ConcluirVenda(concluir);
+            
+            //Hardcode do id vendedor pois a sessao ainda não foi implantada
+            concluir.setIdVendedor(1);
+            
+            ServicoVenda.ConcluirVenda(concluir);
 
             //Apago a venda da sessao
             request.getSession().removeAttribute("novaVenda");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaConclusion.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
             dispatcher.forward(request, response);
 
-        } catch (Exception e) {
+        } catch (IOException | ServletException | VendaException e) {
+            Logger.getLogger(VendaConclusionServlet.class.getName()).log(Level.SEVERE, null, e);
         }
-        
+
     }
 
     @Override
@@ -61,6 +63,9 @@ public class VendaConclusionServlet extends HttpServlet {
         HttpSession sessao = request.getSession();
 
         try {
+            
+            //Pega o CPF
+            String cpf = request.getParameter("cliente");
 
             //Criar Venda a partir do dados do VendaForm
             Venda novaVenda = ServicoVenda.CreateVendaByRequest(request);
@@ -69,6 +74,9 @@ public class VendaConclusionServlet extends HttpServlet {
             sessao.setAttribute("novaVenda", novaVenda);
             request.setAttribute("novaVenda", novaVenda);
             request.setAttribute("dataVenda", new Date());
+            
+            //Pega o cpf
+            request.setAttribute("clienteCPF", cpf);
 
             //Redireciona para a pagina de conclusao de venda
             RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaConclusion.jsp");

@@ -7,11 +7,10 @@ package com.senac.pi.floricultura.controllers;
 
 import com.senac.pi.floricultura.DAO.VendaDAO;
 import com.senac.pi.floricultura.exceptions.VendaException;
+import com.senac.pi.floricultura.model.EstoqueProduto;
 import com.senac.pi.floricultura.model.ItensVenda;
-import com.senac.pi.floricultura.model.Pessoa;
+import com.senac.pi.floricultura.model.PessoaFisica;
 import com.senac.pi.floricultura.model.Venda;
-import java.awt.Component;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +18,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,87 +25,63 @@ import javax.swing.JOptionPane;
  */
 public class ServicoVenda {
 
-    //Ainda não tem consulta de pessoa
-//    public static List<Pessoa> ConsultaClienteByNomeOuCodigo(String campoDaConsulta,
-//            List<ItensVenda> listaItensVenda, List<Pessoa> listaDeClientes, Component tela)
-//            throws VendaException {
-//
-//        try {
-//            if (!campoDaConsulta.isEmpty()) {
-//                if (!listaItensVenda.isEmpty() || !listaDeClientes.isEmpty()) {
-//                    JOptionPane.showMessageDialog(tela, "Venda em andamento.");
-//                    return null;
-//                } else {
-//                    if (isParsable(campoDaConsulta)) {
-//
-//                        listaDeClientes = ServicoCliente.procuraCliente(Integer.parseInt(campoDaConsulta), campoDaConsulta);
-//
-//                        if (listaDeClientes.size() > 1) {
-//                            JOptionPane.showMessageDialog(tela, "Foi encontrado multiplos clientes com o mesmo nome.");
-//                            return listaDeClientes;
-//                        } else {
-//                            return listaDeClientes;
-//                        }
-//
-//                    } else {
-//                        listaDeClientes = ServicoCliente.procuraCliente(-1, campoDaConsulta);
-//                        return listaDeClientes;
-//                    }
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(tela, "Digite um nome ou valor valido.");
-//                return null;
-//            }
-//        } catch (VendaException e) {
-//            throw new VendaException("Erro na fonte de dados.", e.getCause());
-//        }
-//    }
     public static Venda CreateVendaByRequest(HttpServletRequest request)
             throws VendaException {
 
         try {
 
             //Cliente
-            int idPessoa = 0;
+            String cpf = "";
             if (request.getParameter("cliente") != null && !request.getParameter("cliente").equals("")) {
-                idPessoa = Integer.parseInt(request.getParameter("cliente"));
+                cpf = request.getParameter("cliente");
             } else {
                 System.out.println("Cliente nao inserido.");
             }
+            //Pegar idCliente por cpf
+            List<PessoaFisica> listaClientes = ServicoCliente.ConsultarClientes(cpf);
+            int idpessoa = listaClientes.get(0).getId();
 
             //Vendedor
             //int idVendedor = Pegar o id do usuario logado
-            
             //Produtos
-            String[] idProdutos = request.getParameterValues("produto");
+            String[] codigosProduto = request.getParameterValues("produto");
+
+            //Pegar idProduto por codigo do produto
+            List<Integer> idProdutos = ServicoProduto.getProdutoIdByCodigo(codigosProduto);
 
             //Quantidade de produtos
             String[] quantProdutos = request.getParameterValues("quantidadeProduto");
 
             //Verifica o tamanho dos arrays adquiridos do request
-            if (idProdutos.length != quantProdutos.length) {
+            if (codigosProduto.length != quantProdutos.length) {
                 System.out.println("Os ParameterValues nao tem o mesmo tamanho");
             }
 
             //Lista de ItensVenda
             ArrayList<ItensVenda> lista = new ArrayList<>();
 
-            for (int i = 0; i < idProdutos.length; i++) {
+            int countForList = idProdutos.size() - 1;
 
-                int idProduto = Integer.parseInt(idProdutos[i]);
+            for (int i = 0; i < codigosProduto.length; i++) {
+
+                int idProduto = idProdutos.get(countForList);
+                int codigo = Integer.parseInt(codigosProduto[i]);
                 int quantidade = Integer.parseInt(quantProdutos[i]);
-                double valor = ServicoProduto.getPrecoProdutoById(idProduto);//Retornando -1 por enquanto
+                double valor = ServicoProduto.getPrecoProdutoById(idProduto);
 
-                ItensVenda item = new ItensVenda(idProduto, quantidade, valor);
+                ItensVenda item = new ItensVenda(idProduto, quantidade, valor, codigo);
 
                 lista.add(item);
+                countForList--;
             }
 
             //Criando venda com os dados adquiridos acima
             Venda novaVenda = new Venda();
 
             novaVenda.setCodigo(ServicoVenda.geraCodVenda());
-            novaVenda.setIdPessoa(idPessoa);
+
+            //Pegar id_pessoa por cpf
+            novaVenda.setIdPessoa(idpessoa);
             novaVenda.setDataVenda(Calendar.getInstance());
             //novaVenda.setIdVendedor(idVendedor); Ainda sem metodo
             novaVenda.setListaItensVenda(lista);
@@ -121,10 +95,48 @@ public class ServicoVenda {
 
     }
 
+    public static List<EstoqueProduto> AlteraEstoqueAtual(Venda novaVenda) {
+
+        List<EstoqueProduto> listaAtualizada = new ArrayList<>();
+
+        //O hardcode 7 seria a  filial
+        int filial = 7;
+
+        List<EstoqueProduto> listaAtual = ServicoEstoqueProduto.ListarEstoquePorIdsProduto(novaVenda.getListaItensVenda(), filial);
+
+        //Alterar a listaAtual
+        for (ItensVenda item : novaVenda.getListaItensVenda()) {
+            for (EstoqueProduto estoqueProduto : listaAtual) {
+                if (item.getIdProduto() == estoqueProduto.getId_produto()) {
+                    listaAtualizada.add(
+                            new EstoqueProduto(
+                                    estoqueProduto.getId_produto(),
+                                    filial,
+                                    (estoqueProduto.getQuantidade() - item.getQuantidade())
+                            ));
+                }
+            }
+        }
+        //Fim da ateracao
+
+        return listaAtualizada;
+
+    }
+
     public static void ConcluirVenda(Venda novaVenda) throws VendaException {
         try {
+            //O 7 nesse hardcode seria a filial
+            int filial = 7;
 
-            // falta serviço produto  ServicoProduto.AtualizaEstoque(entrada.getListaItensVenda());
+            //Altera o estoque atual subtraindo com a quantidade em venda
+            List<EstoqueProduto> listaAtualizada = AlteraEstoqueAtual(novaVenda);
+
+            //Antes de inserir a venda atualizar o estoque
+            for (EstoqueProduto produtoComQuantidadeAlterada : listaAtualizada) {
+                //Atualizacao do estoque
+                ServicoEstoqueProduto.AtualizarEstoque(produtoComQuantidadeAlterada);
+            }
+
             VendaDAO.inserir(novaVenda);
 
             //Inserir itensVenda com o id da venda
@@ -136,10 +148,38 @@ public class ServicoVenda {
         }
     }
 
+    public static List<ItensVenda> GetItensVendaByVendaId(Venda venda) {
+
+        List<ItensVenda> lista = new ArrayList<>();
+
+        try {
+            lista = (ArrayList) VendaDAO.getItensVenda(venda.getId());
+        } catch (Exception ex) {
+            Logger.getLogger(ServicoVenda.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+
     public static List<Venda> ConsultaVendaByData(Date de, Date ate)
             throws VendaException {
+
+        List<Venda> listaVendas;
+        List<ItensVenda> listaItens;
+        List<Venda> listaVendasComItens = new ArrayList<>();
+        
         try {
-            return VendaDAO.getVendaByDates(de, ate);
+
+            listaVendas = VendaDAO.getVendaByDates(de, ate);
+
+            for (Venda venda : listaVendas) {
+
+                listaItens = GetItensVendaByVendaId(venda);
+                venda.setListaItensVenda((ArrayList<ItensVenda>) listaItens);
+                listaVendasComItens.add(venda);
+            }
+
+            return listaVendasComItens;
+
         } catch (Exception e) {
             throw new VendaException("Erro na fonte de dados.", e.getCause());
         }
@@ -149,13 +189,9 @@ public class ServicoVenda {
             throws VendaException {
         try {
 
-            int codigo = VendaDAO.countVendas();
+            int codigo = VendaDAO.getMaxCodigo();
             codigo++;
-
-            while (codigo == VendaDAO.countVendas()) {
-                codigo++;
-            }
-
+            
             return codigo;
 
         } catch (Exception e) {

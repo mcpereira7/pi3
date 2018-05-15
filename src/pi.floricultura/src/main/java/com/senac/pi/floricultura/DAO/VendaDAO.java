@@ -35,7 +35,6 @@ public class VendaDAO {
                 + "VALUES (?, ?, ?, ?, ?)";
 
         cn = ConnectionFactory.getConnection();
-        //Preciso da consulta de Pessoa
 
         try {
 
@@ -101,6 +100,30 @@ public class VendaDAO {
             int quantidade = rs.getInt("quantidade");
 
             return quantidade;
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+    }
+
+    public static int getMaxCodigo()
+            throws SQLException, Exception {
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+
+        String sql = "SELECT MAX(Codigo) as max FROM vendas";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+
+            rs.next();
+
+            int maiorCodigo = rs.getInt("max");
+
+            return maiorCodigo;
 
         } finally {
             ConnectionFactory.closeConnection(cn, stmt, rs);
@@ -174,7 +197,9 @@ public class VendaDAO {
         PreparedStatement stmt = null;
         List<Venda> resultado = new ArrayList<>();
 
-        String sql = "SELECT * FROM vendas WHERE Data BETWEEN '?' AND '?'";
+        String sql = "SELECT v.*, pf.CPF FROM vendas v "
+                + "INNER JOIN pessoafisica pf ON v.id_Cliente = pf.id_Pessoa "
+                + "WHERE v.Data BETWEEN ? AND ?";
 
         cn = ConnectionFactory.getConnection();
 
@@ -182,8 +207,8 @@ public class VendaDAO {
 
             stmt = cn.prepareStatement(sql);
 
-            stmt.setDate(1, (java.sql.Date) de);
-            stmt.setDate(2, (java.sql.Date) para);
+            stmt.setDate(1, new java.sql.Date(de.getTime()));
+            stmt.setDate(2, new java.sql.Date(para.getTime()));
 
             rs = stmt.executeQuery();
 
@@ -277,7 +302,9 @@ public class VendaDAO {
         PreparedStatement stmt = null;
         List<ItensVenda> ItensVenda = new ArrayList<>();
 
-        String sql = "SELECT * FROM ItensVenda WHERE idVenda = ?";
+        String sql = "SELECT i* FROM itensvenda i "
+                + "INNER JOIN produto p ON i.id_Produto = p.id_produto "
+                + "WHERE i.id_Venda = ?";
 
         cn = ConnectionFactory.getConnection();
 
@@ -289,8 +316,7 @@ public class VendaDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                ItensVenda itemVenda = new ItensVenda();
-
+                ItensVenda itemVenda = new ItensVenda(rs);
                 ItensVenda.add(itemVenda);
             }
 
@@ -300,9 +326,4 @@ public class VendaDAO {
         return ItensVenda;
     }
 
-    public static Calendar toCalendar(Date data) {
-        Calendar dataCal = Calendar.getInstance();
-        dataCal.setTime(data);
-        return dataCal;
-    }
 }

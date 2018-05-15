@@ -1,12 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * André de Amorim Yamamoto
+ * TADS - Turma A
+ * aay.andre@outlook.com
  */
-package com.senac.pi.floricultura.controllers;
+package com.senac.pi.floricultura.servlets;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +15,17 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author andred
+ * @author aayan
  */
-@WebServlet(name = "VendaServlet", urlPatterns = {"/venda"})
-public class VendaServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/logout"})
+public class LogoutServlet extends HttpServlet {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession sessao = request.getSession();
+        sessao.invalidate();
+        response.sendRedirect(request.getContextPath());
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -32,13 +38,7 @@ public class VendaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        System.out.println("Passou no doGet VendaServlet.");
-        HttpSession sessao = request.getSession();
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/VendaForm.jsp");
-        dispatcher.forward(request, response);
-
+        processRequest(request, response);
     }
 
     /**
@@ -52,9 +52,6 @@ public class VendaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        System.out.println("Passou no doPost VendaServlet.\n\n\n");
-
+        processRequest(request, response);
     }
-
 }

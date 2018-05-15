@@ -27,14 +27,8 @@
                 <div class="inner">
 
                     <!-- Header -->
-                    <header id="header">
-                        <a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
-                        <ul class="icons">
-                            <li><a href="#"><span class="label">User Name</span></a></li>
-                            <li><a href="#"><span class="label">User Foto</span></a></li>
-                            <li><a href="#"><span class="label">Sair</span></a></li>
-                        </ul>
-                    </header>
+                    <%@include file="/header.jsp" %>
+                    <strong class="page-name">Cadastro de Produto</strong>
 
                     <!-- Content -->
                     <section>
@@ -67,57 +61,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div id="sidebar">
-                <div class="inner">
-
-                    <!-- Search -->
-                    <section id="topSidBar" class="alt">
-                        <img class="imgTopSB" src="img/logo_flor_vetorizada_03.png"/>
-                    </section>
-
-                    <!-- Menu -->
-                    <nav id="menu">
-                        <header class="major">
-                            <h2>Menu</h2>
-                        </header>
-                        <ul>
-                            <li><a href="index.html">Homepage</a></li>
-                            <li>
-                                <span class="opener">Vendas</span>
-                                <ul>
-                                    <li><a href="#">Lorem Dolor</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Produto</span>
-                                <ul>
-                                    <li><a href="#">Lorem Dolor</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Cliente</span>
-                                <ul>
-                                    <li><a href="/pi.floricultura/ListarClientes">Consultar</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <footer id="footer">
-                        <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-                    </footer>
-
-                </div>
-            </div>
+            <%@include file="/sidebar.jsp" %>
 
         </div>
 

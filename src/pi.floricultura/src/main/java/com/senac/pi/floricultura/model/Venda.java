@@ -5,11 +5,11 @@
  */
 package com.senac.pi.floricultura.model;
 
-import com.senac.pi.floricultura.DAO.VendaDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -20,7 +20,9 @@ public class Venda {
     private int id;
     private int codigo;
     private Calendar data;
+    private Date dtDate;
     private int idPessoa;
+    private String cpfPessoa;
     private int idVendedor;
     private ArrayList<ItensVenda> listaItensVenda;
     private double valorTotal;
@@ -37,25 +39,35 @@ public class Venda {
     }
 
     public Venda(ResultSet rs) throws SQLException, Exception {
-        codigo = rs.getInt("id");
-        // cliente = DAO.ClienteDAO.obter(rs.getInt("idCliente"));
+
+        id = rs.getInt("id_Venda");
+        codigo = rs.getInt("Codigo");
+        idPessoa = rs.getInt("id_Cliente");
+        cpfPessoa = rs.getString("CPF");
         valorTotal = rs.getFloat("ValorTotal");
-        data = (Calendar) rs.getObject("Data");
-        listaItensVenda = (ArrayList<ItensVenda>) VendaDAO.getItensVenda(rs.getInt("idVenda"));
+        //Datas
+        java.sql.Date novo = rs.getDate("Data");
+        data = Calendar.getInstance();
+        data.setTime(novo);
+        dtDate = data.getTime();
     }
 
-    //Ainda não tem produto
-//    public void setProdutoNoItensVenda(Produto entrada) {
-//
-//        ItensVenda item = new ItensVenda();
-//
-//        item.setCodProduto(entrada.getId());
-//        item.setNome(entrada.getNome());
-//        item.setQuantidade(entrada.getQuantidadeVenda());
-//        item.setPreco(entrada.getPreco());
-//
-//        listaItensVenda.add(item);
-//    }
+    public Calendar getData() {
+        return data;
+    }
+
+    public void setData(Calendar data) {
+        this.data = data;
+    }
+
+    public Date getDtDate() {
+        return dtDate;
+    }
+
+    public void setDtDate(Date dtDate) {
+        this.dtDate = dtDate;
+    }
+
     public int getId() {
         return id;
     }
@@ -86,6 +98,14 @@ public class Venda {
 
     public void setIdPessoa(int pessoa) {
         this.idPessoa = pessoa;
+    }
+
+    public String getCpfPessoa() {
+        return cpfPessoa;
+    }
+
+    public void setCpfPessoa(String cpfPessoa) {
+        this.cpfPessoa = cpfPessoa;
     }
 
     public int getIdVendedor() {
