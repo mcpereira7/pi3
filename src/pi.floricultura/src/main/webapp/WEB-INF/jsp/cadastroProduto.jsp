@@ -43,7 +43,7 @@
                                 Preço: <input type="number" placeholder="5.00" step="0.01" min=5 name="preco">
                                 Quantidade: <input type="number" name="quantidade" placeholder="00" step="1" minlength="5"><br><br>
                                 Tipo: <input type="radio" name="tipo" value="Flores"> Flores <input type="radio" name="tipo" value="Ervas">Temperos <input type="radio" name="tipo" value="Outros"> Outros<br><br>
-                                Descrição: <input type="text" name="descricao" placeholder="(inclua descrição do produto"><br><br>
+                                Descrição: <input type="text" name="descricao" placeholder="(inclua descrição do produto)"><br><br>
 
                                 <!--%
 
@@ -53,7 +53,6 @@
                             </form>
                         </div>
                         <hr class="major" />
-
 
                     </section>
 

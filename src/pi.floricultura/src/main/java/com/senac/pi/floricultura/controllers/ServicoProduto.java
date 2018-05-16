@@ -7,6 +7,7 @@ package com.senac.pi.floricultura.controllers;
 
 import com.senac.pi.floricultura.model.Produto;
 import com.senac.pi.floricultura.DAO.ProdutoDAO;
+import com.senac.pi.floricultura.model.GerarCodigo;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -40,9 +41,9 @@ public class ServicoProduto {
         }
     }
 
-    public static double getPrecoProdutoById(int idProduto) {
+    public static float getPrecoProdutoById(int idProduto) {
 
-        double preco;
+        float preco;
 
         try {
 
@@ -56,23 +57,44 @@ public class ServicoProduto {
         }
     }
 
-    public static List<Integer> getProdutoIdByCodigo(String[] codigos) {
-
-        int[] codigosNum = new int[codigos.length];
+//    public static List<Integer> getProdutoIdByCodigo(String[] codigos) {
+//
+//        int[] codigosNum = new int[codigos.length];
+//        try {
+//
+//            for (int i = 0; i < codigos.length; i++) {
+//                codigosNum[i] = Integer.parseInt(codigos[i]);
+//            }
+//
+//            List<Integer> resultado = ProdutoDAO.getIdByCodigo(codigosNum);
+//
+//            return resultado;
+//        } catch (Exception ex) {
+//            Logger.getLogger(ServicoProduto.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//    }
+    public static String getProdutoByName(String nome) {
+        String procura;
         try {
-
-            for (int i = 0; i < codigos.length; i++) {
-                codigosNum[i] = Integer.parseInt(codigos[i]);
-            }
-
-            List<Integer> resultado = ProdutoDAO.getIdByCodigo(codigosNum);
-
-            return resultado;
+            procura = ProdutoDAO.getProdutoByNome(nome);
+            return procura;
 
         } catch (Exception ex) {
             Logger.getLogger(ServicoProduto.class.getName()).log(Level.SEVERE, null, ex);
+            return "não encontrado.";
         }
-        return null;
+    }
+
+    public static int getProdutoByTipo(int tipo) {
+        int procura;
+        try {
+            procura = ProdutoDAO.getProdutoByTipo(tipo);
+            return procura;
+        } catch (Exception e) {
+            Logger.getLogger(ServicoProduto.class.getName()).log(Level.SEVERE, null, e);
+            return - 1;
+        }
     }
 
 }
