@@ -31,17 +31,16 @@ Author     : Aline
                     <div class="produto-form">
                         <form action="${pageContext.request.contextPath}/produto" method="post">
                             Nome:
-                            <input type="text" name="nome" id="nome" placeholder="Nome do produto..." maxlength="100">
+                            <input type="text" name="nome" id="nome" placeholder="Nome do produto...">
                             <hr class="general"/>
                             
                             <div class="produto-info">
-                                Preço:<input type="number" placeholder="5.00" step="0.01" min=5 name="preco" maxlength="10"/>
+                                Preço:<input type="number" placeholder="5.00" step="0.01" min=5 name="preco"/>
                                 <br><br>
-                                Quantidade:<input type="number" name="quantidade" placeholder="00" step="1" min=0/ maxlength="10">
+                                Quantidade:<input type="number" name="quantidade" placeholder="00" step="1" min=0/>
                             </div>
                             <div class="produto-tipo">
                                 Tipo:&nbsp;&nbsp;&nbsp;
-                                <input type="radio" name="tipo" id="indefinido"><label for="indefinido">Indefinido</label>
                                 <input type="radio" name="tipo" id="flor"><label for="flor">Flor</label>
                                 <input type="radio" name="tipo" id="planta"><label for="planta">Planta</label>
                                 <input type="radio" name="tipo" id="rosa"><label for="rosa">Rosa</label>

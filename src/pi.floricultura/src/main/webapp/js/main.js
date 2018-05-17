@@ -4,6 +4,17 @@ html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+function inputDateNow(id) {
+	
+	var now = new Date();
+	
+	var day = ("0" + now.getDate()).slice(-2);
+	var month = ("0" + (now.getMonth() + 1)).slice(-2);
+	var hoje = now.getFullYear()+"-"+(month)+"-"+(day)
+	
+	document.getElementById(id).setAttribute("value", hoje);
+}
+
 (function($) {
 	
 	skel.breakpoints({
@@ -15,7 +26,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		'xlarge-to-max': '(min-width: 1681px)',
 		'small-to-xlarge': '(min-width: 481px) and (max-width: 1680px)'
 	});
-
+	
 	$(function() {
 		
 		var	$window = $(window),
@@ -254,6 +265,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			.trigger('resize.sidebar-lock');
 			
 		});
+		
+		$window.trigger('resize.sidebar-lock');
+
 		
 		// Menu.
 		var $menu = $('#menu'),

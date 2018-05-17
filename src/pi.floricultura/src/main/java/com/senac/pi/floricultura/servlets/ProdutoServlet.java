@@ -18,33 +18,27 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Produto", urlPatterns = {"/produto"})
 public class ProdutoServlet extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/jsp/ProdutoForm.jsp").forward(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
-            Produto produto = new Produto();
-            produto.setNome(request.getParameter("nome"));
-//            Produto.setTipo(request.getParameter("tipo")); 
-            produto.setTipo(1);
-            produto.setQuantidadeEstoque(Integer.parseInt(request.getParameter("quantidade")));
-            produto.setPreco(Float.parseFloat(request.getParameter("preco")));
-            produto.setDescricao(request.getParameter("descricao"));
-            
+            Produto produto = ServicoProduto.createProductByRequest(request);
+
             ServicoProduto.cadastrarProduto(produto);
+
             System.out.println(produto);
-//        } catch (SQLException e) {
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        request.getRequestDispatcher("/WEB-INF/jsp/ProdutoForm.jsp").forward(request, response);
+
+        request.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(request, response);
     }
 }

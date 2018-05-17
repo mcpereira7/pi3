@@ -32,12 +32,6 @@ Author     : aayan
                     <section>
                         <form id="venda-form" action="${pageContext.request.contextPath}/venda-conclusion" method="post">
 
-                            <!-- <header class="main">
-                                <h2>Nova Venda</h2>
-                            </header>
-                            
-                            <hr class="general" /> -->
-
                             <h3>Cliente</h3>
                             <input type="text" placeholder="CPF do cliente..." name="cliente" id="cliente">
                             <br>

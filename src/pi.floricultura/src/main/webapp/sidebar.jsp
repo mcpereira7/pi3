@@ -1,19 +1,19 @@
 <%-- 
-    Document   : header
-    Created on : 13/05/2018, 00:17:01
-    Author     : aayan
+Document   : header
+Created on : 13/05/2018, 00:17:01
+Author     : aayan
 --%>
 
 <meta charset="utf-8" />
 <!-- Sidebar -->
 <div id="sidebar">
     <div class="inner">
-
+        
         <!-- Search -->
         <section id="topSidBar" class="alt">
             <img class="imgTopSB" src="img/bck_girassol_01.jpg" />
         </section>
-
+        
         <!-- Menu -->
         <nav id="menu">
             <header class="major">
@@ -30,7 +30,7 @@
                             <a href="/floricultura/venda">Nova Venda </a>
                         </li>
                         <li>
-                            <a href="/floricultura/Relatorio">Relatório</a>
+                            <a href="/floricultura/Relatorio">Relatï¿½rio</a>
                         </li>
                     </ul>
                 </li>
@@ -52,7 +52,10 @@
                             <a href="/floricultura/produto">Cadastrar Produto</a>
                         </li>
                         <li>
-                            <a href="/floricultura">Procurar Produtos</a>
+                            <form action="${pageContext.request.contextPath}/listarprodutos" method="GET">
+                                <input type="text" name="consulta" id="consulta" placeholder="Nome do produto..." maxlength="40">
+                                <input type="hidden" alt="submit">
+                            </form>
                         </li>
                     </ul>
                 </li>
@@ -61,41 +64,41 @@
                     <ul>
                         <li>
                             <a href="/floricultura/ListarClientes">Consultar</a></li>
-                        <li><a href="/floricultura/cadCli">Cadastro</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="opener">Filiais</span>
-                    <ul>
-                        <li><a href="/floricultura/CadastroFilial">Cadastrar</a></li>
-                        <li><a href="/floricultura/ListaFiliais">Unidades</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Section -->
-        <section>
-            <header class="major">
-                <!--<h2>Ante interdum</h2>-->
-            </header>
-            <div class="mini-posts">
-            </div>
-            <ul class="actions">
-                <!--<li><a href="#" class="button">More</a></li>-->
-            </ul>
-        </section>
-
-        <!-- Footer -->
-        <footer id="footer">
-            <p class="copyright">&copy;
-                Untitled. All rights reserved.
-                Demo Images: <a href="https://unsplash.com">Unsplash</a>.
-                Design: <a href="https://html5up.net">HTML5 UP</a>.
-            </p>
-        </footer>
-
-
+                            <li><a href="/floricultura/cadCli">Cadastro</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">Filiais</span>
+                        <ul>
+                            <li><a href="/floricultura/CadastroFilial">Cadastrar</a></li>
+                            <li><a href="/floricultura/ListaFiliais">Unidades</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Section -->
+            <section>
+                <header class="major">
+                    <!--<h2>Ante interdum</h2>-->
+                </header>
+                <div class="mini-posts">
+                </div>
+                <ul class="actions">
+                    <!--<li><a href="#" class="button">More</a></li>-->
+                </ul>
+            </section>
+            
+            <!-- Footer -->
+            <footer id="footer">
+                <p class="copyright">&copy;
+                    Untitled. All rights reserved.
+                    Demo Images: <a href="https://unsplash.com">Unsplash</a>.
+                    Design: <a href="https://html5up.net">HTML5 UP</a>.
+                </p>
+            </footer>
+            
+            
+        </div>
+        
     </div>
-
-</div>

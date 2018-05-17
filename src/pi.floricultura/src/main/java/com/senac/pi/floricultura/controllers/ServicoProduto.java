@@ -7,10 +7,15 @@ package com.senac.pi.floricultura.controllers;
 
 import com.senac.pi.floricultura.model.Produto;
 import com.senac.pi.floricultura.DAO.ProdutoDAO;
+import com.senac.pi.floricultura.exceptions.ProdutoException;
+import com.senac.pi.floricultura.teste.ProdutoTestes;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -73,6 +78,47 @@ public class ServicoProduto {
             Logger.getLogger(ServicoProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public static Produto createProductByRequest(HttpServletRequest request) {
+
+        Produto novo = new Produto();
+        //ID eh auto incremental
+
+        //Nome sempre armazenar em UPPERCASE
+        novo.setNome(request.getParameter("nome").toUpperCase());
+
+        //Tipo
+        String tipo = request.getParameter("tipo");
+        int tipoNum = Integer.parseInt(tipo);
+        novo.setTipo(tipoNum);
+
+        //Quantidade
+        novo.setQuantidadeEstoque(Integer.parseInt(request.getParameter("quantidade")));
+
+        //Cuidado porque no banco o campo eh DOUBLE
+        novo.setPreco(Float.parseFloat(request.getParameter("preco")));
+
+        //Descricao
+        novo.setDescricao(request.getParameter("descricao"));
+
+        return novo;
+
+    }
+
+    public static List<Produto> getProdutosByNome(String nome) {
+
+        //Deixar  nome em UPPERCASE
+        nome = nome.toUpperCase();
+
+        //Lista de resultado
+        List<Produto> listaConsultada = ProdutoTestes.geraProdutosHARDCODE(10);
+        
+        //Tem que criar o metodo
+        //listaConsultada = ProdutoDAO.getProdutosByNome(nome);
+        //return listaConsultada;
+        
+        return listaConsultada;
     }
 
 }
