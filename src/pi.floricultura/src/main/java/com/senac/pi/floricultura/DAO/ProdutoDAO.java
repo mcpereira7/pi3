@@ -7,11 +7,16 @@ package com.senac.pi.floricultura.DAO;
 
 import com.senac.pi.floricultura.model.Produto;
 import com.senac.pi.floricultura.connection.ConnectionFactory;
+import com.senac.pi.floricultura.controllers.ServicoProduto;
 import com.senac.pi.floricultura.model.GerarCodigo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -56,13 +61,14 @@ public class ProdutoDAO {
         String sqlProduto = "INSERT INTO Produto(Nome, Descricao, Preco, Tipo, Disable)"
                 + "VALUES(?,?,?,?,?,?)";
 
+        cn = ConnectionFactory.getConnection();
+
         try {
             stmtProduto = cn.prepareStatement(sqlProduto);
             stmtProduto.setString(1, produto.getNome());
             stmtProduto.setString(2, produto.getDescricao());
             stmtProduto.setFloat(3, produto.getPreco());
-//            stmtProduto.setInt(4, produto.getTipo());
-            stmtProduto.setInt(4, 1);
+            stmtProduto.setInt(4, produto.getTipo());
             stmtProduto.setBoolean(5, false);
             stmtProduto.execute();
         } catch (Exception e) {
@@ -74,8 +80,23 @@ public class ProdutoDAO {
     public static void atualizarProduto(Produto produto) throws SQLException, Exception {
         PreparedStatement stmtProduto = null;
 
-        String sqlProduto = "UPDATE Produto(idProduto, nome, descricao, tipo, dt_Cadastro, disable)"
-                + "VALUES(?,?,?,?,?,?)";
+        String sqlProduto = "UPDATE Produto(descricao, preco, tipo, disable)"
+                + "VALUES(?, ?, ?, ?)";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmtProduto = cn.prepareStatement(sqlProduto, Statement.RETURN_GENERATED_KEYS);
+            stmtProduto.setString(1, produto.getDescricao());
+            stmtProduto.setFloat(2, produto.getPreco());
+            stmtProduto.setInt(3, produto.getTipo());
+            stmtProduto.setBoolean(4, produto.isDisable());
+            stmtProduto.execute();
+
+            ResultSet rs = stmtProduto.getGeneratedKeys();
+        } finally {
+            ConnectionFactory.closeConnection(null, stmtProduto);
+        }
 
     }
 

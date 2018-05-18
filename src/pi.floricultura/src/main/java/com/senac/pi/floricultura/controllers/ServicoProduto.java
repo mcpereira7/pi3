@@ -7,7 +7,7 @@ package com.senac.pi.floricultura.controllers;
 
 import com.senac.pi.floricultura.model.Produto;
 import com.senac.pi.floricultura.DAO.ProdutoDAO;
-import com.senac.pi.floricultura.model.GerarCodigo;
+//import com.senac.pi.floricultura.model.GerarCodigo;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -66,7 +66,7 @@ public class ServicoProduto {
 //                codigosNum[i] = Integer.parseInt(codigos[i]);
 //            }
 //
-//            List<Integer> resultado = ProdutoDAO.getIdByCodigo(codigosNum);
+//            List<Integer> resultado = ProdutoDAO.getProdutoByCodigo(codigosNum);
 //
 //            return resultado;
 //        } catch (Exception ex) {
@@ -74,6 +74,7 @@ public class ServicoProduto {
 //        }
 //        return null;
 //    }
+
     public static String getProdutoByName(String nome) {
         String procura;
         try {
