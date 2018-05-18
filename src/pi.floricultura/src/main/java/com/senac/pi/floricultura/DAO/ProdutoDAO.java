@@ -25,6 +25,10 @@ import java.util.logging.Logger;
 public class ProdutoDAO {
 
     private static Connection cn = null;
+
+    public static List<Integer> getProdutoByCodigo(int[] codigosNum) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private GerarCodigo cod = new GerarCodigo();
 
     public static float getPriceById(int id)
@@ -152,6 +156,8 @@ public class ProdutoDAO {
             ConnectionFactory.closeConnection(cn, stmt, rs);
         }
     }
+    
+    
 
     public static void excluirProduto(Produto produto) throws SQLException, Exception {
         PreparedStatement stmt = null;

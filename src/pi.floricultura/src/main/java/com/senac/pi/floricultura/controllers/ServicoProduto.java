@@ -57,23 +57,23 @@ public class ServicoProduto {
         }
     }
 
-//    public static List<Integer> getProdutoIdByCodigo(String[] codigos) {
-//
-//        int[] codigosNum = new int[codigos.length];
-//        try {
-//
-//            for (int i = 0; i < codigos.length; i++) {
-//                codigosNum[i] = Integer.parseInt(codigos[i]);
-//            }
-//
-//            List<Integer> resultado = ProdutoDAO.getProdutoByCodigo(codigosNum);
-//
-//            return resultado;
-//        } catch (Exception ex) {
-//            Logger.getLogger(ServicoProduto.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return null;
-//    }
+    public static List<Integer> getProdutoIdByCodigo(String[] codigos) {
+
+        int[] codigosNum = new int[codigos.length];
+        try {
+
+            for (int i = 0; i < codigos.length; i++) {
+                codigosNum[i] = Integer.parseInt(codigos[i]);
+            }
+
+            List<Integer> resultado = ProdutoDAO.getProdutoByCodigo(codigosNum);
+
+            return resultado;
+        } catch (Exception ex) {
+            Logger.getLogger(ServicoProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     public static String getProdutoByName(String nome) {
         String procura;
