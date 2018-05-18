@@ -32,38 +32,12 @@ public class VendaConclusionServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-
-            //Conclui a venda e envia pro banco
-            Object venda = request.getSession().getAttribute("novaVenda");
-            Venda concluir = (Venda) venda;
-            
-            //Hardcode do id vendedor pois a sessao ainda não foi implantada
-            concluir.setIdVendedor(1);
-            
-            ServicoVenda.ConcluirVenda(concluir);
-
-            //Apago a venda da sessao
-            request.getSession().removeAttribute("novaVenda");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
-            dispatcher.forward(request, response);
-
-        } catch (IOException | ServletException | VendaException e) {
-            Logger.getLogger(VendaConclusionServlet.class.getName()).log(Level.SEVERE, null, e);
-        }
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        System.out.println("doPost VendaConclusionServlet");
+        System.out.println("doGet VendaConclusionServlet");
 
         HttpSession sessao = request.getSession();
 
         try {
-            
+
             //Pega o CPF
             String cpf = request.getParameter("cliente");
 
@@ -72,9 +46,8 @@ public class VendaConclusionServlet extends HttpServlet {
 
             //Adiciona a venda no request
             sessao.setAttribute("novaVenda", novaVenda);
-            request.setAttribute("novaVenda", novaVenda);
             request.setAttribute("dataVenda", new Date());
-            
+
             //Pega o cpf
             request.setAttribute("clienteCPF", cpf);
 
@@ -84,6 +57,32 @@ public class VendaConclusionServlet extends HttpServlet {
 
         } catch (VendaException ex) {
             Logger.getLogger(VendaConclusionServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        try {
+
+            //Conclui a venda e envia pro banco
+            Object venda = request.getSession().getAttribute("novaVenda");
+            Venda concluir = (Venda) venda;
+
+            //Hardcode do id vendedor pois a sessao ainda não foi implantada
+            concluir.setIdVendedor(1);
+
+            ServicoVenda.ConcluirVenda(concluir);
+
+            //Apago a venda da sessao
+            request.getSession().removeAttribute("novaVenda");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+            dispatcher.forward(request, response);
+
+        } catch (IOException | ServletException | VendaException e) {
+            Logger.getLogger(VendaConclusionServlet.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 

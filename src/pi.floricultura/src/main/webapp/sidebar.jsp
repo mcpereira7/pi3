@@ -30,7 +30,7 @@ Author     : aayan
                             <a href="/floricultura/venda">Nova Venda </a>
                         </li>
                         <li>
-                            <a href="/floricultura/Relatorio">Relat�rio</a>
+                            <a href="/floricultura/Relatorio">Relatorio</a>
                         </li>
                     </ul>
                 </li>

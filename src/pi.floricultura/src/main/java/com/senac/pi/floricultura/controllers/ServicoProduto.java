@@ -61,16 +61,11 @@ public class ServicoProduto {
         }
     }
 
-    public static List<Integer> getProdutoIdByCodigo(String[] codigos) {
+    public static List<Integer> getProdutoIdByNomes(String[] nomes) {
 
-        int[] codigosNum = new int[codigos.length];
         try {
 
-            for (int i = 0; i < codigos.length; i++) {
-                codigosNum[i] = Integer.parseInt(codigos[i]);
-            }
-
-            List<Integer> resultado = ProdutoDAO.getIdByCodigo(codigosNum);
+            List<Integer> resultado = ProdutoDAO.getIdByNomes(nomes);
 
             return resultado;
 
@@ -113,11 +108,10 @@ public class ServicoProduto {
 
         //Lista de resultado
         List<Produto> listaConsultada = ProdutoTestes.geraProdutosHARDCODE(10);
-        
+
         //Tem que criar o metodo
         //listaConsultada = ProdutoDAO.getProdutosByNome(nome);
         //return listaConsultada;
-        
         return listaConsultada;
     }
 

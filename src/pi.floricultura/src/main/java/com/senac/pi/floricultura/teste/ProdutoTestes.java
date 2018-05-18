@@ -33,8 +33,8 @@ public class ProdutoTestes {
         List<Produto> lista = new ArrayList<>();
 
         for (int i = 0; i < quantidade; i++) {
-            
-            if(tipo > 5) {
+
+            if (tipo > 5) {
                 tipo = 1;
             }
 
@@ -49,6 +49,23 @@ public class ProdutoTestes {
         }
 
         return lista;
+
+    }
+
+    public static Produto gerarProdutoUnico(String nome) {
+
+        Produto doBanco = new Produto();
+
+        doBanco.setNome(nome);
+        doBanco.setPreco((float) 12.39);
+        doBanco.setDescricao("Um produto de descricao gande para"
+                + " o teste maneiro desse produto acontecer normalmente."
+                + "\nEsse texto teria que estar na linha de baixo");
+        doBanco.setTipo(3);
+        doBanco.setDataCadastro(new Date());
+        doBanco.setQuantidadeEstoque(90);
+
+        return doBanco;
 
     }
 

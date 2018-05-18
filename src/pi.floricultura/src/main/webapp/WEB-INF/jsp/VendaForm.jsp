@@ -30,18 +30,18 @@ Author     : aayan
 
                     <!-- Content -->
                     <section>
-                        <form id="venda-form" action="${pageContext.request.contextPath}/venda-conclusion" method="post">
+                        <form id="venda-form" action="${pageContext.request.contextPath}/venda-conclusion" method="get">
 
                             <h3>Cliente</h3>
-                            <input type="text" placeholder="CPF do cliente..." name="cliente" id="cliente">
+                            <input type="text" placeholder="CPF do cliente..." name="cliente" id="cliente" maxlength="14"/>
                             <br>
                             <hr class="general" />
 
                             <div id="vendaDiv">
-                                <h4>Código Produto 1:</h4>
+                                <h4>Nome Produto 1:</h4>
                                 <input type="text" name="produto" id="produto1" />
                                 <br> <h4>Quantidade:</h4>
-                                <input type="number" min="0" name="quantidadeProduto" id="quantProduto1" style="width: 70% !important"/>
+                                <input type="number" min="0" name="quantidadeProduto" id="quantProduto1"/>
                                 <br>
                                 <br>
                             </div>
@@ -61,43 +61,11 @@ Author     : aayan
 
         <!-- Scripts -->
         <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.mask.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/util.js"></script>
         <script src="js/main.js"></script>
-        <script>
-                                var count = 1;
-                                var limit = 10;
-                                function addInputOnDiv(divName) {
-
-                                    if (count === limit) {
-                                        alert("Limite teste : " + count);
-                                    } else {
-
-                                        var newDiv = document.createElement('div');
-
-                                        var styleProductName = "";
-                                        var styleProductQuantit = " style= 'width:70% !important'";
-                                        var styleProductRemoveButton = " style= 'height: 2.5em; line-height: 2.5em;'";
-                                        var inputProdutoCodigo = "<hr class='general'/><br><h4>Código Produto " + (count + 1) + ":</h4><input type='text' name='produto' id='produto" + (count + 1) + "' />";
-                                        var inputProdutoQuantidade = " <h4>Quantidade: </h4><input type='number' min='0' name='quantidadeProduto' id='quantProduto" + (count + 1) + "' " + styleProductQuantit + "/>";
-                                        var buttonToRemoveThisDiv = "&nbsp&nbsp<input onclick='removeInputProduct(this)' type='button' value='-' " + styleProductRemoveButton + " /><br>";
-
-                                        newDiv.innerHTML = inputProdutoCodigo + inputProdutoQuantidade + buttonToRemoveThisDiv;
-
-                                        document.getElementById(divName).appendChild(newDiv);
-
-                                        count++;
-                                    }
-                                }
-
-                                function removeInputProduct(input) {
-
-                                    input.parentNode.parentNode.removeChild(input.parentNode);
-
-                                    count--;
-                                }
-
-        </script>
+        <script src="js/venda.js"></script>
 
     </body>
 

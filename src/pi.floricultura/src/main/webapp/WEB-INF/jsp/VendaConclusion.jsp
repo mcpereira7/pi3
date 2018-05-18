@@ -32,13 +32,9 @@ Author     : andre.ayamamoto
 
                     <!-- Content -->
                     <section>
-                        <form id="venda-form" action="${pageContext.request.contextPath}/venda-conclusion" method="GET">
+                        <form id="venda-form" action="${pageContext.request.contextPath}/venda-conclusion" method="post">
 
-                            <header class="main">
-                                <h1>Venda</h1>
-                            </header>
                             <fmt:setLocale value="pt-BR"></fmt:setLocale>
-                                <hr class="major" />
 
                                 <p>Codigo:
                                 <c:out value="${novaVenda.codigo}" />
@@ -60,7 +56,7 @@ Author     : andre.ayamamoto
                             <c:forEach items="${novaVenda.listaItensVenda}" var="item">
 
                                 <p>
-                                    Produto: <c:out value="${item.codigoProduto}" /> / 
+                                    Produto: <c:out value="${item.nomeProduto}" /> / 
                                     Quantidade: <c:out value="${item.quantidade}" /><br>
                                     Unidade: <fmt:formatNumber value="${item.valor}" type="currency" /> / 
                                     Ao todo: <fmt:formatNumber value="${item.valor * item.quantidade}" type="currency"/>

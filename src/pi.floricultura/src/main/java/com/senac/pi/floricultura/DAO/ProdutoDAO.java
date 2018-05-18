@@ -50,7 +50,7 @@ public class ProdutoDAO {
         }
     }
 
-    public static List<Integer> getIdByCodigo(int[] codigos)
+    public static List<Integer> getIdByNomes(String[] nomes)
             throws SQLException, Exception {
 
         ResultSet rs = null;
@@ -59,20 +59,18 @@ public class ProdutoDAO {
 
         String sql = "SELECT id_produto FROM produto WHERE ";
 
+        cn = ConnectionFactory.getConnection();
+
         int counter = 0;
-        for (int i : codigos) {
+        for (String nome : nomes) {
             if (counter == 0) {
-                sql += "Codigo = " + i;
+                sql += "Nome = " + "'" + nome + "'";
             } else {
-                sql += " or Codigo = " + i;
+                sql += " or Nome = " + "'" + nome + "'";
             }
-            if (counter == codigos.length - 1) {
-                //sql += ")";
-            }
+
             counter++;
         }
-
-        cn = ConnectionFactory.getConnection();
 
         try {
 
