@@ -62,15 +62,17 @@ Author     : aayan
                                         <th>Descrição</th>
                                     </tr>
                                 </theader>
-                                <c:forEach items = "${listaProdutos}" var = "produto">
-                                    <tr>
-                                        <td id="produtoNome"><c:out value="${produto.nome}"/></td>
-                                        <td><c:out value="${produto.tipoNome}"/></td>
-                                        <td><fmt:formatNumber value="${produto.preco}" type="currency" /></td>
-                                        <td><fmt:formatDate value="${produto.dataCadastro}" type="date" dateStyle="short" /></td>
-                                        <td><c:out value="${produto.descricao}"/></td>
-                                    </tr>
-                                </c:forEach>
+                                <tbody>
+                                    <c:forEach items = "${listaProdutos}" var = "produto">
+                                        <tr id="rowSelection">
+                                            <td id="produtoNome"><c:out value="${produto.nome}"/></td>
+                                            <td><c:out value="${produto.tipoNome}"/></td>
+                                            <td><fmt:formatNumber value="${produto.preco}" type="currency" /></td>
+                                            <td><fmt:formatDate value="${produto.dataCadastro}" type="date" dateStyle="short" /></td>
+                                            <td><c:out value="${produto.descricao}"/></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
                                 <input type="hidden" id="produtoSelecionado" name="produtoSelecionado"/>
 
                             </table>
