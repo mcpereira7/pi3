@@ -15,7 +15,7 @@
 
             <!-- Main -->
             <div id="main">
-                
+
                 <div class="inner">
 
                     <!-- Header -->
@@ -32,7 +32,8 @@
 
                     <!-- Content -->
                     <section>
-                            <h2>${sessionScope.grupoEditar.nome}</h2>
+                        <form action="${pageContext.request.contextPath}/PermissoesEditar" method="GET">
+                            <input type="text" name="nomeGrupo" value="${sessionScope.grupoEditar.nome}" />
                             <table>
                                 <thead>
                                     <tr>
@@ -41,16 +42,24 @@
                                         <td><strong>Excluir</strong></td>
                                     </tr>
                                 </thead>
-
                                 <c:forEach items = "${sessionScope.grupoEditar.listaTelas}" var = "listaTelas">
                                     <tr>
                                         <td>${listaTelas.nome}</td>
                                         <td>${listaTelas.caminho}</td>
-                                        <td> <input type="checkbox" name="excluir" value="Excluir"/> </td>
+                                        <td> <input class = "checktable" type="checkbox" name="excluir" value="${listaTelas.id}"/> </td>
                                     </tr>
                                 </c:forEach>
                             </table>
+                            <div id="telaDiv">
+
+                            </div>
+                            <br>
+                            <input type="button" value="Adicionar Tela" onclick="addSelect('telaDiv')">
                             <hr>
+                            <div style= "text-align: right">
+                                <input type="submit" value="Salvar Alterações" name="salvarGrupo" />
+                            </div>
+                        </form>
                     </section>
 
                 </div>
@@ -128,6 +137,46 @@
         <script src="js/skel.min.js"></script>
         <script src="js/util.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/permissoes.js"></script>
+        <script>
+            var lista = [];
+            <c:forEach items = "${listaTelas}" var = "tela">
+                var objeto = {
+                    id: ${tela.id},
+                    nome: "${tela.nome}",
+                    caminho: "${tela.caminho}"
+                };
+                lista.push(objeto);
+            </c:forEach>
+
+            function addSelect(divName) {
+
+                var newDiv = document.createElement('div');
+
+                var br = document.createElement("br");
+                newDiv.appendChild(br);
+
+                var texto = document.createElement("label");
+                texto.innerHTML = "Tela";
+                newDiv.appendChild(texto);
+
+                var selectList = document.createElement("select");
+                selectList.name = "tela";
+                selectList.id = "tela";
+                newDiv.appendChild(selectList);
+
+                for (var i = 0; i < lista.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = lista[i].id;
+                    option.text = lista[i].nome;
+                    selectList.appendChild(option);
+                }
+
+                //newDiv.innerHTML += "</br>";
+
+
+                document.getElementById(divName).appendChild(newDiv);
+
+            }
+        </script>
     </body>
 </html>
