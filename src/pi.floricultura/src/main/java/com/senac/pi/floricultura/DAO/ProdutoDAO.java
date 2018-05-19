@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,6 +90,72 @@ public class ProdutoDAO {
         }
     }
 
+    public static Produto getProdutoByNome(String nome)
+            throws SQLException, Exception {
+        Produto Produto = new Produto();
+
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+
+        String sql = "SELECT * FROM produto WHERE Nome = ?";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+
+            stmt.setString(1, nome);
+
+            rs = stmt.executeQuery();
+
+            rs.next();
+
+            return Produto;
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+    }
+
+    public static List<Integer> getProdutoByTipo(int[] tipos)
+            throws SQLException, Exception {
+
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        List<Integer> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM produto WHERE Tipo = ?";
+
+        cn = ConnectionFactory.getConnection();
+
+        int counter = 0;
+        for (int tipo : tipos) {
+            if (counter == 0) {
+                sql += "Tipo = " + "'" + tipo + "'";
+            } else {
+                sql += " or Tipo = " + "'" + tipo + "'";
+            }
+            counter++;
+        }
+
+        try {
+
+            stmt = cn.prepareStatement(sql);
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                lista.add(rs.getInt("Tipo"));
+            }
+
+            return lista;
+
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
+
+    }
+
     public static void inserir(Produto produto)
             throws SQLException, Exception {
         PreparedStatement stmtProduto = null;
@@ -115,9 +182,27 @@ public class ProdutoDAO {
             throws SQLException, Exception {
         PreparedStatement stmtProduto = null;
 
-        String sqlProduto = "UPDATE Produto(idProduto, nome, descricao, tipo, dt_Cadastro, disable)"
-                + "VALUES(?,?,?,?,?,?)";
+        cn = ConnectionFactory.getConnection();
 
+        String sqlProduto = "UPDATE Produto(Nome, Descricao, Preco, Tipo, Disable)"
+                + "VALUES(?,?,?,?,?)";
+
+        try {
+            stmtProduto = cn.prepareStatement(sqlProduto, Statement.RETURN_GENERATED_KEYS);
+
+            stmtProduto.setString(1, produto.getNome());
+            stmtProduto.setString(2, produto.getDescricao());
+            stmtProduto.setFloat(3, produto.getPreco());
+            stmtProduto.setInt(4, produto.getTipo());
+            stmtProduto.setBoolean(5, produto.isDisable());
+            stmtProduto.execute();
+
+            ResultSet rs = stmtProduto.getGeneratedKeys();
+
+        } catch (SQLException e) {
+        } finally {
+            ConnectionFactory.closeConnection(null, stmtProduto);
+        }
     }
 
     public static void excluirProduto(Produto produto)
