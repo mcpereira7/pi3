@@ -7,6 +7,7 @@ import com.senac.pi.floricultura.model.GrupoPermissao;
 import com.senac.pi.floricultura.model.TelaPermissoes;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,12 +29,36 @@ public class PermissoesEditarServlet extends HttpServlet {
         Integer idGrupo = (Integer)sessao.getAttribute("idGrupo");
         String[] idTelas = request.getParameterValues("tela");
         String nomeGrupo = request.getParameter("nomeGrupo");
+        String[] excluido = request.getParameterValues("excluir");
         
-        List<TelaPermissoes> telas = new ArrayList<>();
-        for (int i = 0; i < idTelas.length; i++) {
-            TelaPermissoes tela = new TelaPermissoes(Integer.parseInt(idTelas[i]), false);
-            telas.add(tela);
+        //carregar as telas que já estavam cadastradas no grupo.
+        List<TelaPermissoes> grupoEditar = grupoPermissaoDAO.ListarPermissoesByGrupo(idGrupo);
+        
+        //Verificar se alguma tela da lista foi marcada para ser excluida.
+        if (excluido != null){
+            for (int i = 0; i < excluido.length; i++) {
+                for (TelaPermissoes telaPermissoes : grupoEditar) {
+                    if (telaPermissoes.getId() == Integer.parseInt(excluido[i])){
+                        telaPermissoes.setExcluido(true);
+                    }
+                }
+            }
         }
+        
+        //Carregar as telas adicionadas ao grupo.
+        List<TelaPermissoes> telas = new ArrayList<>();
+        if (idTelas != null){
+            for (int i = 0; i < idTelas.length; i++) {
+                TelaPermissoes tela = new TelaPermissoes(Integer.parseInt(idTelas[i]), false);
+                telas.add(tela);
+            }
+        }
+        
+        //Ligar as duas listas.
+        for (TelaPermissoes telaPermissoes : grupoEditar) {
+            telas.add(telaPermissoes);
+        }
+        
         GrupoPermissao grupo = new GrupoPermissao(idGrupo, nomeGrupo, telas);
         
         try {

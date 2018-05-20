@@ -109,7 +109,7 @@ public class grupoPermissaoDAO {
         }
     }
     
-    public static boolean VerificaGrupoPermissaoTelas(Integer id_grupo, Integer id_tela, boolean disable) throws Exception{
+    public static boolean VerificaGrupoPermissaoTelas(Integer id_grupo, Integer id_tela, Object disable) throws Exception{
         ResultSet rs = null;
         PreparedStatement stmt = null;
         String[] strWhere = new String[2];
@@ -151,8 +151,8 @@ public class grupoPermissaoDAO {
     public static void ExcluirGrupoPermissaoTelas(Integer id_grupo, Integer id_tela){
         PreparedStatement stmt = null;
 
-        String sql = "UPDATE grupoPermissaoTelas SET disable= ?"
-                + "WHERE id_grupo = ? and id_tela = ?";
+        String sql = "UPDATE grupoPermissaoTelas SET disable = ?"
+                + " WHERE id_grupo = ? and id_tela = ?";
 
         Connection cn = ConnectionFactory.getConnection();
 
@@ -162,7 +162,7 @@ public class grupoPermissaoDAO {
             stmt.setBoolean(1, true);
             //WHERE
             stmt.setInt(2, id_grupo);
-            stmt.setInt(2, id_grupo);
+            stmt.setInt(3, id_tela);
             stmt.execute();
 
         } catch (Exception e) {
@@ -235,13 +235,14 @@ public class grupoPermissaoDAO {
         List<TelaPermissoes> listaPermissoes = new ArrayList<>();
 
         sql = "SELECT * FROM GrupoPermissaoTelas INNER JOIN Telas ON GrupoPermissaoTelas.id_tela = Telas.id_tela "
-                + "WHERE id_grupo = ?";
+                + "WHERE disable = ? and id_grupo = ?";
 
         Connection cn = ConnectionFactory.getConnection();
 
         try {
             stmt = cn.prepareStatement(sql);
-            stmt.setInt(1, id_grupo);
+            stmt.setBoolean(1, false);
+            stmt.setInt(2, id_grupo);
             
             rs = stmt.executeQuery();
 
