@@ -1,5 +1,5 @@
 //Funcao de pegar o nome(primeiro elemento da tr da table de conslta do produto)
-$("#produtoTable tr").click(function(){
+$("#produtoTable tr#rowSelection").click(function(){
 	
 	//Pega o valor
 	$(this).addClass('selected').siblings().removeClass('selected');    
