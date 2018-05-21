@@ -67,8 +67,9 @@ public class CadastrarCliente extends HttpServlet{
         try {
             ServicoCliente.cadastrarClientePF(pf);
             EnderecoDAO.inserirEndereco(endereco, pf.getId());
-            PrintWriter writer = resp.getWriter();
-            writer.println("<html><body>Empresa adicionanda com Sucesso</body></html>");
+//            PrintWriter writer = resp.getWriter();
+//            writer.println("<html><body>Empresa adicionanda com Sucesso</body></html>");
+            req.getRequestDispatcher("/WEB-INF/jsp/CadastrarClientePF.jsp").forward(req, resp);
             
         } catch (Exception e) {
             System.out.println("Achou mesmo que seria assim tão fácil?");

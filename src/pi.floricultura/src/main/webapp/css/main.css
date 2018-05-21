@@ -2101,8 +2101,8 @@ body, input, select, textarea {
 
 }
 #btsAltExc{
-    align-items: stretch;
-    display: inherit;
+    display: flex;
+    margin-leftt: 20px;
 }
 .listCli input{
     width: 12px;

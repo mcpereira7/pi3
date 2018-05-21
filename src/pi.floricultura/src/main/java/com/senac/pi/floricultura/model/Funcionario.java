@@ -10,38 +10,48 @@ import java.sql.SQLException;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
- *
+ * @author Marcelo Pereira <macope727@gmail.com>
  * @author aayan
  */
-public class Usuario extends Pessoa {
+public class Funcionario extends PessoaFisica {
 
     private int idUsuario;
+    private int codigo;
     private String user;
     private String password;
+    private String funcao;
+    private double salario;
     private int idGrupo;
     private int idFilial;
+    private String nomeFilial;
     private boolean signedUp = false;
 
     
     //Constructors
-    public Usuario() {
+    public Funcionario() {
 
     }
 
-    public Usuario(int idUsuario, String user, String openPass, int idGrupo, int idFilial) {
+    public Funcionario(int idUsuario, String user, String password, String funcao, double salario, int idGrupo, int idFilial, String nomeFilial) {
         this.idUsuario = idUsuario;
         this.user = user;
-        setPassword(openPass);
+        this.password = password;
+        this.funcao = funcao;
+        this.salario = salario;
         this.idGrupo = idGrupo;
-        this.idFilial = idFilial; 
+        this.idFilial = idFilial;
+        this.nomeFilial = nomeFilial;
     }
 
-    public Usuario(ResultSet rs) throws SQLException {
+    
+
+    public Funcionario(ResultSet rs) throws SQLException {
         this.idUsuario = rs.getInt("id_Usuario");
         this.user = rs.getString("Login");
         this.password = rs.getString("Senha");
         this.idGrupo = rs.getInt("id_Grupo");
         this.idFilial = rs.getInt("id_Filial");
+        
     }
 
     //Getters & Setters
@@ -65,7 +75,7 @@ public class Usuario extends Pessoa {
         return password;
     }
 
-    private void setPassword(String openPass) {
+    public void setPassword(String openPass) { // Estava private eu alterei para public
         this.password = BCrypt.hashpw(openPass, BCrypt.gensalt());
     }
 
@@ -93,6 +103,46 @@ public class Usuario extends Pessoa {
         this.signedUp = true;
     }
     
+    public String getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
+    }
+
+    public String getNomeFilial() {
+        return nomeFilial;
+    }
+
+    public void setNomeFilial(String nomeFilial) {
+        this.nomeFilial = nomeFilial;
+    }
+
+    public boolean isSignedUp() {
+        return signedUp;
+    }
+
+    public void setSignedUp(boolean signedUp) {
+        this.signedUp = signedUp;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
     //Functions
 
     //Verificar senha
@@ -102,5 +152,10 @@ public class Usuario extends Pessoa {
         }
         return false;
     }
+
+    
+    
+    
+    
 
 }
