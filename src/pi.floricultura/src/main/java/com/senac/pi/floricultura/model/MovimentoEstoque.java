@@ -1,13 +1,16 @@
 package com.senac.pi.floricultura.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class MovimentoEstoque {
+
     private int id_movimento;
     private int id_produto;
     private int id_pessoa;
     private int quantidade;
     private Date Data;
+    private Calendar dataCalendar;
     private int tipo;
     private int natureza;
 
@@ -16,6 +19,7 @@ public class MovimentoEstoque {
         this.id_pessoa = id_pessoa;
         this.quantidade = quantidade;
         this.Data = Data;
+        setDataCalendar();
         this.tipo = tipo;
         this.natureza = natureza;
     }
@@ -54,6 +58,16 @@ public class MovimentoEstoque {
 
     public void setData(Date Data) {
         this.Data = Data;
+    }
+
+    public Calendar getDataCalendar() {
+        return dataCalendar;
+    }
+
+    private void setDataCalendar() {
+        Calendar dataCal = Calendar.getInstance();
+        dataCal.setTime(this.Data);
+        this.dataCalendar = dataCal;
     }
 
     public int getTipo() {

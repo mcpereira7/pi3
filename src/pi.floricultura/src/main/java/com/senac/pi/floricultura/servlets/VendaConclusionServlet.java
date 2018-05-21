@@ -74,11 +74,17 @@ public class VendaConclusionServlet extends HttpServlet {
             //Hardcode do id vendedor pois a sessao ainda não foi implantada
             concluir.setIdVendedor(1);
 
-            ServicoVenda.ConcluirVenda(concluir);
+            boolean temEstoque = ServicoVenda.ValidaQuantidades(concluir);
+
+            if (temEstoque) {
+                ServicoVenda.ConcluirVenda(concluir);
+            } else {
+                System.out.println("Nao tem em estoque");
+            }
 
             //Apago a venda da sessao
             request.getSession().removeAttribute("novaVenda");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/home.jsp");
             dispatcher.forward(request, response);
 
         } catch (IOException | ServletException | VendaException e) {
