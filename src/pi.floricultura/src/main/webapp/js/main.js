@@ -15,7 +15,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		'xlarge-to-max': '(min-width: 1681px)',
 		'small-to-xlarge': '(min-width: 481px) and (max-width: 1680px)'
 	});
-
+	
 	$(function() {
 		
 		var	$window = $(window),
@@ -254,6 +254,9 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 			.trigger('resize.sidebar-lock');
 			
 		});
+		
+		$window.trigger('resize.sidebar-lock');
+		
 		
 		// Menu.
 		var $menu = $('#menu'),

@@ -16,6 +16,7 @@ public class ItensVenda {
 
     private int idVenda;
     private int idProduto;
+    private String nomeProduto;
     private int codigoProduto;
     private int quantidade;
     private double valor;
@@ -24,11 +25,11 @@ public class ItensVenda {
 
     }
 
-    public ItensVenda(int idProduto, int quantidade, double valor, int codigoProd) {
+    public ItensVenda(int idProduto, int quantidade, double valor, String nome) {
         this.idProduto = idProduto;
         this.quantidade = quantidade;
         this.valor = valor;
-        this.codigoProduto = codigoProd;
+        this.nomeProduto = nome;
     }
 
     public ItensVenda(ResultSet rs) throws SQLException {
@@ -55,6 +56,14 @@ public class ItensVenda {
         this.idProduto = idProduto;
     }
 
+    public String getNomeProduto() {
+        return nomeProduto;
+    }
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+    
     public int getCodigoProduto() {
         return codigoProduto;
     }

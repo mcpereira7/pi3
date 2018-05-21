@@ -1,7 +1,7 @@
 <%-- 
-    Document   : relatorio
-    Created on : 09/05/2018, 19:38:03
-    Author     : Vinicius Presoto
+Document   : relatorio
+Created on : 09/05/2018, 19:38:03
+Author     : Vinicius Presoto
 --%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Pagina Generica</title>
+        <title>Relatório</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="css/main.css" />
@@ -32,21 +32,24 @@
 
                     <!-- Content -->
                     <section>
-                        <form id="venda-form" action="${pageContext.request.contextPath}/Relatorio" method="post">
-
-                            <header class="main">
-                                <h1>Relatório</h1>
-                            </header>
+                        <form id="relatorio-form" action="${pageContext.request.contextPath}/Relatorio" method="post">
 
                             <fmt:setLocale value="pt-BR"></fmt:setLocale>
-                                <label for="dtIni">Data Inicio</label>
-                                <input type="date" name="dataInicial" id="dataInicial">
-                                <label for="dtFim">Data Fim</label>
-                                <input type="date" name="dataFinal" id="dataFinal">
-                                <input type="submit" name="gerar" id="gerar" value="Gerar Relatório">
-                            </form>
 
-                            <h2>Relatório de Vendas</h2>
+                                <div class="relatorio-info">
+                                    <div class="infos">
+                                        <label for="dtIni">Desde de: </label>
+                                        <input type="date" name="dataInicial" id="dataInicial">
+                                    </div>
+                                    <div class="infos">
+                                        <label for="dtFim">Até: </label>
+                                        <input type="date" name="dataFinal" id="dataFinal" readonly=true>
+                                    </div>
+
+                                    <input type="submit" name="gerar" id="gerar" value="Gerar Relatório">
+                                </div>
+
+                            </form>
 
                             <table>
                                 <theader>
@@ -65,7 +68,7 @@
                                     <td><fmt:formatDate value="${venda.dtDate}" type="date" dateStyle="short" /></td>
                                     <td><fmt:formatNumber value="${venda.valorTotal}" type="currency" /></td>
                                 </tr>
-                            </c:forEach>
+                            </c:forEach> 
 
                         </table>
 
@@ -80,9 +83,14 @@
         </div>
 
         <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.mask.js"></script>
         <script src="js/skel.min.js"></script>
         <script src="js/util.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/relatorio.js"></script>
+        <script>
+            inputDateNow('dataFinal');
+        </script>
 
 
     </body>

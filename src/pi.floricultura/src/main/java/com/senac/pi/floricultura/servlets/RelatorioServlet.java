@@ -44,6 +44,7 @@ public class RelatorioServlet extends HttpServlet {
             throws ServletException, IOException {
 
         //request.getRequestDispatcher("WEB-INF/jsp/Relatorio.jsp").forward(request, response);
+        request.setAttribute("dataHoje", new Date());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Relatorio.jsp");
         dispatcher.forward(request, response);
     }

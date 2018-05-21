@@ -32,8 +32,16 @@ public class ServicoVenda {
 
             //Cliente
             String cpf = "";
-            if (request.getParameter("cliente") != null && !request.getParameter("cliente").equals("")) {
+            if (request.getParameter("cliente") != null
+                    && !request.getParameter("cliente").equals("")) {
+
                 cpf = request.getParameter("cliente");
+                //Retira os pontos e trassos do cpf que foram adicionados
+                //pelo .mask do jquery
+                cpf = cpf.replaceAll(".", "");
+                cpf = cpf.replaceAll("-", "");
+                cpf = cpf.trim();
+
             } else {
                 System.out.println("Cliente nao inserido.");
             }
@@ -44,32 +52,31 @@ public class ServicoVenda {
             //Vendedor
             //int idVendedor = Pegar o id do usuario logado
             //Produtos
-            String[] codigosProduto = request.getParameterValues("produto");
+            String[] nomesProduto = request.getParameterValues("produto");
 
             //Pegar idProduto por codigo do produto
-            List<Integer> idProdutos = ServicoProduto.getProdutoIdByCodigo(codigosProduto);
+            List<Integer> idProdutos = ServicoProduto.getProdutoIdByNomes(nomesProduto);
 
             //Quantidade de produtos
             String[] quantProdutos = request.getParameterValues("quantidadeProduto");
 
             //Verifica o tamanho dos arrays adquiridos do request
-            if (codigosProduto.length != quantProdutos.length) {
-                System.out.println("Os ParameterValues nao tem o mesmo tamanho");
+            if (nomesProduto.length != quantProdutos.length) {
+                throw new VendaException("Os ParameterValues nao tem o mesmo tamanho");
             }
-
             //Lista de ItensVenda
             ArrayList<ItensVenda> lista = new ArrayList<>();
 
             int countForList = idProdutos.size() - 1;
 
-            for (int i = 0; i < codigosProduto.length; i++) {
+            for (int i = 0; i < nomesProduto.length; i++) {
 
                 int idProduto = idProdutos.get(countForList);
-                int codigo = Integer.parseInt(codigosProduto[i]);
+                String nome = nomesProduto[i];
                 int quantidade = Integer.parseInt(quantProdutos[i]);
                 double valor = ServicoProduto.getPrecoProdutoById(idProduto);
 
-                ItensVenda item = new ItensVenda(idProduto, quantidade, valor, codigo);
+                ItensVenda item = new ItensVenda(idProduto, quantidade, valor, nome);
 
                 lista.add(item);
                 countForList--;
@@ -95,31 +102,40 @@ public class ServicoVenda {
 
     }
 
-    public static List<EstoqueProduto> AlteraEstoqueAtual(Venda novaVenda) {
+    public static List<EstoqueProduto> AlteraEstoqueAtual(Venda novaVenda)
+            throws VendaException {
 
         List<EstoqueProduto> listaAtualizada = new ArrayList<>();
 
         //O hardcode 7 seria a  filial
         int filial = 7;
 
-        List<EstoqueProduto> listaAtual = ServicoEstoqueProduto.ListarEstoquePorIdsProduto(novaVenda.getListaItensVenda(), filial);
+        try {
+            List<EstoqueProduto> listaAtual = ServicoEstoqueProduto.ListarEstoquePorIdsProduto(novaVenda.getListaItensVenda(), filial);
 
-        //Alterar a listaAtual
-        for (ItensVenda item : novaVenda.getListaItensVenda()) {
-            for (EstoqueProduto estoqueProduto : listaAtual) {
-                if (item.getIdProduto() == estoqueProduto.getId_produto()) {
-                    listaAtualizada.add(
-                            new EstoqueProduto(
-                                    estoqueProduto.getId_produto(),
-                                    filial,
-                                    (estoqueProduto.getQuantidade() - item.getQuantidade())
-                            ));
+            //Alterar a listaAtual
+            for (ItensVenda item : novaVenda.getListaItensVenda()) {
+                for (EstoqueProduto estoqueProduto : listaAtual) {
+                    if (item.getIdProduto() == estoqueProduto.getId_produto()) {
+                        listaAtualizada.add(
+                                new EstoqueProduto(
+                                        estoqueProduto.getId_produto(),
+                                        filial,
+                                        (estoqueProduto.getQuantidade() - item.getQuantidade())
+                                ));
+
+                        if (estoqueProduto.getQuantidade() < 0) {
+                            throw new VendaException("Não possuimos está quantidade de produtos em estoque");
+                        }
+                    }
                 }
             }
-        }
-        //Fim da ateracao
+            //Fim da ateracao
 
-        return listaAtualizada;
+            return listaAtualizada;
+        } catch (VendaException e) {
+            throw new VendaException("Erro ao alterar estoque do produto");
+        }
 
     }
 
@@ -166,7 +182,7 @@ public class ServicoVenda {
         List<Venda> listaVendas;
         List<ItensVenda> listaItens;
         List<Venda> listaVendasComItens = new ArrayList<>();
-        
+
         try {
 
             listaVendas = VendaDAO.getVendaByDates(de, ate);
@@ -191,7 +207,7 @@ public class ServicoVenda {
 
             int codigo = VendaDAO.getMaxCodigo();
             codigo++;
-            
+
             return codigo;
 
         } catch (Exception e) {

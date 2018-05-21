@@ -5,10 +5,9 @@
  */
 package com.senac.pi.floricultura.servlets;
 
-import com.senac.pi.floricultura.controllers.ServicoProduto;
 import com.senac.pi.floricultura.model.Produto;
+import com.senac.pi.floricultura.teste.ProdutoTestes;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author aayan
  */
-@WebServlet(name = "ProdutoConsultaServlet", urlPatterns = {"/listarprodutos"})
-public class ProdutoConsultaServlet extends HttpServlet {
+@WebServlet(name = "ProdutoAlteracaoServlet", urlPatterns = {"/produtoalteracao"})
+public class ProdutoAlteracaoServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -38,21 +37,20 @@ public class ProdutoConsultaServlet extends HttpServlet {
 
         HttpSession sessao = request.getSession();
 
-        String nome = request.getParameter("consulta");
+        //Produto selecionado
+        String nomeProduto = request.getParameter("produtoSelecionado");
 
-        if (nome != null) {
-
-            List<Produto> listaConsultada = ServicoProduto.getProdutosByNome(nome);
-            request.setAttribute("listaProdutos", listaConsultada);
-            request.setAttribute("procura", nome);
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ProdutoConsulta.jsp");
-            dispatcher.forward(request, response);
-
-        } else {
-            request.getRequestDispatcher("/WEB-INF/jsp/ProdutoConsulta.jsp").forward(request, response);
-        }
-
+        //Pega as informacoes do produto selecionado na consulta
+        //Metodo de procurar produto por nome
+        //Pegar tbm a quantidade do produto em estoque
+        
+        Produto seraAlterado = ProdutoTestes.gerarProdutoUnico(nomeProduto);
+        
+        request.setAttribute("produtoCadastrado", seraAlterado);
+        
+        //Redirecionar
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/ProdutoAlteracao.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -66,6 +64,10 @@ public class ProdutoConsultaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession sessao = request.getSession();
+
+        //Envia as alteracoes para o banco
     }
 
 }
