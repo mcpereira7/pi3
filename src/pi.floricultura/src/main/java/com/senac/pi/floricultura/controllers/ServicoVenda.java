@@ -139,6 +139,29 @@ public class ServicoVenda {
 
     }
 
+    public static boolean ValidaQuantidades(Venda quaseConcluida) {
+
+        int idFilial = 7;
+
+        List<EstoqueProduto> listaAtual = ServicoEstoqueProduto.ListarEstoquePorIdsProduto(quaseConcluida.getListaItensVenda(), idFilial);
+
+        //Alterar a listaAtual
+        for (ItensVenda item : quaseConcluida.getListaItensVenda()) {
+            for (EstoqueProduto estoqueProduto : listaAtual) {
+                if (item.getIdProduto() == estoqueProduto.getId_produto()) {
+
+                    //VErifica se tem a quantidade de produtos em estoque
+                    if ((estoqueProduto.getQuantidade() - item.getQuantidade()) < 0) {
+                        return false;
+                    }
+                }
+            }
+        }
+        //Fim da ateracao
+        return true;
+
+    }
+
     public static void ConcluirVenda(Venda novaVenda) throws VendaException {
         try {
             //O 7 nesse hardcode seria a filial
@@ -150,7 +173,9 @@ public class ServicoVenda {
             //Antes de inserir a venda atualizar o estoque
             for (EstoqueProduto produtoComQuantidadeAlterada : listaAtualizada) {
                 //Atualizacao do estoque
-                ServicoEstoqueProduto.AtualizarEstoque(produtoComQuantidadeAlterada);
+                //Quantidade enviada na lista é a quantidade em estoque 
+                //já subtraida dos produtos na venda
+                ServicoEstoqueProduto.AtualizarEstoqueVenda(produtoComQuantidadeAlterada);
             }
 
             VendaDAO.inserir(novaVenda);

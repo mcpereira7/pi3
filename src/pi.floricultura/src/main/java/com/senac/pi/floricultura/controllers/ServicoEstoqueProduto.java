@@ -38,6 +38,30 @@ public class ServicoEstoqueProduto {
 
         }
     }
+    
+    public static void AtualizarEstoqueVenda(EstoqueProduto estoqueProduto) {
+        //Deverá conter validações para que não seja permitido realizar uma transação inválida (estoque negativo).
+        try {
+            if (estoqueProduto.possuiCadastroEstoque()) {
+                EstoqueProdutoDAO.AtualizarEstoque(estoqueProduto);
+            } else {
+                EstoqueProdutoDAO.CadastrarEstoque(estoqueProduto);
+            }
+
+            //Após atualizar o estoque, chamar o serviço para armazenar a movimentação.
+            Date dataAtual = Calendar.getInstance().getTime();
+            MovimentoEstoque movimentoEstoque = new MovimentoEstoque(
+                    estoqueProduto.getId_produto(),
+                    estoqueProduto.getId_pessoa(),
+                    estoqueProduto.getQuantidade(),
+                    dataAtual,
+                    1, //Tipo venda sera 1 mesmo
+                    1);//Natureza ainda n sei
+            ServicoMovimentoEstoque.CadastrarMovimentoEstoque(movimentoEstoque);
+        } catch (Exception e) {
+
+        }
+    }
 
     public static List<EstoqueProduto> ListarEstoquePorIdsProduto(List<ItensVenda> produtos, int idPessoaJuridica) {
 
