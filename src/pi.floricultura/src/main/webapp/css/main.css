@@ -2102,7 +2102,7 @@ body, input, select, textarea {
 }
 #btsAltExc{
     display: flex;
-    margin-leftt: 20px;
+    /*margin-leftt: 20px;*/
 }
 .listCli input{
     width: 12px;
