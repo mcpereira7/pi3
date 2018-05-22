@@ -17,7 +17,7 @@ public class MovimentoEstoqueDAO {
             throws MovimentoEstoqueException {
         PreparedStatement stmt = null;
 
-        String sql = "INSERT INTO movimentoestoque (Data, Quantidade, id_pessoa, Tipo, Natureza, id_produto) "
+        String sql = "INSERT INTO movimentoestoque (DataMovimento, Quantidade, Filial, Tipo, Natureza, id_produto) "
                 + "VALUES (?, ?, ?, ?, ?, ?)";
 
         Connection cn = ConnectionFactory.getConnection();
@@ -85,10 +85,10 @@ public class MovimentoEstoqueDAO {
                 MovimentoEstoque movimentoEstoque = new MovimentoEstoque(
                         rs.getInt("id_produto"),
                         rs.getInt("id_pessoa"),
-                        rs.getInt("quantidade"),
-                        rs.getDate("data"),
-                        rs.getInt("tipo"),
-                        rs.getInt("natureza"));
+                        rs.getInt("Quantidade"),
+                        rs.getDate("DataMovimento"),
+                        rs.getInt("Tipo"),
+                        rs.getInt("Natureza"));
                 listaMovimentoEstoque.add(movimentoEstoque);
             }
 

@@ -8,12 +8,12 @@ Author     : aayan
 <!-- Sidebar -->
 <div id="sidebar">
     <div class="inner">
-        
+
         <!-- Search -->
         <section id="topSidBar" class="alt">
             <img class="imgTopSB" src="img/bck_girassol_01.jpg" />
         </section>
-        
+
         <!-- Menu -->
         <nav id="menu">
             <header class="major">
@@ -28,20 +28,6 @@ Author     : aayan
                     <ul>
                         <li>
                             <a href="/floricultura/venda">Nova Venda </a>
-                        </li>
-                        <li>
-                            <a href="/floricultura/Relatorio">Relatorio</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <span class="opener">Permissoes</span>
-                    <ul>
-                        <li>
-                            <a href="/floricultura/PermissoesCadastrar">Cadastrar</a>
-                        </li>
-                        <li>
-                            <a href="/floricultura/PermissoesListar">Consultar</a>
                         </li>
                     </ul>
                 </li>
@@ -60,45 +46,75 @@ Author     : aayan
                     </ul>
                 </li>
                 <li>
+                    <span class="opener">Estoque</span>
+                    <ul>
+                        <li>
+                            <a href="/floricultura/alterarestoque">Alterar Estoque</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <span class="opener">Cliente</span>
                     <ul>
                         <li>
                             <a href="/floricultura/ListarClientes">Consultar</a></li>
-                            <li><a href="/floricultura/cadCli">Cadastro</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="opener">Filiais</span>
-                        <ul>
-                            <li><a href="/floricultura/CadastroFilial">Cadastrar</a></li>
-                            <li><a href="/floricultura/ListaFiliais">Unidades</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            
-            <!-- Section -->
-            <section>
-                <header class="major">
-                    <!--<h2>Ante interdum</h2>-->
-                </header>
-                <div class="mini-posts">
-                </div>
-                <ul class="actions">
-                    <!--<li><a href="#" class="button">More</a></li>-->
-                </ul>
-            </section>
-            
-            <!-- Footer -->
-            <footer id="footer">
-                <p class="copyright">&copy;
-                    Untitled. All rights reserved.
-                    Demo Images: <a href="https://unsplash.com">Unsplash</a>.
-                    Design: <a href="https://html5up.net">HTML5 UP</a>.
-                </p>
-            </footer>
-            
-            
-        </div>
-        
+                        <li><a href="/floricultura/cadCli">Cadastro</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="opener">Relatorios</span>
+                    <ul>
+                        <li>
+                            <a href="/floricultura/Relatorio">Vendas</a>
+                        </li>
+                        <li>
+                            <a href="/floricultura/movimentoestoque">Movimento Estoque</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="opener">Permissoes</span>
+                    <ul>
+                        <li>
+                            <a href="/floricultura/PermissoesCadastrar">Cadastrar</a>
+                        </li>
+                        <li>
+                            <a href="/floricultura/PermissoesListar">Consultar</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="opener">Filiais</span>
+                    <ul>
+                        <li><a href="/floricultura/CadastroFilial">Cadastrar</a></li>
+                        <li><a href="/floricultura/ListaFiliais">Unidades</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Section -->
+        <section>
+            <header class="major">
+                <!--<h2>Ante interdum</h2>-->
+            </header>
+            <div class="mini-posts">
+            </div>
+            <ul class="actions">
+                <!--<li><a href="#" class="button">More</a></li>-->
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy;
+                Untitled. All rights reserved.
+                Demo Images: <a href="https://unsplash.com">Unsplash</a>.
+                Design: <a href="https://html5up.net">HTML5 UP</a>.
+            </p>
+        </footer>
+
+
     </div>
+
+</div>

@@ -101,18 +101,39 @@ public class ServicoProduto {
 
     }
 
-    public static List<Produto> getProdutosByNome(String nome) {
+    public static List<Produto> getProdutosByNome(String nome)
+            throws ProdutoException, Exception {
 
-        //Deixar  nome em UPPERCASE
-        nome = nome.toUpperCase();
+        try {
 
-        //Lista de resultado
-        List<Produto> listaConsultada = ProdutoTestes.geraProdutosHARDCODE(10);
+            if (!nome.equals("")) {
 
-        //Tem que criar o metodo
-        //listaConsultada = ProdutoDAO.getProdutosByNome(nome);
-        //return listaConsultada;
-        return listaConsultada;
+                List<Produto> resultado = new ArrayList<>();
+
+                //Deixar  nome em UPPERCASE
+                nome = nome.toUpperCase();
+
+                Produto consultado = ProdutoDAO.getProdutoByNome(nome);
+
+                resultado.add(consultado);
+
+                return resultado;
+
+            } else {
+
+                //Lista de resultado
+                List<Produto> listaConsultada = ProdutoTestes.geraProdutosHARDCODE(10);
+
+                //Tem que criar o metodo
+                //listaConsultada = ProdutoDAO.getProdutosByNome(nome);
+                //return listaConsultada;
+                return listaConsultada;
+
+            }
+
+        } catch (ProdutoException e) {
+            throw new ProdutoException("Erro ao obter produto por nome do banco.", e.getCause());
+        }
     }
 
 }

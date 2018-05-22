@@ -14,16 +14,17 @@ public class Produto {
     //Atributos
     private int id; //id do banco de dados, auto-increment
     private int codigo;
-    private float preco;
     private String nome;
-    private String fornecedor;
+    private float preco;
     private String descricao;
     private int tipo;
-    private String tipoNome;
-    private int quantidadeVenda;
-    private int quantidadeEstoque;
     private Date dataCadastro;
     private boolean disable;
+    //Complementares
+    private int quantidadeEstoque;
+    private int quantidadeVenda;
+    private String tipoNome;
+    private String fornecedor;
     private String[] tipos = {"Tipo não definido", "Flor", "Planta", "Rosa", "Ilícita"};
 
     //Default
@@ -34,7 +35,12 @@ public class Produto {
     public Produto(ResultSet rs) throws SQLException {
         this.nome = rs.getString("Nome");
         this.preco = rs.getFloat("Preco");
-
+        this.descricao = rs.getString("Descricao");
+        this.tipo = rs.getInt("Tipo");
+        this.dataCadastro = rs.getDate("dt_Cadastro");
+        this.disable = rs.getBoolean("Disable");
+        //Complementares
+        setTipoNome(tipo);
     }
 
     //Construtor para testes de listagem
@@ -116,7 +122,7 @@ public class Produto {
         return tipoNome;
     }
 
-    public void setTipoNome(int tipo) {
+    private void setTipoNome(int tipo) {
         this.tipoNome = tipos[(tipo - 1)];
     }
 
