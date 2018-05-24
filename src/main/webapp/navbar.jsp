@@ -9,7 +9,7 @@
 
     <div class="nav-buttons">
         <a class="btn-login" href="login.html">Fazer Login</a>
-        <a class="btn-singup" href="sign-up.html">Cadastre-se</a>
+        <a class="btn-singup" href="/poonotes/signup">Cadastre-se</a>
     </div>
 
 </div>

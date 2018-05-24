@@ -19,7 +19,7 @@
     <body>
 
         <!--Navigation bar-->
-        <%@include file="../navbar.jsp" %>
+        <%@include file="/navbar.jsp" %>
 
         <h1>Hello World!</h1>
     </body>
