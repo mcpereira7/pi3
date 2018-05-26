@@ -6,8 +6,8 @@ import java.util.Date;
 public class CardPicture extends Card{
     private File img;
 
-    public CardPicture(File img, String cor, String titulo, Date dataCriacao, boolean apagado) {
-        super(cor, titulo, dataCriacao, apagado);
+    public CardPicture(File img, int idCard, int idBoard, String cor, String titulo, Date dataCriacao) {
+        super(idCard, idBoard, cor, titulo, dataCriacao);
         this.img = img;
     }
     

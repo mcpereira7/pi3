@@ -3,17 +3,33 @@ package com.senac.br.model;
 import java.util.Date;
 import java.util.List;
 
-public class Note {
+public class Board {
+    private int idBoard;
     private String titulo;
     private Date dataCriacao;
     private List<Card> listCards;
+    
+    public Board(int idBoard, String titulo, Date dataCriacao) {
+        this.idBoard = idBoard;
+        this.titulo = titulo;
+        this.dataCriacao = dataCriacao;
+    }
 
-    public Note(String titulo, Date dataCriacao, List<Card> listCards) {
+    public Board(int idBoard, String titulo, Date dataCriacao, List<Card> listCards) {
+        this.idBoard = idBoard;
         this.titulo = titulo;
         this.dataCriacao = dataCriacao;
         this.listCards = listCards;
     }
 
+    public int getIdBoard() {
+        return idBoard;
+    }
+
+    public void setIdBoard(int idBoard) {
+        this.idBoard = idBoard;
+    }
+    
     public String getTitulo() {
         return titulo;
     }
