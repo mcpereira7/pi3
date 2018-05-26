@@ -23,13 +23,11 @@ CREATE TABLE `card` (
   CONSTRAINT `FK_Card_Caderno` FOREIGN KEY (`idboard`) REFERENCES `board` (`idcaderno`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `board` (
-  `idcaderno` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(45) NOT NULL,
-  `background` varchar(45) DEFAULT NULL,
-  `idusuario` int(11) NOT NULL,
-  `arquivado` bit(1) NOT NULL DEFAULT b'0',
-  PRIMARY KEY (`idcaderno`),
-  KEY `FK_Usuario_Caderno_idx` (`idusuario`),
-  CONSTRAINT `FK_Usuario_Caderno` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `usuario` (
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `login` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `senha` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
