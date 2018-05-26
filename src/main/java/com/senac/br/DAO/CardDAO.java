@@ -22,7 +22,7 @@ public class CardDAO {
     public static boolean createCard(Card novo)
             throws SQLException, Exception {
 
-        PreparedStatement stmt;
+        PreparedStatement stmt = null;
 
         String sql = "INSERT INTO card (titulo, descricao) "
                 + "VALUES (?, ?)";
@@ -42,6 +42,8 @@ public class CardDAO {
 
         } catch (SQLException e) {
             throw new SQLException("Erro ao inserir card.(CardDAO)", e.getCause());
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt);
         }
 
     }

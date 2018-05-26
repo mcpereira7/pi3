@@ -277,7 +277,7 @@ body, html {
     height: 25%;
     /* border: 1px solid black; */
 }
-.login-box-btn a {
+.login-box-btn input {
     text-decoration: none;
     color: #505763;
     border-radius: 4px;
@@ -288,7 +288,7 @@ body, html {
     text-align: center; 
     cursor: pointer;
 }
-.login-box-btn a:hover {
+.login-box-btn input:hover {
     background-color: #ffffff;
 }
 

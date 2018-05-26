@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,17 +23,22 @@
                     <p class="login-box-head-face">Notes</p>
                 </div>
 
-                <form id="login-form" method="post">
+                <c:if test="${validado == false}">
+                    <span><h2 style="color: red">Erro ao logar</h2></span>
+                </c:if>
+
+                    <form id="login-form" action="/poonotes/login" method="post">
                     <div class="login-box-content">
-                        <input type="text" name="login" placeholder="Username...">
+                        <input type="text" name="login" placeholder="Username..." required="true">
                         <input type="password" name="password" placeholder="Password...">
                     </div>
                     <div class="login-box-btn">
-                        <a id="logar">Login</a>
+                        <input type="submit" value="Login"/>
                     </div>
                 </form>
             </div>
         </div>
 
     </body>
+
 </html>
