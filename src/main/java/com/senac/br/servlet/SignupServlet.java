@@ -9,7 +9,6 @@ import com.senac.br.controller.SignupService;
 import com.senac.br.exception.UserException;
 import com.senac.br.model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;

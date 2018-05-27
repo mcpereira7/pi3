@@ -3,7 +3,7 @@
 <div class="navbar">
 
     <div class="navlogo">
-        <a href="index.html">
+        <a href="/poonotes">
             <img src="img\note.svg">
         </a>
     </div>
@@ -17,7 +17,8 @@
         </c:when>
         <c:otherwise>
             <div class="nav-buttons">
-                <a class="btn-singup">${sessionScope.usuario.login}</a>
+                <a class="btn-login">${sessionScope.usuario.login}</a>
+                <a class="btn-singup" href="/poonotes/logout">Logout</a>
             </div>
         </c:otherwise>
     </c:choose>

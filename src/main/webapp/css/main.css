@@ -23,6 +23,7 @@ body, html {
 }
 .navlogo img {
     width: 40px;
+    padding-right: 60px;
 }
 .navsearchbar {
     margin: auto 20px;
@@ -51,13 +52,17 @@ body, html {
 }
 .nav-buttons a {
     display: inline-block;
+
+    font-size: 1.4em;
     text-decoration: none;
-    color: #505763;
+    color: #ffffff;
+
     border-color: transparent;
     border-width: 1px;
     border-style: solid;
     padding: 15px 30px;
     border-radius: 3px;
+
     margin-right: 1%;
     overflow: hidden;
     white-space: nowrap;
@@ -85,18 +90,20 @@ body, html {
 }
 .btn-login {
     border-color: rgb(73, 72, 72) !important;
+    color: black !important;;
 }
 .btn-login:hover {
     background-color: rgb(243, 240, 239);
+    color: black;
 }
 .btn-singup {
-    background-color: coral;
+    background-color: rgb(164, 161, 159);
     border-color: black;
 }
 .btn-singup:hover {
     background-color: white;
-    border-color: coral;
-    
+    border-color: rgb(164, 161, 159);
+    color: black;
 }
 /* Navigation bar END */
 
@@ -207,13 +214,18 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+
+    position: sticky;
+    top: 90px;
+
+    padding: 10px;
     height: 500px;
     width: 500px;
-    box-sizing: border-box;
+
     background-color: white;
     border-radius: 6px;
     box-shadow: 3px 3px 3px 3px #cfc4c4;
-    padding: 10px;
 }
 .login-box-head {
     margin: 5px;
@@ -237,7 +249,7 @@ body, html {
 }
 .login-box-head-face {
     color: white;
-    background-color: rgb(61, 61, 184);
+    background-color: rgb(164, 161, 159);
 	text-align: center;
 }
 .login-box-head-google {
@@ -279,17 +291,18 @@ body, html {
 }
 .login-box-btn input {
     text-decoration: none;
-    color: #505763;
+    color: #ffffff;
     border-radius: 4px;
     font-size: 22px;
     padding: 10px 30px;
-    border: 1px solid coral;
-    background-color: coral;
+    border: 1px solid rgb(164, 161, 159);
+    background-color: rgb(164, 161, 159);
     text-align: center; 
     cursor: pointer;
 }
 .login-box-btn input:hover {
     background-color: #ffffff;
+    color: black;
 }
 
 /* Signup START */

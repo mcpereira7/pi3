@@ -21,13 +21,15 @@ public class UserDAO {
 
     private static Connection cn = null;
 
-    public static void createUser(User user)
+    public static int createUser(User user)
             throws SQLException {
 
         String sql = "INSERT INTO usuario (nome, login, email, senha) "
                 + "VALUES(?, ?, ?, ?)";
 
         PreparedStatement stmt = null;
+        ResultSet rs;
+        int idUser = 0;
 
         try {
 
@@ -41,6 +43,17 @@ public class UserDAO {
             stmt.setString(4, user.getSenha());
 
             stmt.execute();
+            
+            //Obter ultimo id adicionado
+            String lastIdInserted = "SELECT MAX(usuario.idusuario) AS idUser FROM usuario";
+            
+            rs = stmt.executeQuery(lastIdInserted);
+            
+            while (rs.next()) {
+                idUser = rs.getInt("idUser");
+            }
+
+            return idUser;
 
         } catch (SQLException e) {
             throw new SQLException("Erro ao inserir usuario no banco.(UserDAO)", e.getCause());

@@ -9,7 +9,6 @@ import com.senac.br.controller.LoginService;
 import com.senac.br.exception.UserException;
 import com.senac.br.model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -38,6 +37,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession sessao = request.getSession();
+
+        //Se o usuario estiver logado
+        //Em testes
+        if (sessao.getAttribute("usuario") != null) {
+            response.sendRedirect("/home");
+        } else {
+            response.sendRedirect("/poonotes");
+        }
 
     }
 
@@ -72,8 +81,9 @@ public class LoginServlet extends HttpServlet {
                 User logado = LoginService.GetUser(login, senha);
                 //Coloca o usuario na sessao
                 sessao.setAttribute("usuario", logado);
-                //Redireciona para a tela home
-                RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/home.jsp");
+                
+                //Redireciona para o servlet home
+                RequestDispatcher disp = request.getRequestDispatcher("/home");
                 disp.forward(request, response);
 
             }

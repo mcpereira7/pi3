@@ -21,6 +21,33 @@
         <!--Navigation bar-->
         <%@include file="/navbar.jsp" %>
 
-        <h1>Hello World!</h1>
+        <!-- Main -->
+        <div class="main">
+
+            <!-- Content -->
+            <div class="content">
+
+                <%--<c:forEach items="listaCards" var="card">--%>
+                    
+                    <!--<div class="card" style="background-color: ${card.cor}">-->
+                    <div class="card" style="background-color: ${card.cor}">
+
+                        <div class="card-title">
+                            <!--${card.titulo}-->
+                            
+                        </div>
+
+                        <div class="card-content">
+                            <!--${card.conteudo}-->
+                            
+                        </div>
+                        
+                    </div>
+                    
+                <%--</c:forEach>--%>
+
+            </div>
+
+        </div>
     </body>
 </html>

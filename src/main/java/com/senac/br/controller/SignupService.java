@@ -36,7 +36,11 @@ public class SignupService {
             //Cria o usuario com as informacoes obtidas acima
             User novo = new User(nome, login, email, senhas[0]);
             //Adiciona o usuario ao banco
-            UserDAO.createUser(novo);
+            int idUser = UserDAO.createUser(novo);
+            
+            //Board padrao do user
+            
+            
             //Retorna true se der tudo certo para fins de tela de erro
             return true;
         } catch (SQLException e) {
