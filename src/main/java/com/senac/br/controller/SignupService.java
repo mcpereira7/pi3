@@ -35,6 +35,7 @@ public class SignupService {
         try {
             //Cria o usuario com as informacoes obtidas acima
             User novo = new User(nome, login, email, senhas[0]);
+            
             //Adiciona o usuario ao banco
             int idUser = UserDAO.createUser(novo);
             

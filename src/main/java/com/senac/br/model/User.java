@@ -12,14 +12,16 @@ package com.senac.br.model;
 public class User {
 
     private int idUser;
+    private int idBoardDefault;
     private String nome;
     private String login;
     private String email;
     private String senha;
 
     //Constructors
-    public User(int idUser, String nome, String login, String email, String senha) {
+    public User(int idUser, int idBoardDefault, String nome, String login, String email, String senha) {
         this.idUser = idUser;
+        this.idBoardDefault = idBoardDefault;
         this.nome = nome;
         this.login = login;
         this.email = email;
@@ -40,6 +42,14 @@ public class User {
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
+    }
+
+    public int getIdBoardDefault() {
+        return idBoardDefault;
+    }
+
+    public void setIdBoardDefault(int idBoardDefault) {
+        this.idBoardDefault = idBoardDefault;
     }
 
     public String getNome() {

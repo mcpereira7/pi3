@@ -5,8 +5,8 @@ import java.util.Date;
 public class CardSimple extends Card{
     private String conteudo;
 
-    public CardSimple(String conteudo, String cor, String titulo, Date dataCriacao, boolean apagado) {
-        super(cor, titulo, dataCriacao, apagado);
+    public CardSimple(String conteudo, int idCard, int idBoard, String cor, String titulo, Date dataCriacao) {
+        super(idCard, idBoard, cor, titulo, dataCriacao);
         this.conteudo = conteudo;
     }
 

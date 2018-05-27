@@ -43,12 +43,12 @@ public class UserDAO {
             stmt.setString(4, user.getSenha());
 
             stmt.execute();
-            
+
             //Obter ultimo id adicionado
             String lastIdInserted = "SELECT MAX(usuario.idusuario) AS idUser FROM usuario";
-            
+
             rs = stmt.executeQuery(lastIdInserted);
-            
+
             while (rs.next()) {
                 idUser = rs.getInt("idUser");
             }
@@ -87,6 +87,7 @@ public class UserDAO {
 
                 logado = new User(
                         rs.getInt("idusuario"),
+                        rs.getInt("idboarddefault"),
                         rs.getString("nome"),
                         rs.getString("login"),
                         rs.getString("email"),

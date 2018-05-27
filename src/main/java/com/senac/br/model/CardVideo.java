@@ -5,8 +5,8 @@ import java.util.Date;
 public class CardVideo extends Card{
     private String link;
 
-    public CardVideo(String link, String cor, String titulo, Date dataCriacao, boolean apagado) {
-        super(cor, titulo, dataCriacao, apagado);
+    public CardVideo(String link, int idCard, int idBoard, String cor, String titulo, Date dataCriacao) {
+        super(idCard, idBoard, cor, titulo, dataCriacao);
         this.link = link;
     }
 
