@@ -19,9 +19,9 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/poonotes?zeroDateTimeBehavior=convertToNull";
+    private static final String URL = "jdbc:mysql://localhost:3306/poonotes?useSSL=false";
     private static final String USER = "root";
-    private static final String PASS = "admin";
+    private static final String PASS = "rom08_01";
 
     public static java.sql.Connection getConnection() {
         try {

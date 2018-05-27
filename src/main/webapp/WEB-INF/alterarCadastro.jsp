@@ -17,38 +17,16 @@
         <!--Navigation bar-->
         <%@include file="../navbar.jsp" %>
 
-        <div class="main">
-
-            <!--Content-->
-            <div class="main-content">
-                <form id="signup-form" action="${pageContext.request.contextPath}/signup" method="post">
-
-                    <div class="signup-box">
-
-                        <c:if test="${erroCadastro == true}">
-                            <h2 style="color: red">Erro ao cadastrar</h2>
-                        </c:if>
-
-                        <label for="iNome">Nome<span style="color: red">*</span></label>
-                        <input type="text" name="nome" id="iNome" required="true">
-                        <label for="iLogin">Login<span style="color: red">*</span></label>
-                        <input type="text" name="login" id="iLogin" required="true">
-                        <label for="iEmail">Email<span style="color: red">*</span></label>
-                        <input type="email" name="email" id="iEmail" required="true">
-
-                        <label for="iPass">Senha</label>
-                        <input type="password" name="pass" id="iPass">
-
-                        <label for="iPass2">Confirme</label>
-                        <input type="password" name="pass" id="iPass2">
-
-                        <input type="submit" value="Sign Up">
-
-                    </div>
-
-                </form>
-            </div>
-
+        <!--Content-->
+        <div class="login-div">
+            <form class="login" action="${pageContext.request.contextPath}/cadastroAtualizar" method="GET">
+                <h1>Atualizar Cadastro</h1>
+                <input class="cadastro-input" type="input" name="nome" placeholder="Nome" value ="${usuario.nome}">
+                <input class="cadastro-input" type="input" name="email" placeholder="E-mail" value ="${usuario.email}"> 
+                <input class="cadastro-input" type="input" name="senha" placeholder="Senha Atual">
+                <input class="cadastro-input" type="input" name="senha" placeholder="Nova Senha">
+                <input class ="botao-login" type="submit" value="Atualizar">
+            </form>
         </div>
 
 
