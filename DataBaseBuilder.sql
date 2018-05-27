@@ -1,5 +1,14 @@
 CREATE DATABASE `poonotes` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
+CREATE TABLE `usuario` (
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `login` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `senha` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idusuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `board` (
   `idcaderno` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(45) NOT NULL,
@@ -22,12 +31,3 @@ CREATE TABLE `card` (
   KEY `FK_Card_Caderno_idx` (`idboard`),
   CONSTRAINT `FK_Card_Caderno` FOREIGN KEY (`idboard`) REFERENCES `board` (`idcaderno`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `usuario` (
-  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) NOT NULL,
-  `login` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `senha` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
