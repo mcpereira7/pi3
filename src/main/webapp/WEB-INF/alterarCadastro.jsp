@@ -19,12 +19,13 @@
 
         <!--Content-->
         <div class="login-div">
-            <form class="login" action="${pageContext.request.contextPath}/cadastroAtualizar" method="GET">
+            <form class="login" action="${pageContext.request.contextPath}/alterarCadastro" method="POST">
                 <h1>Atualizar Cadastro</h1>
+                <input type="hidden" name ="login" value="${usuario.login}"/>
                 <input class="cadastro-input" type="input" name="nome" placeholder="Nome" value ="${usuario.nome}">
                 <input class="cadastro-input" type="input" name="email" placeholder="E-mail" value ="${usuario.email}"> 
-                <input class="cadastro-input" type="input" name="senha" placeholder="Senha Atual">
-                <input class="cadastro-input" type="input" name="senha" placeholder="Nova Senha">
+                <input class="cadastro-input" type="password" name="senhaAtual" placeholder="Senha Atual">
+                <input class="cadastro-input" type="password" name="novaSenha" placeholder="Nova Senha">
                 <input class ="botao-login" type="submit" value="Atualizar">
             </form>
         </div>
