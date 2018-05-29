@@ -6,7 +6,6 @@
 package com.senac.br.DAO;
 
 import com.senac.br.connection.ConnectionFactory;
-import com.senac.br.exception.UserException;
 import com.senac.br.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -101,6 +100,33 @@ public class UserDAO {
         } finally {
             ConnectionFactory.closeConnection(cn, stmt, rs);
         }
+    }
+
+    public static void updateUserBoardDefault(int idUser, int idBoard)
+            throws SQLException {
+
+        String sql = "UPDATE usuario SET usuario.idboarddefault = ? "
+                + "WHERE usuario.idusuario = ?";
+
+        cn = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt;
+
+        stmt = cn.prepareStatement(sql);
+
+        try {
+
+            stmt.setInt(1, idBoard);
+            stmt.setInt(2, idUser);
+
+            stmt.execute();
+
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao atualizar o board default do usuario.(UserDAO)", e.getCause());
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt);
+        }
+
     }
 
 }

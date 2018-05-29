@@ -6,7 +6,10 @@
 package com.senac.br.DAO;
 
 import com.senac.br.connection.ConnectionFactory;
+import com.senac.br.exception.CardException;
 import com.senac.br.model.Card;
+import com.senac.br.model.CardList;
+import com.senac.br.support.DataSupport;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -99,15 +102,16 @@ public class CardDAO {
         }
     }
 
-    public static List<Card> listCardByBoard(int idBoard) throws SQLException {
+    public static List<Card> listCardByBoard(int idBoard)
+            throws SQLException, CardException {
+
         ResultSet rs = null;
         PreparedStatement stmt = null;
-        String sql = "";
-        List<Card> listaCard = new ArrayList<>();
+        CardList<Card> listaCard = new CardList<>();
 
-        sql = "SELECT * FROM card WHERE idBoard = ?";
+        String sql = "SELECT * FROM card WHERE idboard = ? AND arquivado = false";
 
-        Connection cn = ConnectionFactory.getConnection();
+        cn = ConnectionFactory.getConnection();
 
         try {
             stmt = cn.prepareStatement(sql);
@@ -115,14 +119,33 @@ public class CardDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Card card = new Card(
-                        rs.getInt("idCard"),
-                        rs.getInt("idBoard"),
-                        rs.getString("cor"),
-                        rs.getString("titulo"),
-                        rs.getDate("dataCriacao")
-                );
-                listaCard.add(card);
+
+                //id do card
+                int idcard = rs.getInt("idcard");
+
+                //titulo do card
+                String titulo = rs.getString("titulo");
+
+                //tipo do card
+                int tipo = rs.getInt("tipo");
+
+                //cor do card
+                String cor = rs.getString("cor");
+
+                //conteudo do card
+                Object conteudo;
+                if (tipo == 3) {
+                    conteudo = rs.getObject("imagem");
+                } else {
+                    conteudo = rs.getObject("descricao");
+                }
+
+                //data de craicao do card
+                java.util.Date utilDate = DataSupport.SqlDateToUtilDate(rs.getDate("dataCriacao"));
+
+                //adiciona o card a lista de acordo com seu tipo
+                listaCard.addCard(conteudo, idcard, titulo, tipo, utilDate);
+
             }
 
         } catch (SQLException e) {

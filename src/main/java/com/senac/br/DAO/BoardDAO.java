@@ -1,6 +1,7 @@
 package com.senac.br.DAO;
 
 import com.senac.br.connection.ConnectionFactory;
+import com.senac.br.exception.CardException;
 import com.senac.br.model.Board;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardDAO {
-    
+
     private static Connection cn = null;
-    
+
     public static boolean createBoard(Board novo)
             throws SQLException, Exception {
 
@@ -36,6 +37,45 @@ public class BoardDAO {
 
         } catch (SQLException e) {
             throw new SQLException("Erro ao inserir board.(BoardDAO)", e.getCause());
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt);
+        }
+
+    }
+
+    public static int createBoardDefault(Board novo)
+            throws SQLException {
+
+        PreparedStatement stmt = null;
+        ResultSet rs;
+        int idBoard = 0;
+        String sql = "INSERT INTO board (idusuario, titulo) "
+                + "VALUES (?, ?)";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+
+            stmt = cn.prepareStatement(sql);
+
+            stmt.setInt(1, novo.getIdUsuario());
+            stmt.setString(2, novo.getTitulo());
+
+            stmt.execute();
+
+            //Obter ultimo id adicionado
+            String lastIdInserted = "SELECT MAX(board.idboard) AS idBoard FROM board";
+
+            rs = stmt.executeQuery(lastIdInserted);
+
+            while (rs.next()) {
+                idBoard = rs.getInt("idBoard");
+            }
+
+            return idBoard;
+
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao inserir board default.(BoardDAO)", e.getCause());
         } finally {
             ConnectionFactory.closeConnection(cn, stmt);
         }
@@ -105,9 +145,7 @@ public class BoardDAO {
             while (rs.next()) {
                 Board board = new Board(
                         rs.getInt("idBoard"),
-                        rs.getString("titulo"),
-                        rs.getDate("dataCriacao"),
-                        CardDAO.listCardByBoard(rs.getInt("idBoard"))
+                        rs.getString("titulo")
                 );
                 listaBoard.add(board);
             }
@@ -119,7 +157,7 @@ public class BoardDAO {
         }
         return listaBoard;
     }
-    
+
     public static List<Board> listBoardByUser(int idUsuario) throws SQLException {
         ResultSet rs = null;
         PreparedStatement stmt = null;
@@ -138,9 +176,7 @@ public class BoardDAO {
             while (rs.next()) {
                 Board board = new Board(
                         rs.getInt("idboard"),
-                        rs.getString("titulo"),
-                        rs.getDate("dataCriacao"),
-                        CardDAO.listCardByBoard(rs.getInt("idboard"))
+                        rs.getString("titulo")
                 );
                 listaBoard.add(board);
             }
@@ -151,5 +187,36 @@ public class BoardDAO {
             ConnectionFactory.closeConnection(cn, stmt, rs);
         }
         return listaBoard;
+    }
+
+    public static Board getBoardById(int idBoard)
+            throws SQLException {
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        Board padrao = null;
+
+        String sql = "SELECT * FROM board WHERE idboard = ?";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            stmt.setInt(1, idBoard);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                padrao = new Board(
+                        rs.getInt("idboard"),
+                        rs.getString("titulo")
+                );
+            }
+
+            return padrao;
+
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao Listar Board por id.(BoardDAO)", e.getCause());
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
     }
 }

@@ -5,12 +5,8 @@
  */
 package com.senac.br.servlet;
 
-import com.senac.br.controller.SignupService;
-import com.senac.br.exception.BoardException;
-import com.senac.br.exception.UserException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author aayan
  */
-@WebServlet(name = "SignupServlet", urlPatterns = {"/signup"})
-public class SignupServlet extends HttpServlet {
+@WebServlet(name = "CardServlet", urlPatterns = {"/card"})
+public class CardServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -37,8 +33,10 @@ public class SignupServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/signup.jsp");
+        //Redireciona para a pagina de alterar o card
+        RequestDispatcher disp = getServletContext().getRequestDispatcher("/card.jsp");
         disp.forward(request, response);
+
     }
 
     /**
@@ -53,21 +51,6 @@ public class SignupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-
-            boolean cadastrado = SignupService.signupUser(request);
-
-            //Se o usuario nao for cadastrado
-            if (!cadastrado) {
-                System.out.println("Tela de erro talvez");
-            }
-
-            //Se nao mostrar a tela de login para o mesmo se logar
-            response.sendRedirect("/poonotes");
-
-        } catch (UserException | BoardException ex) {
-            Logger.getLogger(SignupServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
 }

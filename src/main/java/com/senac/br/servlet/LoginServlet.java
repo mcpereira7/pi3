@@ -83,8 +83,7 @@ public class LoginServlet extends HttpServlet {
                 sessao.setAttribute("usuario", logado);
                 
                 //Redireciona para o servlet home
-                RequestDispatcher disp = request.getRequestDispatcher("/home");
-                disp.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/home");
 
             }
 

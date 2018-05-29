@@ -6,6 +6,7 @@
 package com.senac.br.controller;
 
 import com.senac.br.DAO.UserDAO;
+import com.senac.br.exception.BoardException;
 import com.senac.br.exception.UserException;
 import com.senac.br.model.User;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 public class SignupService {
 
     public static boolean signupUser(HttpServletRequest request)
-            throws UserException {
+            throws UserException, BoardException {
 
         String nome = request.getParameter("nome");
         String login = request.getParameter("login");
@@ -33,15 +34,19 @@ public class SignupService {
         }
 
         try {
+
             //Cria o usuario com as informacoes obtidas acima
             User novo = new User(nome, login, email, senhas[0]);
-            
+
             //Adiciona o usuario ao banco
             int idUser = UserDAO.createUser(novo);
-            
+
             //Board padrao do user
+            int idBoard = BoardService.CreateBoardDefault(idUser);
             
-            
+            //Adiciona o board ao usuario
+            UserDAO.updateUserBoardDefault(idUser, idBoard);
+
             //Retorna true se der tudo certo para fins de tela de erro
             return true;
         } catch (SQLException e) {

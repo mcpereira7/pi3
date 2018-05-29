@@ -4,24 +4,38 @@ import java.util.Date;
 import java.util.List;
 
 public class Board {
+
     private int idBoard;
+    private int idUsuario;
     private String titulo;
     private Date dataCriacao;
     private List<Card> listCards;
     
+    //Constructors
     public Board(int idBoard, String titulo, Date dataCriacao) {
         this.idBoard = idBoard;
         this.titulo = titulo;
         this.dataCriacao = dataCriacao;
     }
 
-    public Board(int idBoard, String titulo, Date dataCriacao, List<Card> listCards) {
-        this.idBoard = idBoard;
+    public Board(String titulo, Date dataCriacao, int idUsuario) {
         this.titulo = titulo;
         this.dataCriacao = dataCriacao;
+        this.idUsuario = idUsuario;
+    }
+
+    public Board(int idBoard, String titulo, List<Card> listCards) {
+        this.idBoard = idBoard;
+        this.titulo = titulo;
         this.listCards = listCards;
     }
 
+    public Board(int idBoard, String titulo) {
+        this.idBoard = idBoard;
+        this.titulo = titulo;
+    }
+    
+    //Getters & Settters
     public int getIdBoard() {
         return idBoard;
     }
@@ -29,6 +43,15 @@ public class Board {
     public void setIdBoard(int idBoard) {
         this.idBoard = idBoard;
     }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public String getTitulo() {
         return titulo;
     }

@@ -5,8 +5,15 @@
  */
 package com.senac.br.servlet;
 
+import com.senac.br.controller.BoardService;
+import com.senac.br.exception.BoardException;
+import com.senac.br.exception.CardException;
+import com.senac.br.model.Board;
+import com.senac.br.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,9 +40,26 @@ public class HomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //Apenas redireciona para home.jsp
-        RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/home.jsp");
-        disp.forward(request, response);
+        try {
+
+            //obter objeto do usuario
+            Object user = request.getSession().getAttribute("usuario");
+            User logado = (User) user;
+
+            //obter board default do banco
+            Board padrao = BoardService.GetBoardById(logado.getIdBoardDefault());
+
+            //adicionar o board ao request
+            request.setAttribute("board", padrao);
+
+            //Redirecionar para home.jsp
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/home.jsp");
+            disp.forward(request, response);
+
+        } catch (BoardException | CardException | IOException | ServletException e) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, e);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,15 +90,5 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

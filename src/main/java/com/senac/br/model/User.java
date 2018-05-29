@@ -35,6 +35,14 @@ public class User {
         this.senha = senha;
     }
 
+    public User(int idBoardDefault, String nome, String login, String email, String senha) {
+        this.idBoardDefault = idBoardDefault;
+        this.nome = nome;
+        this.login = login;
+        this.email = email;
+        this.senha = senha;
+    }
+
     //Getters & Setters
     public int getIdUser() {
         return idUser;

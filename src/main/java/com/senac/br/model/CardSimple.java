@@ -2,12 +2,20 @@ package com.senac.br.model;
 
 import java.util.Date;
 
-public class CardSimple extends Card{
+public class CardSimple extends Card {
+
     private String conteudo;
 
-    public CardSimple(String conteudo, int idCard, int idBoard, String cor, String titulo, Date dataCriacao) {
-        super(idCard, idBoard, cor, titulo, dataCriacao);
+    public CardSimple(String conteudo, int idCard, String titulo, int tipo, Date dataCriacao) {
+        
+        //local
         this.conteudo = conteudo;
+
+        //classe abstrata
+        super.setIdCard(idCard);
+        super.setTitulo(titulo);
+        super.setTipo(tipo);
+        super.setDataCriacao(dataCriacao);
     }
 
     public String getConteudo() {
@@ -16,5 +24,21 @@ public class CardSimple extends Card{
 
     public void setConteudo(String conteudo) {
         this.conteudo = conteudo;
+    }
+
+    //Methods
+    @Override
+    public void setDesigne() {
+        setCor("#ffff66");
+    }
+
+    @Override
+    public void UrgencyCheck() {
+
+    }
+
+    @Override
+    public int getCardTipo() {
+        return super.getTipo();
     }
 }

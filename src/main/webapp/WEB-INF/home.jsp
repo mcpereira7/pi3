@@ -27,24 +27,33 @@
             <!-- Content -->
             <div class="content">
 
-                <%--<c:forEach items="listaCards" var="card">--%>
-                    
-                    <!--<div class="card" style="background-color: ${card.cor}">-->
-                    <div class="card" style="background-color: ${card.cor}">
+                <!--Board-->
+                <div class="board">
+
+                    <form id="card-form" action="${pageContext.request.contextPath}/card" method="get">
+                        <input type="hidden" id="cardId"/>
+                    </form>
+
+                    <%--<c:forEach items="listaCards" var="card">--%>
+
+                    <!--<div class="card" onclick="getCardId(${card.id})" style="background-color: ${card.cor}">-->
+                    <div class="card">
 
                         <div class="card-title">
                             <!--${card.titulo}-->
-                            
+
                         </div>
 
                         <div class="card-content">
                             <!--${card.conteudo}-->
-                            
+
                         </div>
-                        
+
                     </div>
-                    
-                <%--</c:forEach>--%>
+
+                    <%--</c:forEach>--%>
+
+                </div>
 
             </div>
 
