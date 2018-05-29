@@ -35,23 +35,38 @@ Author     : aayan
                 </div>
 
                 <div id="simples" class="tabcontent">
-                    <h3>London</h3>
-                    <p>London is the capital city of England.</p>
+                    <form id="form-cardsimples" action="${pageContext.request.contextPath}/novo" method="post">
+                        <input type="hidden" name="tipo" value="1">
+                        <input type="text" id="tituloid" name="titulo" placeholder="Titulo..." />
+                        <textarea id="conteudoid" name="conteudo" cols="30" rows="10"></textarea>
+                        <input type="submit" value="Salvar"/>
+                    </form>
                 </div>
 
                 <div id="video" class="tabcontent">
-                    <h3>Paris</h3>
-                    <p>Paris is the capital of France.</p> 
+                    <form id="form-cardvideo" action="${pageContext.request.contextPath}/novo" method="post">
+                        <input type="hidden" name="tipo" value="2">
+                        <input type="text" id="tituloid" name="titulo" placeholder="Titulo..." />
+                        <input type="text" id="conteudoid" name="link" placeholder="Link do video(youtube)..." />
+                        <input type="submit" value="Salvar"/>
+                    </form>
                 </div>
 
                 <div id="imagem" class="tabcontent">
-                    <h3>Tokyo</h3>
-                    <p>Tokyo is the capital of Japan.</p>
+                    <form id="form-cardpicture">
+                        <input type="hidden" name="tipo" value="3">
+                        <input type="text" id="tituloid" name="titulo" placeholder="Titulo..." />
+                        <input type="text" id="conteudoid" name="link" placeholder="Seria a parte de fazer o upload da imagem" />
+                        <input type="submit" value="Salvar"/>
+                    </form>
                 </div>
 
                 <div id="board" class="tabcontent">
-                    <h3>Tokyo</h3>
-                    <p>Tokyo is the capital of Japan.</p>
+                    <form id="form-board" action="${pageContext.request.contextPath}/novoboard" method="post">
+                        <input type="text" id="tituloid" name="titulo" placeholder="Titulo..." />
+                        <p>Teria umas opcoes de cores de fundo aqui.</p>
+                        <input type="submit" value="Salvar"/>
+                    </form>
                 </div>
 
             </div>
@@ -62,5 +77,6 @@ Author     : aayan
             // Get the element with id="defaultOpen" and click on it
             document.getElementById("defaultOpen").click();
         </script>
+
     </body>
 </html>

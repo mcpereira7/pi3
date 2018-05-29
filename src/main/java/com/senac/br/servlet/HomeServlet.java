@@ -51,6 +51,12 @@ public class HomeServlet extends HttpServlet {
 
             //adicionar o board ao request
             request.setAttribute("board", padrao);
+            
+            //teste de adicionar a lista de cards direto no request
+            request.setAttribute("listaCards", padrao.getListCards());
+
+            //adicionar o id do board atual a sessao
+            request.getSession().setAttribute("idboard", padrao.getIdBoard());
 
             //Redirecionar para home.jsp
             RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/home.jsp");

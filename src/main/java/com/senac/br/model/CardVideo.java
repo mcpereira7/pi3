@@ -17,6 +17,17 @@ public class CardVideo extends Card {
         super.setTipo(tipo);
         super.setDataCriacao(dataCriacao);
     }
+    
+    public CardVideo(String link, String titulo, int tipo, Date dataCriacao) {
+
+        //local
+        this.link = link;
+
+        //classe abstrata
+        super.setTitulo(titulo);
+        super.setTipo(tipo);
+        super.setDataCriacao(dataCriacao);
+    }
 
     public String getLink() {
         return link;
@@ -55,6 +66,11 @@ public class CardVideo extends Card {
     @Override
     public int getCardTipo() {
         return super.getTipo();
+    }
+
+    @Override
+    public Object getCardContent() {
+        return this.link;
     }
 
 }

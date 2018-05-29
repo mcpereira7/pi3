@@ -45,4 +45,9 @@ public class CardPicture extends Card {
         return super.getTipo();
     }
 
+    @Override
+    public Object getCardContent() {
+        return this.img;
+    }
+
 }

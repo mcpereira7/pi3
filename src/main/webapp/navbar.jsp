@@ -21,13 +21,13 @@
                     <img src="img\note.svg">
                 </a>
             </div>
-            
+
             <div class="navmiddle">
-                teste
+                ${board.titulo}
             </div>
-            
+
             <div class="nav-buttons">
-                <a class="btn-add" href="/poonotes/cardnovo">+</a>
+                <a class="btn-add" href="/poonotes/novo">+</a>
                 <a class="btn-login">${sessionScope.usuario.login}</a>
                 <a class="btn-singup" href="/poonotes/logout">Logout</a>
             </div>

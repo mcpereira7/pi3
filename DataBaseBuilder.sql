@@ -22,13 +22,16 @@ CREATE TABLE `card` (
   `idcard` int(11) NOT NULL AUTO_INCREMENT,
   `idboard` int(11) NOT NULL,
   `titulo` varchar(45) NOT NULL,
-  `descricao` varchar(45) DEFAULT NULL,
+  `tipo` int(11) NOT NULL DEFAULT '0',
+  `cor` varchar(45) NOT NULL DEFAULT '#ffffff',
+  `descricao` varchar(450) DEFAULT NULL,
+  `imagem` blob,
   `dataCriacao` date NOT NULL,
   `arquivado` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`idcard`),
   KEY `FK_Card_Board_idx` (`idboard`),
   CONSTRAINT `FK_Card_Board` FOREIGN KEY (`idboard`) REFERENCES `board` (`idboard`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 ALTER TABLE `poonotes`.`usuario` 
 ADD COLUMN `idboarddefault` INT(11) NULL AFTER `senha`;

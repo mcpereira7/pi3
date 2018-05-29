@@ -14,7 +14,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,27 +24,53 @@ public class CardDAO {
 
     private static Connection cn = null;
 
-    public static boolean createCard(Card novo)
-            throws SQLException, Exception {
+    public static void create(Card novo)
+            throws SQLException {
 
         PreparedStatement stmt = null;
-
-        String sql = "INSERT INTO card (titulo, descricao, dataCriacao) "
-                + "VALUES (?, ?)";
 
         cn = ConnectionFactory.getConnection();
 
         try {
 
-            stmt = cn.prepareStatement(sql);
+            //Faz o sql de acordo com o tipo
+            String sql;
+            if (novo.getTipo() == 3) {
+                //Em andamento
+                //
+                sql = "INSERT INTO card (idboard, titulo, tipo, cor, descricao, "//mudar descricao para imagem
+                        + "dataCriacao) VALUES (?, ?, ?, ?, ?, ?)";
 
-            stmt.setString(1, novo.getTitulo());
-            stmt.setString(2, novo.getCor());
-            stmt.setDate(3, (java.sql.Date) novo.getDataCriacao());
+                stmt = cn.prepareStatement(sql);
 
-            boolean inserido = stmt.execute();
+                stmt.setInt(1, novo.getIdBoard());
+                stmt.setString(2, novo.getTitulo());
+                stmt.setInt(3, novo.getTipo());
+                stmt.setString(4, novo.getCor());
+                stmt.setString(5, (String) novo.getCardContent());
 
-            return inserido;
+                //Data
+                java.sql.Date sqlDate = DataSupport.UtilDateToSqlDate(novo.getDataCriacao());
+                stmt.setDate(6, sqlDate);
+
+            } else {
+                sql = "INSERT INTO card (idboard, titulo, tipo, cor, descricao, "
+                        + "dataCriacao) VALUES (?, ?, ?, ?, ?, ?)";
+
+                stmt = cn.prepareStatement(sql);
+
+                stmt.setInt(1, novo.getIdBoard());
+                stmt.setString(2, novo.getTitulo());
+                stmt.setInt(3, novo.getTipo());
+                stmt.setString(4, novo.getCor());
+                stmt.setString(5, (String) novo.getCardContent());
+
+                //Data
+                java.sql.Date sqlDate = DataSupport.UtilDateToSqlDate(novo.getDataCriacao());
+                stmt.setDate(6, sqlDate);
+            }
+
+            stmt.execute();
 
         } catch (SQLException e) {
             throw new SQLException("Erro ao inserir card.(CardDAO)", e.getCause());
@@ -61,7 +86,7 @@ public class CardDAO {
         String sql = "UPDATE Card SET titulo = ?, cor = ?"
                 + "WHERE idCard = ?";
 
-        Connection cn = ConnectionFactory.getConnection();
+        cn = ConnectionFactory.getConnection();
 
         try {
             stmt = cn.prepareStatement(sql);

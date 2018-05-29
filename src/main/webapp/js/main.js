@@ -14,7 +14,7 @@ function getCardId(id) {
     document.getElementById('card-form').submit();
 }
 
-function openCardType(evt, cityName) {
+function openCardType(evt, tabName) {
     var i, tabcontent, tablinks;
     
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -27,6 +27,6 @@ function openCardType(evt, cityName) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }

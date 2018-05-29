@@ -3,7 +3,7 @@
     Created on : 23/05/2018, 09:58:24
     Author     : aayan
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,24 +34,23 @@
                         <input type="hidden" id="cardId"/>
                     </form>
 
-                    <%--<c:forEach items="listaCards" var="card">--%>
+                    <c:forEach items="${board.listCards}" var="card">
 
-                    <!--<div class="card" onclick="getCardId(${card.id})" style="background-color: ${card.cor}">-->
-                    <div class="card">
+                        <div class="card" onclick="" style="background-color: ${card.cor}">
 
-                        <div class="card-title">
-                            <!--${card.titulo}-->
+                            <div class="card-title">
+                                ${card.titulo}
+
+                            </div>
+
+                            <div class="card-content">
+                                ${card.conteudo}
+
+                            </div>
 
                         </div>
 
-                        <div class="card-content">
-                            <!--${card.conteudo}-->
-
-                        </div>
-
-                    </div>
-
-                    <%--</c:forEach>--%>
+                    </c:forEach>
 
                 </div>
 

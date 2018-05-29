@@ -3,14 +3,15 @@ package com.senac.br.model;
 import java.util.Date;
 
 public abstract class Card {
-    
+
     //Attributes
     private int idCard;
+    private int idBoard;
     private String titulo;
     private String cor;
     private int tipo;
     private Date dataCriacao;
-    
+
     //Getters & Setters
     public int getIdCard() {
         return idCard;
@@ -20,10 +21,18 @@ public abstract class Card {
         this.idCard = idCard;
     }
 
+    public int getIdBoard() {
+        return idBoard;
+    }
+
+    public void setIdBoard(int idBoard) {
+        this.idBoard = idBoard;
+    }
+
     public String getTitulo() {
         return titulo;
     }
-    
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -43,7 +52,7 @@ public abstract class Card {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
-    
+
     public Date getDataCriacao() {
         return dataCriacao;
     }
@@ -51,12 +60,14 @@ public abstract class Card {
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
-    
+
     //Methods
     public abstract void setDesigne();
-    
+
     public abstract void UrgencyCheck();
-    
+
     public abstract int getCardTipo();
     
+    public abstract Object getCardContent();
+
 }

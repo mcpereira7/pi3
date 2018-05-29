@@ -42,11 +42,14 @@ public class BoardService {
             throws BoardException, CardException {
 
         try {
+            //obtem as informacoes do board
             Board padrao = BoardDAO.getBoardById(idBoard);
 
+            //obtem os cards do board
             padrao.setListCards(CardDAO.listCardByBoard(idBoard));
 
             return padrao;
+
         } catch (SQLException e) {
             throw new BoardException("Erro ao obter board padrao.(BoardService)", e.getCause());
         }
