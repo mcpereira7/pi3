@@ -6,7 +6,6 @@
 package com.senac.br.model;
 
 import com.senac.br.exception.CardException;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -69,7 +68,7 @@ public class CardList<E> extends ArrayList<E> {
                 case 3:
                     //cardPicture
                     //Criando objeto
-                    Card picture = new CardPicture((File) conteudo,
+                    Card picture = new CardPicture((String) conteudo,
                             idCard,
                             titulo,
                             tipo,

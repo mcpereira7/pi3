@@ -56,7 +56,7 @@ Author     : aayan
                     <form id="form-cardpicture" action="${pageContext.request.contextPath}/novo" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="tipo" value="3">
                         <input type="text" id="tituloid" name="titulo" placeholder="Titulo..." />
-                        <input type="file" id="imgid" name="img" accept="image/*">
+                        <input type="text" id="conteudoid" name="imgLink" placeholder="Link da imagem...">
                         <input type="submit" value="Salvar"/>
                     </form>
                 </div>

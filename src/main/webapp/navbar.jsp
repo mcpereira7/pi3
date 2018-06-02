@@ -28,7 +28,7 @@
 
             <div class="nav-buttons">
                 <a class="btn-add" href="/poonotes/novo">+</a>
-                <a class="btn-login">${sessionScope.usuario.login}</a>
+                <a class="btn-login" href="/poonotes/alterarCadastro">${sessionScope.usuario.login}</a>
                 <a class="btn-singup" href="/poonotes/logout">Logout</a>
             </div>
         </c:otherwise>

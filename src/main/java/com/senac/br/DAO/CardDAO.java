@@ -213,12 +213,7 @@ public class CardDAO {
                 String cor = rs.getString("cor");
 
                 //conteudo do card
-                Object conteudo;
-                if (tipo == 3) {
-                    conteudo = rs.getObject("imagem");
-                } else {
-                    conteudo = rs.getObject("descricao");
-                }
+                Object conteudo = rs.getObject("descricao");
 
                 //data de craicao do card
                 java.util.Date utilDate = DataSupport.SqlDateToUtilDate(rs.getDate("dataCriacao"));

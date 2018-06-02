@@ -5,7 +5,6 @@
  */
 package com.senac.br.model;
 
-import java.io.File;
 import java.util.Date;
 
 /**
@@ -55,7 +54,7 @@ public class CardBuilder {
             case 3:
                 //cardPicture
                 //Criando objeto
-                Card picture = new CardPicture((File) conteudo,
+                Card picture = new CardPicture((String) conteudo,
                         idCard,
                         idBoard,
                         titulo,

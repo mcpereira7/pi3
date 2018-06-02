@@ -1,18 +1,17 @@
 package com.senac.br.model;
 
-import java.io.File;
 import java.util.Date;
 
 public class CardPicture extends Card {
 
-    private File img;
+    private String imgLink;
 
     //Constuctors
     //full
-    public CardPicture(File img, int idCard, int idBoard, String titulo,
+    public CardPicture(String img, int idCard, int idBoard, String titulo,
             int tipo, Date dataCriacao, boolean arquivado) {
         //local
-        this.img = img;
+        this.imgLink = img;
 
         //classe abstrata
         super.setIdCard(idCard);
@@ -23,11 +22,11 @@ public class CardPicture extends Card {
         super.setArquivado(arquivado);
     }
 
-    public CardPicture(File img, int idCard, String titulo, int tipo,
+    public CardPicture(String img, int idCard, String titulo, int tipo,
             Date dataCriacao) {
 
         //local
-        this.img = img;
+        this.imgLink = img;
 
         //classe abstrata
         super.setIdCard(idCard);
@@ -36,12 +35,24 @@ public class CardPicture extends Card {
         super.setDataCriacao(dataCriacao);
     }
 
-    public File getImg() {
-        return img;
+    public CardPicture(String img, String titulo, int tipo,
+            Date dataCriacao) {
+
+        //local
+        this.imgLink = img;
+
+        //classe abstrata
+        super.setTitulo(titulo);
+        super.setTipo(tipo);
+        super.setDataCriacao(dataCriacao);
     }
 
-    public void setImg(File img) {
-        this.img = img;
+    public String getImg() {
+        return imgLink;
+    }
+
+    public void setImg(String img) {
+        this.imgLink = img;
     }
 
     //Methods
@@ -64,7 +75,7 @@ public class CardPicture extends Card {
 
     @Override
     public Object getCardContent() {
-        return this.img;
+        return this.imgLink;
     }
 
 }

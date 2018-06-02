@@ -6,7 +6,6 @@ import com.senac.br.model.Card;
 import com.senac.br.model.CardPicture;
 import com.senac.br.model.CardSimple;
 import com.senac.br.model.CardVideo;
-import java.io.File;
 import java.sql.SQLException;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
@@ -55,8 +54,11 @@ public class CardService {
                     break;
                 case 3:
                     //Aqui seria criado um cardPicture tipo 3
-                    System.out.println("Ainda nao implementei o card de imagem");
-                    throw new CardException("Erro ao Inserir o Card.");
+                    Card picture = new CardPicture(conteudo, titulo, tipo, atual);
+                    picture.setIdBoard(idBoard);
+                    picture.setDesigne();
+                    CardDAO.create(picture);
+                    break;
                 default:
                     throw new CardException("Erro ao identificar tipo.");
             }

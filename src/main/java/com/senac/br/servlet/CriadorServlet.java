@@ -55,9 +55,6 @@ public class CriadorServlet extends HttpServlet {
 
         try {
 
-            //testes de imagem
-            Object imagem = request.getPart("img");
-            
             //utilizar o servico para criar o card e adiciona-lo ao banco
             CardService.createCard(request);
 
