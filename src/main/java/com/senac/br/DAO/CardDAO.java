@@ -8,6 +8,7 @@ package com.senac.br.DAO;
 import com.senac.br.connection.ConnectionFactory;
 import com.senac.br.exception.CardException;
 import com.senac.br.model.Card;
+import com.senac.br.model.CardBuilder;
 import com.senac.br.model.CardList;
 import com.senac.br.support.DataSupport;
 import java.sql.Connection;
@@ -78,6 +79,60 @@ public class CardDAO {
             ConnectionFactory.closeConnection(cn, stmt);
         }
 
+    }
+
+    public static Card read(int idcard)
+            throws SQLException {
+
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+
+        String sql = "SELECT * FROM card WHERE idcard = ?";
+
+        cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+            stmt.setInt(1, idcard);
+
+            rs = stmt.executeQuery();
+
+            rs.next();
+
+            //idboard
+            int idboard = rs.getInt("idboard");
+
+            //titulo do card
+            String titulo = rs.getString("titulo");
+
+            //tipo do card
+            int tipo = rs.getInt("tipo");
+
+            //cor do card
+            String cor = rs.getString("cor");
+
+            //conteudo do card
+            Object conteudo;
+            if (tipo == 3) {
+                conteudo = rs.getObject("imagem");
+            } else {
+                conteudo = rs.getObject("descricao");
+            }
+
+            //data de craicao do card
+            java.util.Date utilDate = DataSupport.SqlDateToUtilDate(rs.getDate("dataCriacao"));
+
+            //arquivado
+            boolean arquivado = rs.getBoolean("arquivado");
+
+            //retorna o card
+            return CardBuilder.build(conteudo, idcard, idboard, titulo, tipo, utilDate, arquivado);
+
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao Listar Card.(CardDAO)", e.getCause());
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
     }
 
     public static void alterCard(Card card) throws SQLException {

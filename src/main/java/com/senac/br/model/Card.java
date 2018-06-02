@@ -11,6 +11,7 @@ public abstract class Card {
     private String cor;
     private int tipo;
     private Date dataCriacao;
+    private boolean arquivado;
 
     //Getters & Setters
     public int getIdCard() {
@@ -61,13 +62,21 @@ public abstract class Card {
         this.dataCriacao = dataCriacao;
     }
 
+    public boolean isArquivado() {
+        return arquivado;
+    }
+
+    public void setArquivado(boolean arquivado) {
+        this.arquivado = arquivado;
+    }
+
     //Methods
     public abstract void setDesigne();
 
     public abstract void UrgencyCheck();
 
     public abstract int getCardTipo();
-    
+
     public abstract Object getCardContent();
 
 }

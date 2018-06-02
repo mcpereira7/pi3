@@ -11,7 +11,6 @@ import com.senac.br.exception.CardException;
 import com.senac.br.model.Board;
 import com.senac.br.model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;

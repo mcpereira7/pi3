@@ -5,8 +5,12 @@
  */
 package com.senac.br.servlet;
 
+import com.senac.br.controller.CardService;
+import com.senac.br.exception.CardException;
+import com.senac.br.model.Card;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,9 +37,21 @@ public class CardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //Redireciona para a pagina de alterar o card
-        RequestDispatcher disp = getServletContext().getRequestDispatcher("/card.jsp");
-        disp.forward(request, response);
+        try {
+
+            //pegar as informacoes do card
+            Card obtido = CardService.getCardById(Integer.parseInt(request.getParameter("cardId")));
+
+            //adicionar o car ao request
+            request.setAttribute("card", obtido);
+
+            //Redireciona para a pagina de alterar o card
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/card.jsp");
+            disp.forward(request, response);
+
+        } catch (CardException ex) {
+            Logger.getLogger(CardServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -50,6 +66,10 @@ public class CardServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        //enviar as informacoes do card alterado
+        //redireciona para home
+        response.sendRedirect("/poonotes/home");
 
     }
 

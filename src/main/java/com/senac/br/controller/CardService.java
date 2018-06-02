@@ -3,8 +3,10 @@ package com.senac.br.controller;
 import com.senac.br.DAO.CardDAO;
 import com.senac.br.exception.CardException;
 import com.senac.br.model.Card;
+import com.senac.br.model.CardPicture;
 import com.senac.br.model.CardSimple;
 import com.senac.br.model.CardVideo;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
@@ -79,6 +81,15 @@ public class CardService {
             CardDAO.arquiveCard(card);
         } catch (SQLException e) {
             throw new CardException("Erro ao Arquivar o Card.", e.getCause());
+        }
+    }
+
+    public static Card getCardById(int id) throws CardException {
+
+        try {
+            return CardDAO.read(id);
+        } catch (SQLException e) {
+            throw new CardException("Erro ao obter o Card.", e.getCause());
         }
     }
 }

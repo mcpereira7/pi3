@@ -31,12 +31,12 @@
                 <div class="board">
 
                     <form id="card-form" action="${pageContext.request.contextPath}/card" method="get">
-                        <input type="hidden" id="cardId"/>
+                        <input type="hidden" id="cardId" name="cardId"/>
                     </form>
 
                     <c:forEach items="${board.listCards}" var="card">
 
-                        <div class="card" onclick="" style="background-color: ${card.cor}">
+                        <div class="card" onclick="getCardId(${card.idCard})" style="background-color: ${card.cor}">
 
                             <div class="card-title">
                                 ${card.titulo}
@@ -44,7 +44,16 @@
                             </div>
 
                             <div class="card-content">
-                                ${card.conteudo}
+                                <c:if test="${card.tipo == 1}">
+                                    ${card.conteudo}
+                                </c:if>
+                                <c:if test="${card.tipo == 2}">
+                                    <iframe width="300" height="250" src="${card.link}"></iframe>
+
+                                </c:if>
+                                <c:if test="${card.tipo == 3}">
+                                    ${card.conteudo}
+                                </c:if>
 
                             </div>
 

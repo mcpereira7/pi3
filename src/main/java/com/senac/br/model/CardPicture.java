@@ -7,7 +7,24 @@ public class CardPicture extends Card {
 
     private File img;
 
-    public CardPicture(File img, int idCard, String titulo, int tipo, Date dataCriacao) {
+    //Constuctors
+    //full
+    public CardPicture(File img, int idCard, int idBoard, String titulo,
+            int tipo, Date dataCriacao, boolean arquivado) {
+        //local
+        this.img = img;
+
+        //classe abstrata
+        super.setIdCard(idCard);
+        super.setIdBoard(idBoard);
+        super.setTitulo(titulo);
+        super.setTipo(tipo);
+        super.setDataCriacao(dataCriacao);
+        super.setArquivado(arquivado);
+    }
+
+    public CardPicture(File img, int idCard, String titulo, int tipo,
+            Date dataCriacao) {
 
         //local
         this.img = img;

@@ -47,16 +47,16 @@ Author     : aayan
                     <form id="form-cardvideo" action="${pageContext.request.contextPath}/novo" method="post">
                         <input type="hidden" name="tipo" value="2">
                         <input type="text" id="tituloid" name="titulo" placeholder="Titulo..." />
-                        <input type="text" id="conteudoid" name="link" placeholder="Link do video(youtube)..." />
+                        <input type="text" id="conteudoid" name="conteudo" placeholder="Link do video(youtube)..." />
                         <input type="submit" value="Salvar"/>
                     </form>
                 </div>
 
                 <div id="imagem" class="tabcontent">
-                    <form id="form-cardpicture">
+                    <form id="form-cardpicture" action="${pageContext.request.contextPath}/novo" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="tipo" value="3">
                         <input type="text" id="tituloid" name="titulo" placeholder="Titulo..." />
-                        <input type="text" id="conteudoid" name="link" placeholder="Seria a parte de fazer o upload da imagem" />
+                        <input type="file" id="imgid" name="img" accept="image/*">
                         <input type="submit" value="Salvar"/>
                     </form>
                 </div>

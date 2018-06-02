@@ -6,7 +6,24 @@ public class CardVideo extends Card {
 
     private String link;
 
-    public CardVideo(String link, int idCard, String titulo, int tipo, Date dataCriacao) {
+    //Constuctors
+    //full
+    public CardVideo(String link, int idCard, int idBoard, String titulo,
+            int tipo, Date dataCriacao, boolean arquivado) {
+        //local
+        this.link = link;
+
+        //classe abstrata
+        super.setIdCard(idCard);
+        super.setIdBoard(idBoard);
+        super.setTitulo(titulo);
+        super.setTipo(tipo);
+        super.setDataCriacao(dataCriacao);
+        super.setArquivado(arquivado);
+    }
+
+    public CardVideo(String link, int idCard, String titulo, int tipo,
+            Date dataCriacao) {
 
         //local
         this.link = link;
@@ -17,7 +34,7 @@ public class CardVideo extends Card {
         super.setTipo(tipo);
         super.setDataCriacao(dataCriacao);
     }
-    
+
     public CardVideo(String link, String titulo, int tipo, Date dataCriacao) {
 
         //local
@@ -52,7 +69,9 @@ public class CardVideo extends Card {
         //coloca o codigo na embed...
         embedLink += linkCode;
 
-        this.link = embedLink;
+        if (!link.contains("embed")) {
+            this.link = embedLink;
+        }
 
         //cor do background
         setCor("#ffffff");

@@ -6,7 +6,25 @@ public class CardSimple extends Card {
 
     private String conteudo;
 
-    public CardSimple(String conteudo, int idCard, String titulo, int tipo, Date dataCriacao) {
+    //Constuctors
+    //full
+    public CardSimple(String conteudo, int idCard, int idBoard, String titulo,
+            int tipo, Date dataCriacao, boolean arquivado) {
+
+        //local
+        this.conteudo = conteudo;
+
+        //classe abstrata
+        super.setIdCard(idCard);
+        super.setIdBoard(idBoard);
+        super.setTitulo(titulo);
+        super.setTipo(tipo);
+        super.setDataCriacao(dataCriacao);
+        super.setArquivado(arquivado);
+    }
+
+    public CardSimple(String conteudo, int idCard, String titulo, int tipo,
+            Date dataCriacao) {
 
         //local
         this.conteudo = conteudo;
@@ -17,8 +35,9 @@ public class CardSimple extends Card {
         super.setTipo(tipo);
         super.setDataCriacao(dataCriacao);
     }
-    
-    public CardSimple(String conteudo, String titulo, int tipo, Date dataCriacao) {
+
+    public CardSimple(String conteudo, String titulo, int tipo,
+            Date dataCriacao) {
 
         //local
         this.conteudo = conteudo;

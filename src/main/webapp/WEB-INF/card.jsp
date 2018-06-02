@@ -1,7 +1,7 @@
 <%-- 
-    Document   : card
-    Created on : 28/05/2018, 09:09:34
-    Author     : aayan
+Document   : card
+Created on : 28/05/2018, 09:09:34
+Author     : aayan
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,8 +26,29 @@
 
             <!-- Content -->
             <div class="content">
-                
-                Informacoes do card
+
+                <form id="form-cardsimples" action="${pageContext.request.contextPath}/card" method="post">
+                    <c:if test="${card.tipo == 1}">
+                        <input type="hidden" name="tipo" value="1">
+                        <input type="text" id="tituloid" name="titulo" value="${card.titulo}" />
+                        <textarea id="conteudoid" name="conteudo" cols="30" rows="10">${card.conteudo}</textarea>
+                    </c:if>
+                    <c:if test="${card.tipo == 2}">
+                        <input type="hidden" name="tipo" value="1">
+                        <input type="text" id="tituloid" name="titulo" value="${card.titulo}" />
+                        <input type="text" id="conteudoid" name="conteudo" value="${card.link}" />
+                        <iframe width="420" height="315" src="${card.link}"></iframe>
+
+                    </c:if>
+                    <c:if test="${card.tipo == 3}">
+                        <input type="hidden" name="tipo" value="1">
+                        <input type="text" id="tituloid" name="titulo" value="${card.titulo}" />
+                        <textarea id="conteudoid" name="conteudo" cols="30" rows="10">${card.conteudo}</textarea>
+                    </c:if>
+                    <input type="submit" value="Alterar"/>
+
+                </form>
+
 
             </div>
 
