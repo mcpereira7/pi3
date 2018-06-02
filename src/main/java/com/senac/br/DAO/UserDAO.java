@@ -60,6 +60,31 @@ public class UserDAO {
             ConnectionFactory.closeConnection(cn, stmt);
         }
     }
+    
+    public static void alterUser(User user, String newPass) throws SQLException {
+        PreparedStatement stmt = null;
+
+        String sql = "UPDATE Usuario SET nome = ?, email = ?, senha = ?"
+                + "WHERE idUsuario = ?";
+
+        Connection cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+
+            stmt.setString(1, user.getNome());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, newPass);
+            //WHERE
+            stmt.setInt(4, user.getIdUser());
+            stmt.execute();
+
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao Atulizar Usuário.(UserDAO)", e.getCause());
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt);
+        }
+    }
 
     public static User getUserByLogin(String login, String senha)
             throws SQLException {

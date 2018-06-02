@@ -27,7 +27,7 @@ public class User {
         this.email = email;
         this.senha = senha;
     }
-
+    
     public User(String nome, String login, String email, String senha) {
         this.nome = nome;
         this.login = login;

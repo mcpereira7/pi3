@@ -27,7 +27,7 @@
                     <span><h2 style="color: red">Erro ao logar</h2></span>
                 </c:if>
 
-                    <form id="login-form" action="/poonotes/login" method="post">
+                    <form id="login-form" action="${pageContext.request.contextPath}/login" method="post">
                     <div class="login-box-content">
                         <input type="text" name="login" placeholder="Username..." required="true">
                         <input type="password" name="password" placeholder="Password...">
