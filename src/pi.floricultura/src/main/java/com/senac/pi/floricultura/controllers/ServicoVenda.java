@@ -25,41 +25,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class ServicoVenda {
 
-    //Ainda não tem consulta de pessoa
-//    public static List<Pessoa> ConsultaClienteByNomeOuCodigo(String campoDaConsulta,
-//            List<ItensVenda> listaItensVenda, List<Pessoa> listaDeClientes, Component tela)
-//            throws VendaException {
-//
-//        try {
-//            if (!campoDaConsulta.isEmpty()) {
-//                if (!listaItensVenda.isEmpty() || !listaDeClientes.isEmpty()) {
-//                    JOptionPane.showMessageDialog(tela, "Venda em andamento.");
-//                    return null;
-//                } else {
-//                    if (isParsable(campoDaConsulta)) {
-//
-//                        listaDeClientes = ServicoCliente.procuraCliente(Integer.parseInt(campoDaConsulta), campoDaConsulta);
-//
-//                        if (listaDeClientes.size() > 1) {
-//                            JOptionPane.showMessageDialog(tela, "Foi encontrado multiplos clientes com o mesmo nome.");
-//                            return listaDeClientes;
-//                        } else {
-//                            return listaDeClientes;
-//                        }
-//
-//                    } else {
-//                        listaDeClientes = ServicoCliente.procuraCliente(-1, campoDaConsulta);
-//                        return listaDeClientes;
-//                    }
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(tela, "Digite um nome ou valor valido.");
-//                return null;
-//            }
-//        } catch (VendaException e) {
-//            throw new VendaException("Erro na fonte de dados.", e.getCause());
-//        }
-//    }
     public static Venda CreateVendaByRequest(HttpServletRequest request)
             throws VendaException {
 
@@ -95,9 +60,11 @@ public class ServicoVenda {
             //Lista de ItensVenda
             ArrayList<ItensVenda> lista = new ArrayList<>();
 
+            int countForList = idProdutos.size() - 1;
+
             for (int i = 0; i < codigosProduto.length; i++) {
 
-                int idProduto = idProdutos.get(i);
+                int idProduto = idProdutos.get(countForList);
                 int codigo = Integer.parseInt(codigosProduto[i]);
                 int quantidade = Integer.parseInt(quantProdutos[i]);
                 double valor = ServicoProduto.getPrecoProdutoById(idProduto);
@@ -105,6 +72,7 @@ public class ServicoVenda {
                 ItensVenda item = new ItensVenda(idProduto, quantidade, valor, codigo);
 
                 lista.add(item);
+                countForList--;
             }
 
             //Criando venda com os dados adquiridos acima
@@ -194,19 +162,17 @@ public class ServicoVenda {
 
     public static List<Venda> ConsultaVendaByData(Date de, Date ate)
             throws VendaException {
-        try {
 
-            List<Venda> listaVendas = new ArrayList<>();
-            List<Venda> listaVendasComItens = new ArrayList<>();
-            List<ItensVenda> listaItens = new ArrayList<>();
+        List<Venda> listaVendas;
+        List<ItensVenda> listaItens;
+        List<Venda> listaVendasComItens = new ArrayList<>();
+        
+        try {
 
             listaVendas = VendaDAO.getVendaByDates(de, ate);
 
             for (Venda venda : listaVendas) {
 
-//                if(!listaItens.isEmpty()) {
-//                    listaItens.clear();
-//                }
                 listaItens = GetItensVendaByVendaId(venda);
                 venda.setListaItensVenda((ArrayList<ItensVenda>) listaItens);
                 listaVendasComItens.add(venda);
@@ -223,13 +189,9 @@ public class ServicoVenda {
             throws VendaException {
         try {
 
-            //int codigo = VendaDAO.countVendas();
             int codigo = VendaDAO.getMaxCodigo();
             codigo++;
-
-//            while (codigo == VendaDAO.countVendas()) {
-//                codigo++;
-//            }
+            
             return codigo;
 
         } catch (Exception e) {

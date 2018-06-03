@@ -19,16 +19,8 @@
                 <div class="inner">
 
                     <!-- Header -->
-                    <header id="header">
-                        <h4 class="logo"><strong>Cadastro de Permissões</strong></h4>
-                        <ul class="icons">
-                            <li><a href="#"><span class="label">User Name</span></a></li>
-                            <li><a href="#"><span class="label">User Foto</span></a></li>
-                            <li><a href="#"><span class="label">Sair</span></a></li>
-                            <!--										<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                                                                                                            <li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>-->
-                        </ul>
-                    </header>
+                    <%@include file="/header.jsp" %>
+                    <strong class="page-name">Funcao da Pagina</strong>
 
                     <!-- Content -->
                     <section>
@@ -51,67 +43,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div id="sidebar">
-                <div class="inner">
-
-                    <!-- Search -->
-                    <section id="topSidBar" class="alt">
-                        <!--                        <img class="imgTopSB" src=""/>-->
-                    </section>
-
-                    <!-- Menu -->
-                    <nav id="menu">
-                        <header class="major">
-                            <h2>Menu</h2>
-                        </header>
-                        <ul>
-                            <li><a href="index.html">Homepage</a></li>
-                            <!--										<li><a href="generic.html"></a></li>
-                                                                                                            <li><a href="elements.html">Elements</a></li>-->
-                            <li>
-                                <span class="opener">Vendas</span>
-                                <ul>
-                                    <li><a href="#">Lorem Dolor</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Produto</span>
-                                <ul>
-                                    <li><a href="#">Lorem Dolor</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Cliente</span>
-                                <ul>
-                                    <li><a href="${pageContext.request.contextPath}/ListarClientes">Consultar</a></li>
-                                    <li><a href="#">Ipsum Adipiscing</a></li>
-                                    <li><a href="#">Tempus Magna</a></li>
-                                    <li><a href="#">Feugiat Veroeros</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Permissões</span>
-                                <ul>
-                                    <li><a href="${pageContext.request.contextPath}/PermissoesListar">Gerenciar</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/PermissoesCadastrar">Cadastrar</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <!-- Footer -->
-                    <footer id="footer">
-                        <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-                    </footer>
-
-                </div>
-            </div>
+            <%@include file="/sidebar.jsp" %>
 
         </div>
 
@@ -121,47 +53,47 @@
         <script src="js/util.js"></script>
         <script src="js/main.js"></script>
         <script>
-            
-            var lista = [];
+
+                                var lista = [];
             <c:forEach items = "${listaTelas}" var = "tela">
-                var objeto = {
-                    id: ${tela.id}, 
-                    nome: "${tela.nome}", 
-                    caminho: "${tela.caminho}"
-                };
-                lista.push(objeto);
+                                var objeto = {
+                                    id: ${tela.id},
+                                    nome: "${tela.nome}",
+                                    caminho: "${tela.caminho}"
+                                };
+                                lista.push(objeto);
             </c:forEach>
-            
-            function addSelect(divName) {
 
-            var newDiv = document.createElement('div');
-            
-            var br = document.createElement("br");
-            newDiv.appendChild(br);
-            
-            var texto = document.createElement("label");
-            texto.innerHTML = "Tela";
-            newDiv.appendChild(texto);
-            
-            var selectList = document.createElement("select");
-            selectList.name = "tela";
-            selectList.id = "tela";
-            newDiv.appendChild(selectList);
+                                function addSelect(divName) {
 
-            for (var i = 0; i < lista.length; i++) {
-                var option = document.createElement("option");
-                option.value = lista[i].id;
-                option.text = lista[i].nome;
-                selectList.appendChild(option);
-            }
-            
-            //newDiv.innerHTML += "</br>";
-            
-            
-            document.getElementById(divName).appendChild(newDiv);
+                                    var newDiv = document.createElement('div');
 
-            }
+                                    var br = document.createElement("br");
+                                    newDiv.appendChild(br);
+
+                                    var texto = document.createElement("label");
+                                    texto.innerHTML = "Tela";
+                                    newDiv.appendChild(texto);
+
+                                    var selectList = document.createElement("select");
+                                    selectList.name = "tela";
+                                    selectList.id = "tela";
+                                    newDiv.appendChild(selectList);
+
+                                    for (var i = 0; i < lista.length; i++) {
+                                        var option = document.createElement("option");
+                                        option.value = lista[i].id;
+                                        option.text = lista[i].nome;
+                                        selectList.appendChild(option);
+                                    }
+
+                                    //newDiv.innerHTML += "</br>";
+
+
+                                    document.getElementById(divName).appendChild(newDiv);
+
+                                }
         </script>
-</body>
+    </body>
 </html>
 

@@ -5,7 +5,10 @@
  */
 package com.senac.pi.floricultura.utilitarios;
 
+import com.senac.pi.floricultura.exceptions.VendaException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -13,9 +16,9 @@ import java.util.Date;
  * @author Marcelo Pereira <macope727@gmail.com>
  */
 public class Auxiliares {
-    
-    public static Date ftmtData(){
-        SimpleDateFormat formato = new SimpleDateFormat( "yyyy-MM-dd" );
+
+    public static Date ftmtData() {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date data = new Date(System.currentTimeMillis());
         String date = formato.format(data);
         try {
@@ -24,5 +27,28 @@ public class Auxiliares {
         }
         return null;
     }
-    
+
+    public static Calendar UtilDateToCalendar(Date data) {
+        Calendar dataCal = Calendar.getInstance();
+        dataCal.setTime(data);
+        return dataCal;
+    }
+
+    public static Date InputDateToUtilDate(String inputDate)
+            throws ParseException {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+
+            Date resultado = format.parse(inputDate);
+
+            return resultado;
+
+        } catch (ParseException e) {
+            throw new ParseException("Erro ao formatar data de input para util date.", 0);
+        }
+
+    }
+
 }

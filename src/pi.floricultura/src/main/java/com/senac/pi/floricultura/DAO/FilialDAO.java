@@ -7,12 +7,10 @@ package com.senac.pi.floricultura.DAO;
 
 import com.senac.pi.floricultura.connection.ConnectionFactory;
 import com.senac.pi.floricultura.model.Filial;
-import com.senac.pi.floricultura.model.PessoaFisica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,14 +27,14 @@ public class FilialDAO {
 
         String sql = "INSERT INTO PessoaJuridica (id_pessoa, CNPJ, IE, ehCliente, "
                 + "ehEmpresa,  Responsavel, Email, Telefone, Telefone2)"
-                + " VALUES (?,?,?,?,?,?,?,?,?)";
+                + " VALUES (?,?,?,?,?,?,?,?,?);";
 
         cn = ConnectionFactory.getConnection();
 
         try {
             PessoaDAO.InserirPessoa(filial, cn);
 
-            // Insere os outros atributos de ClientePessoaFisica na tabela PessoaFisica
+            
             stmtFilial = cn.prepareStatement(sql);
             stmtFilial.setInt(1, filial.getId());
             stmtFilial.setString(2, filial.getCnpj());
@@ -48,8 +46,6 @@ public class FilialDAO {
             stmtFilial.setString(8, filial.getTelefone());
             stmtFilial.setString(9, filial.getTelefone2());
             stmtFilial.execute();
-            
-            inserirFilialName(filial);
             
         } catch (SQLException e) {
 
@@ -63,7 +59,7 @@ public class FilialDAO {
         
         PreparedStatement stmt = null;
         String sql = "INSERT INTO Filial (id_pessoa, codigoFilial)"
-                + "VALUES (?,?)";
+                + "VALUES (?,?);";
         
         cn = ConnectionFactory.getConnection();
         
@@ -123,7 +119,7 @@ public class FilialDAO {
                 + "FROM pessoa p \n"
                 + "LEFT JOIN filial pjf ON p.id_Pessoa=pjf.id_pessoa\n"
                 + "INNER JOIN pessoajuridica pj ON p.id_Pessoa=pj.id_Pessoa AND pj.ehEmpresa=true\n"
-                + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa";
+                + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa;";
 
         cn = ConnectionFactory.getConnection();
 

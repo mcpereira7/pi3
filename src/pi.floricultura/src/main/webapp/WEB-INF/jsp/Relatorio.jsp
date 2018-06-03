@@ -27,27 +27,8 @@
                 <div class="inner">
 
                     <!-- Header -->
-                    <header id="header">
-                        <a href="" class="logo">
-                            <strong>Conclusão</strong></a>
-                        <ul class="icons">
-                            <li>
-                                <a href="#">
-                                    <span class="label">User Name</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label">User Foto</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label">Sair</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </header>
+                    <%@include file="/header.jsp" %>
+                    <strong class="page-name">Relatório</strong>
 
                     <!-- Content -->
                     <section>
@@ -76,7 +57,7 @@
                                         <th>Valor Total</th>
                                     </tr>
                                 </theader>
-                                
+
                             <c:forEach items = "${listaVenda}" var = "venda">
                                 <tr>
                                     <td><c:out value="${venda.codigo}"/></td>
@@ -94,88 +75,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div id="sidebar">
-                <div class="inner">
-
-                    <!-- Search -->
-                    <section id="topSidBar" class="alt">
-                        <img class="imgTopSB" src="img/logo_flor_vetorizada_03.png" />
-                    </section>
-
-                    <!-- Menu -->
-                    <nav id="menu">
-                        <header class="major">
-                            <h2>Menu</h2>
-                        </header>
-                        <ul>
-                            <li>
-                                <a href="index.html">Homepage</a>
-                            </li>
-                            <!--										<li><a href="generic.html"></a></li>
-                                <li><a href="elements.html">Elements</a></li>-->
-                            <li>
-                                <span class="opener">Vendas</span>
-                                <ul>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/venda">Nova Venda</a>
-                                    </li>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/Relatorio">Relatório</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tempus Magna</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Feugiat Veroeros</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Produto</span>
-                                <ul>
-                                    <li>
-                                        <a href="#">Lorem Dolor</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Ipsum Adipiscing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tempus Magna</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Feugiat Veroeros</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Cliente</span>
-                                <ul>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/ListarClientes">Consultar</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Ipsum Adipiscing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tempus Magna</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Feugiat Veroeros</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <!-- Footer -->
-                    <footer id="footer">
-                        <p class="copyright">&copy; Untitled. All rights reserved. Demo Images:
-                            <a href="https://unsplash.com">Unsplash</a>. Design:
-                            <a href="https://html5up.net">HTML5 UP</a>.</p>
-                    </footer>
-
-                </div>
-            </div>
+            <%@include file="/sidebar.jsp" %>
 
         </div>
 

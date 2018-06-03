@@ -1,17 +1,17 @@
-<!DOCTYPE HTML>
-<!--
-    Editorial by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<%-- 
+Document   : login
+Created on : 11/05/2018, 14:44:41
+Author     : aayan
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
     <head>
-        <title>PaginaPrincial</title>
+        <title>Login</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="css/main.css" />
-
     </head>
 
     <body>
@@ -28,11 +28,12 @@
                     </header>
 
                     <!-- Content -->
-                    <section class="login-main">
+                    <section class="main-login">
                         <div class="login-block">
-                            <form action="${pageContext.request.contextPath}/login" method="POST">
+                            <form action="${pageContext.request.contextPath}/login">
                                 <div class="login-box-head">
-                                    <p class="login-box-head-face">Aztec Company</p>
+                                    <p class="login-box-head-face">Umbrella Corp.</p>
+                                    <p class="login-box-head-google">Floricultura</p>
                                 </div>
                                 <div class="login-box-content">
                                     <input type="text" name="user" placeholder="Username...">
@@ -57,5 +58,4 @@
         <script src="js/main.js"></script>
 
     </body>
-
 </html>

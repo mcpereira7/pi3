@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * André de Amorim Yamamoto
+ * TADS - Turma A
+ * aay.andre@outlook.com
  */
 package com.senac.pi.floricultura.servlets;
 
@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author leand
+ * @author aayan
  */
-@WebServlet(name = "PermissoesEditarServlet", urlPatterns = {"/PermissoesEditar"})
-public class PermissoesEditarServlet extends HttpServlet {
+@WebServlet(name = "ProdutoConsultaServlet", urlPatterns = {"/listarprodutos"})
+public class ProdutoConsultaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +37,10 @@ public class PermissoesEditarServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PermissoesEditarServlet</title>");            
+            out.println("<title>Servlet ProdutoConsultaServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PermissoesEditarServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProdutoConsultaServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

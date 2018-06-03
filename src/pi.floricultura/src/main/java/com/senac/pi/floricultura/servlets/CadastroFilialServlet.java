@@ -27,11 +27,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/CadastroFilial"})
 public class CadastroFilialServlet extends HttpServlet{
 
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Date dtCadastro = new Date(System.currentTimeMillis());
-        req.setAttribute("dtCadastro", dtCadastro);
-        RequestDispatcher disp = req.getRequestDispatcher("/WEB-INF/jsp/CadastroFilial.jsp");
+//        Date dtCadastro = new Date(System.currentTimeMillis());
+//        req.setAttribute("dtCadastro", dtCadastro);
+        RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/jsp/CadastroFilial.jsp");
         disp.forward(req, resp);
     }
 
@@ -60,13 +61,16 @@ public class CadastroFilialServlet extends HttpServlet{
                 , req.getParameter("bairro")
                 , req.getParameter("cid")
                 , req.getParameter("uf"));
+        
         try {
+            
             ServicoFilial.cadastrar(filial);
             EnderecoDAO.inserirEndereco(end, filial.getId());
+            
         } catch (Exception e) {
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/CadastroFilial.jsp");
-        dispatcher.forward(req, resp);
+        RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/jsp/CadastroFilial.jsp");
+        disp.forward(req, resp);
     }
     
 }
