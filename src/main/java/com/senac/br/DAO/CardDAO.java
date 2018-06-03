@@ -15,7 +15,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
@@ -112,12 +111,7 @@ public class CardDAO {
             String cor = rs.getString("cor");
 
             //conteudo do card
-            Object conteudo;
-            if (tipo == 3) {
-                conteudo = rs.getObject("imagem");
-            } else {
-                conteudo = rs.getObject("descricao");
-            }
+            Object conteudo = rs.getObject("descricao");
 
             //data de craicao do card
             java.util.Date utilDate = DataSupport.SqlDateToUtilDate(rs.getDate("dataCriacao"));
@@ -182,7 +176,7 @@ public class CardDAO {
         }
     }
 
-    public static List<Card> listCardByBoard(int idBoard)
+    public static CardList<Card> listCardByBoard(int idBoard)
             throws SQLException, CardException {
 
         ResultSet rs = null;

@@ -9,7 +9,7 @@ public class Board {
     private int idUsuario;
     private String titulo;
     private Date dataCriacao;
-    private List<Card> listCards;
+    private CardList<Card> listCards;
     
     //Constructors
     public Board(int idBoard, String titulo, Date dataCriacao) {
@@ -24,7 +24,7 @@ public class Board {
         this.idUsuario = idUsuario;
     }
 
-    public Board(int idBoard, String titulo, List<Card> listCards) {
+    public Board(int idBoard, String titulo, CardList<Card> listCards) {
         this.idBoard = idBoard;
         this.titulo = titulo;
         this.listCards = listCards;
@@ -72,7 +72,7 @@ public class Board {
         return listCards;
     }
 
-    public void setListCards(List<Card> listCards) {
+    public void setListCards(CardList<Card> listCards) {
         this.listCards = listCards;
     }
 
