@@ -51,22 +51,22 @@
 
                     <!-- Content -->
                     <section>
-                        <form id="venda-form" action="${pageContext.request.contextPath}/RelatorioEstoque" method="post">
 
-                            <header class="main">
-                                <h1>Relatório</h1>
-                            </header>
+                        <h2>Relatório de Estoque</h2>
 
-                            <fmt:setLocale value="pt-BR"></fmt:setLocale>
-                                <label for="dtIni">Data Inicio</label>
-                                <input type="date" name="dataInicial" id="dataInicial">
-                                <label for="dtFim">Data Fim</label>
-                                <input type="date" name="dataFinal" id="dataFinal">
-                                <input type="submit" name="gerar" id="gerar" value="Gerar Relatório">
-                            </form>
+                        <form id="relatorio-estoque" action="${pageContext.request.contextPath}/RelatorioEstoque" method="POST">
 
-                            <h2>Relatório de Estoque</h2>
+                            <label for="listaFilial">Filiais</label>
+                            <select id ="listaFilial" name="listaFilial">
+                                <c:forEach items = "${listaFiliais}" var = "filial">
+                                    <option value="${filial.id}">${filial.nome}</option>
+                                </c:forEach>
+                            </select>
+                            <input type="submit" value="Gerar Relatório" name ="gerarRelatorio">
+                        </form>
 
+                        <c:forEach items = "${listaFiliais}" var = "filial">
+                            <h2>${filial.nome}</h2>
                             <table>
                                 <theader>
                                     <tr>
@@ -76,18 +76,20 @@
                                         <th>Preço</th>
                                     </tr>
                                 </theader>
-                                
-                            <c:forEach items = "${listaVenda}" var = "venda">
-                                <tr>
-                                    <td><c:out value="${produto.id}"/></td>
-                                    <td><c:out value="${produto.nome}"/></td>
-                                    <td><c:out value="${produto.quantidadeEstoque}"/></td>
-                                    <td><fmt:formatNumber value="${produto.preco}" type="currency" /></td>
-                                </tr>
-                            </c:forEach>
 
-                        </table>
+                                <c:forEach items = "${listaEstoqueProduto}" var = "produto">
+                                    <c:if test="${filial.id_pessoa == venda.id_pessoa}">
+                                        <tr>
+                                            <td><c:out value="${produto.id}"/></td>
+                                            <td><c:out value="${produto.nome}"/></td>
+                                            <td><c:out value="${produto.quantidadeEstoque}"/></td>
+                                            <td><fmt:formatNumber value="${produto.preco}" type="currency" /></td>
+                                        </tr>
+                                    </c:if>
+                                </c:forEach>
 
+                            </table>
+                        </c:forEach>
                     </section>
 
                 </div>
