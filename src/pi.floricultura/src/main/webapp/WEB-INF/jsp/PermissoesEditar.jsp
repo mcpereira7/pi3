@@ -32,7 +32,8 @@
 
                     <!-- Content -->
                     <section>
-                        <form action="${pageContext.request.contextPath}/PermissoesEditar" method="GET">
+                        <h4>${ApplicationErro}</h4>
+                        <form action="${pageContext.request.contextPath}/PermissoesEditar" method="POST">
                             <input type="text" name="nomeGrupo" value="${sessionScope.grupoEditar.nome}" />
                             <table>
                                 <thead>

@@ -55,7 +55,7 @@
                                 <form style="float: right; margin-left: 15px" action="${pageContext.request.contextPath}/PermissoesExcluir" method="POST">
                                     <input type="submit" value="Excluir Grupo" name="excluirGrupo" />
                                 </form>
-                                <form action="${pageContext.request.contextPath}/PermissoesEditar" method="POST">
+                                <form action="${pageContext.request.contextPath}/PermissoesEditar" method="GET">
                                     <input type="hidden" name ="idGrupoEditar" value="${grupoPermissao.id_grupo}" />
                                     <input type="submit" value="Editar Grupo" name="editarGrupo" />
                                 </form>

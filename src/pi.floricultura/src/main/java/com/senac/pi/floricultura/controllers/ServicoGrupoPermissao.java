@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ServicoGrupoPermissao {
     public static void AtualizarGrupoPermissaoTelas(GrupoPermissao grupoPermissao) throws Exception{
-        Object disable = false;
         List<TelaPermissoes> permissoes = grupoPermissao.getListaTelas();
 
         //se o grupo não possui ID, então cadastrar
@@ -20,17 +19,16 @@ public class ServicoGrupoPermissao {
         
         for (TelaPermissoes permissao : permissoes) {
             //Cadastrar as permissões que ainda não estão no grupo.
-            if (!grupoPermissaoDAO.VerificaGrupoPermissaoTelas(grupoPermissao.getId_grupo(), permissao.getId(), disable)){
+            if (!grupoPermissaoDAO.VerificaGrupoPermissaoTelas(grupoPermissao.getId_grupo(), permissao.getId())){
                 grupoPermissaoDAO.InserirGrupoPermissaoTelas(grupoPermissao.getId_grupo(), permissao.getId());
             //Pode ter cadastrado, porém com disable, nesse caso atualiza para disable = false.
-            }else if((Boolean)disable){
+            }else if(grupoPermissaoDAO.VerificaGrupoPermissaoTelasDisable(grupoPermissao.getId_grupo(), permissao.getId())){
                 grupoPermissaoDAO.ReativarGrupoPermissaoTelas(grupoPermissao.getId_grupo(), permissao.getId());
             }
             //Excluir as permissões que foram marcadas para ser retiradas do grupo
             if (permissao.isExcluido()){
                 grupoPermissaoDAO.ExcluirGrupoPermissaoTelas(grupoPermissao.getId_grupo(), permissao.getId());
             }
-            disable = false;
         }
     }
     

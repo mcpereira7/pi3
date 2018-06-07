@@ -26,6 +26,21 @@ public class PermissoesEditarServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         
+        int id_grupo = Integer.parseInt(request.getParameter("idGrupoEditar"));
+        
+        GrupoPermissao grupo = grupoPermissaoDAO.GruposPermissoesByGrupo(id_grupo);
+        
+        sessao.setAttribute("idGrupo", id_grupo);
+        sessao.setAttribute("grupoEditar", grupo);
+        sessao.setAttribute("listaTelas", ServicoTela.ListarTelas());
+        request.getRequestDispatcher("WEB-INF/jsp/PermissoesEditar.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession sessao = request.getSession();
+        
         Integer idGrupo = (Integer)sessao.getAttribute("idGrupo");
         String[] idTelas = request.getParameterValues("tela");
         String nomeGrupo = request.getParameter("nomeGrupo");
@@ -68,20 +83,5 @@ public class PermissoesEditarServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(PermissoesCadastrarServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession sessao = request.getSession();
-        
-        int id_grupo = Integer.parseInt(request.getParameter("idGrupoEditar"));
-        
-        GrupoPermissao grupo = grupoPermissaoDAO.GruposPermissoesByGrupo(id_grupo);
-        
-        sessao.setAttribute("idGrupo", id_grupo);
-        sessao.setAttribute("grupoEditar", grupo);
-        sessao.setAttribute("listaTelas", ServicoTela.ListarTelas());
-        request.getRequestDispatcher("WEB-INF/jsp/PermissoesEditar.jsp").forward(request, response);
     }
 }
