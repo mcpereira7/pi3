@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Vinicius Presoto
  */
-@WebServlet(name = "RelatorioEstoque", urlPatterns = {"/RelatorioEstoque"})
+@WebServlet(name = "RelatorioEstoque", urlPatterns = {"/relatorioestoque"})
 public class RelatorioEstoqueServlet extends HttpServlet {
 
     @Override
@@ -53,12 +53,15 @@ public class RelatorioEstoqueServlet extends HttpServlet {
         try {
 
             List<EstoqueProdutoRelatorio> estoqueProduto;
+            String filialSelecionada = request.getParameter("listaFilial");
 
-            if (request.getParameter("listaFilial") != null) {
+            if (!request.getParameter("listaFilial").equals(filialSelecionada)) {
                 int filial = Integer.parseInt(request.getParameter("listaFilial"));
                 request.setAttribute("filialSelecionada", filial);
                 estoqueProduto = EstoqueProdutoDAO.ListarEstoque(null, filial);
             } else {
+                int filial = Integer.parseInt(request.getParameter("listaFilial"));
+                request.setAttribute("filialSelecionada", filial);
                 estoqueProduto = EstoqueProdutoDAO.ListarEstoque(null, null);
             }
 

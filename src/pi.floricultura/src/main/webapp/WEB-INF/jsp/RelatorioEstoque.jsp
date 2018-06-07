@@ -35,10 +35,11 @@
                         <fmt:setLocale value="pt-BR"></fmt:setLocale>
                             <h2>Relatório de Estoque</h2>
 
-                            <form id="relatorio-estoque" action="${pageContext.request.contextPath}/RelatorioEstoque" method="POST">
+                            <form id="relatorio-estoque" action="${pageContext.request.contextPath}/relatorioestoque" method="POST">
 
                             <label for="listaFilial">Filiais</label>
                             <select id ="listaFilial" name="listaFilial">
+                                <option value="-1">Todos</option>
                                 <c:forEach items = "${listaFiliais}" var = "filial">
                                     <option value="${filial.id}">${filial.nome}</option>
                                 </c:forEach>
@@ -46,30 +47,34 @@
                             <input type="submit" value="Gerar Relatório" name ="gerarRelatorio">
                         </form>
 
-                        <c:if test="${filial.id == filialSelecionada || filialSelecionada == 'todos'}">
+                        <c:if test="${filialSelecionada != null || filialSelecionada == -1}">
                             <c:forEach items = "${listaFiliais}" var = "filial">
-                                <h2>${filial.nome}</h2>
-                                <table>
-                                    <theader>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Quantidade no Estoque</th>
-                                            <th>Preço</th>
-                                        </tr>
-                                    </theader>
-
-                                    <c:forEach items = "${listaEstoqueProduto}" var = "produto">
-                                        <c:if test="${filial.id == produto.id_pessoa}">
+                                <c:if test="${filial.id == filialSelecionada || filialSelecionada == -1}">
+                                    <h2>${filial.nome}</h2>
+                                    <table>
+                                        <theader>
                                             <tr>
-                                                <td><c:out value="${produto.nome}"/></td>
-                                                <td><c:out value="${produto.quantidade}"/></td>
-                                                <td><fmt:formatNumber value="${produto.preco}" type="currency" /></td>
+                                                <th>Nome</th>
+                                                <th>Quantidade no Estoque</th>
+                                                <th>Preço</th>
                                             </tr>
-                                        </c:if>
-                                    </c:forEach>
-                                </c:forEach>
-                            </c:if>
-                        </table>
+                                        </theader>
+
+                                        <c:forEach items = "${listaEstoqueProduto}" var = "produto">
+                                            <c:if test="${filial.id == produto.id_pessoa}">
+                                                <tr>
+                                                    <td><c:out value="${produto.nome}"/></td>
+                                                    <td><c:out value="${produto.quantidade}"/></td>
+                                                    <td><fmt:formatNumber value="${produto.preco}" type="currency" /></td>
+                                                </tr>
+                                            </c:if>
+                                        </c:forEach>
+                                    </table>     
+
+                                </c:if>
+                            </c:forEach>
+                        </c:if>
+
                     </section>
 
                 </div>
