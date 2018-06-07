@@ -19,21 +19,21 @@ public class TesteFuncionario {
     public static void main(String[] args) throws ParseException {
         GerarCodigo codigo = new GerarCodigo();
         Funcionario us = new Funcionario();
-        us.setNome("Agora Vai");
+        us.setNome("Leandro Alves");
         us.setCodObjeto(codigo.setCodigoFunc());
         us.setTipo(1);
-        us.setData(Auxiliares.InputDateToUtilDate("18-05-2018"));
+        us.setData(Auxiliares.InputDateToUtilDate("06-06-2018"));
         us.setDisable(false);
-        us.setCpf("28783448470");
-        us.setDtNasc(Auxiliares.InputDateToUtilDate("11-11-2000"));
+        us.setCpf("44455566699");
+        us.setDtNasc(Auxiliares.InputDateToUtilDate("25-09-1996"));
         us.setSexo(11);
-        us.setEmail("func1@empresa.com");
+        us.setEmail("leandro@empresa.com");
         us.setTelefone("1154447777");
         us.setTelefone2("11965653232");
         us.setCodigo(us.getId() + 1000);
-        us.setFuncao("Caixa");
+        us.setFuncao("Gerente");
         us.setSalario(2500.00);
-        us.setUser("marcelo.pereira");
+        us.setUser("leandro.alves");
         us.setPassword("abc123");
         us.setIdFilial(1);
         us.setIdGrupo(2);

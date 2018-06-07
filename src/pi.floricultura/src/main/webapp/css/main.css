@@ -4313,7 +4313,7 @@ strong.page-name:hover {
 ** Marcelo Pereria
 */
 
-#imageUpload
+/*#imageUpload
 {
     display: none;
 }
@@ -4322,28 +4322,58 @@ strong.page-name:hover {
 {
     cursor: pointer;
 }
-#dadoPessoal #upImage{
+.tab #upImage{
     float: right;
+    margin-right: -5em;
+    margin-top: -2em;
 }
-#dadoPessoal #upImage #image-holder{
+.tab #upImage #image-holder{
     border: 1px solid #7f888f;
-    width: 150px;
+    width: 163px;
     height: 180px;
 }
 #image-holder img{
     width: 100%;
     height: 100%
 }
-/* Formulário */
-#regForm {
+ Formulário 
+.fmCadFunc{
+    width: 80%;
+}
+.fmCadFunc #fmCadFuncL{
+    width: 50%;
+}
+.fmCadFunc #fmCadFuncR{
+    width: 50%;
+    float: right;
+    margin-top: -35em;
+}
+.fmCadFunc #fmCadFuncR #upImage{
+    float: right;
+    margin-right: -5em;
+    margin-top: -2em;
+}
+.fmCadFunc #fmCadFuncR #upImage #image-holder{
+    border: 1px solid #7f888f;
+    width: 163px;
+    height: 180px;
+}
+#image-holder img{
+    width: 100%;
+    height: 100%
+}
+.fmCadFunc #fmCadFuncR #upImage #regForm {
   background-color: #ffffff;
   margin: 100px auto;
   padding: 40px;
   width: 70%;
   min-width: 300px;
 }
+.fmCadFunc #fmCadFuncR imput[type="text"]{
+    width: 100%;
+}
 
-/* Campos */
+ Campos 
 input {
   padding: 10px;
   width: 100%;
@@ -4352,17 +4382,17 @@ input {
   border: 1px solid #aaaaaa;
 }
 
-/* Campos com validação são marcados */
+ Campos com validação são marcados 
 input.invalid {
   background-color: #ffdddd;
 }
 
-/* Por padrão esconda tudo */
+ Por padrão esconda tudo 
 .tab {
   display: none;
 }
 
-/* Estilizando as etapas do formulário */
+ Estilizando as etapas do formulário 
 .step {
   height: 15px;
   width: 15px;
@@ -4374,12 +4404,28 @@ input.invalid {
   opacity: 0.5;
 }
 
-/* Marcando o passo atual */
+ Marcando o passo atual 
 .step.active {
   opacity: 1;
 }
 
-/* Marcando as etapas finalizadas */
+ Marcando as etapas finalizadas 
 .step.finish {
   background-color: #4CAF50;
 }
+#tab1{
+    display: block
+}
+#tab1 input, select{
+    width: 50%;
+}
+#tab1 input[type="file"]{
+    width: 45%;
+}
+
+#tab1 .contato{
+    float: right;
+    margin-top: -16em;
+    margin-right: -5em;
+    width: 50%;
+}*/

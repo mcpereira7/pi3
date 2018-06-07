@@ -56,6 +56,8 @@ public class FuncionarioDAO {
         try {
 //            Inserir PessoaFisica antes de inserir Funcionário
             PessoaDAO.inserirPF(us);
+            int aux = us.getId();
+            us.setCodigo(aux + 1000);
             
             cn = ConnectionFactory.getConnection();
             stmt = cn.prepareStatement(sql);
