@@ -27,34 +27,15 @@
                 <div class="inner">
 
                     <!-- Header -->
-                    <header id="header">
-                        <a href="" class="logo">
-                            <strong>Conclusão</strong></a>
-                        <ul class="icons">
-                            <li>
-                                <a href="#">
-                                    <span class="label">User Name</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label">User Foto</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label">Sair</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </header>
+                    <%@include file="/header.jsp" %>
+                    <strong class="page-name">Relatório de Estoque</strong>
 
                     <!-- Content -->
                     <section>
+                        <fmt:setLocale value="pt-BR"></fmt:setLocale>
+                            <h2>Relatório de Estoque</h2>
 
-                        <h2>Relatório de Estoque</h2>
-
-                        <form id="relatorio-estoque" action="${pageContext.request.contextPath}/RelatorioEstoque" method="POST">
+                            <form id="relatorio-estoque" action="${pageContext.request.contextPath}/RelatorioEstoque" method="POST">
 
                             <label for="listaFilial">Filiais</label>
                             <select id ="listaFilial" name="listaFilial">
@@ -65,119 +46,37 @@
                             <input type="submit" value="Gerar Relatório" name ="gerarRelatorio">
                         </form>
 
-                        <c:forEach items = "${listaFiliais}" var = "filial">
-                            <h2>${filial.nome}</h2>
-                            <table>
-                                <theader>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Nome</th>
-                                        <th>Quantidade no Estoque</th>
-                                        <th>Preço</th>
-                                    </tr>
-                                </theader>
-
-                                <c:forEach items = "${listaEstoqueProduto}" var = "produto">
-                                    <c:if test="${filial.id_pessoa == venda.id_pessoa}">
+                        <c:if test="${filial.id == filialSelecionada || filialSelecionada == 'todos'}">
+                            <c:forEach items = "${listaFiliais}" var = "filial">
+                                <h2>${filial.nome}</h2>
+                                <table>
+                                    <theader>
                                         <tr>
-                                            <td><c:out value="${produto.id}"/></td>
-                                            <td><c:out value="${produto.nome}"/></td>
-                                            <td><c:out value="${produto.quantidadeEstoque}"/></td>
-                                            <td><fmt:formatNumber value="${produto.preco}" type="currency" /></td>
+                                            <th>Nome</th>
+                                            <th>Quantidade no Estoque</th>
+                                            <th>Preço</th>
                                         </tr>
-                                    </c:if>
-                                </c:forEach>
+                                    </theader>
 
-                            </table>
-                        </c:forEach>
+                                    <c:forEach items = "${listaEstoqueProduto}" var = "produto">
+                                        <c:if test="${filial.id == produto.id_pessoa}">
+                                            <tr>
+                                                <td><c:out value="${produto.nome}"/></td>
+                                                <td><c:out value="${produto.quantidade}"/></td>
+                                                <td><fmt:formatNumber value="${produto.preco}" type="currency" /></td>
+                                            </tr>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:forEach>
+                            </c:if>
+                        </table>
                     </section>
 
                 </div>
             </div>
 
             <!-- Sidebar -->
-            <div id="sidebar">
-                <div class="inner">
-
-                    <!-- Search -->
-                    <section id="topSidBar" class="alt">
-                        <img class="imgTopSB" src="img/logo_flor_vetorizada_03.png" />
-                    </section>
-
-                    <!-- Menu -->
-                    <nav id="menu">
-                        <header class="major">
-                            <h2>Menu</h2>
-                        </header>
-                        <ul>
-                            <li>
-                                <a href="index.html">Homepage</a>
-                            </li>
-                            <!--										<li><a href="generic.html"></a></li>
-                                <li><a href="elements.html">Elements</a></li>-->
-                            <li>
-                                <span class="opener">Produto</span>
-                                <ul>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/produto">Novo Produto</a>
-                                    </li>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/Relatorio">Relatório</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tempus Magna</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Feugiat Veroeros</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Produto</span>
-                                <ul>
-                                    <li>
-                                        <a href="#">Lorem Dolor</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Ipsum Adipiscing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tempus Magna</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Feugiat Veroeros</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Cliente</span>
-                                <ul>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/ListarClientes">Consultar</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Ipsum Adipiscing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tempus Magna</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Feugiat Veroeros</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-
-                    <!-- Footer -->
-                    <footer id="footer">
-                        <p class="copyright">&copy; Untitled. All rights reserved. Demo Images:
-                            <a href="https://unsplash.com">Unsplash</a>. Design:
-                            <a href="https://html5up.net">HTML5 UP</a>.</p>
-                    </footer>
-
-                </div>
-            </div>
+            <%@include file="/sidebar.jsp" %>
 
         </div>
 

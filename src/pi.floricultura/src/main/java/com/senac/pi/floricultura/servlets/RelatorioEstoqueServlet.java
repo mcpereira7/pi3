@@ -31,18 +31,18 @@ import javax.servlet.http.HttpServletResponse;
  * @author Vinicius Presoto
  */
 @WebServlet(name = "RelatorioEstoque", urlPatterns = {"/RelatorioEstoque"})
-public class RelatorioEstoque extends HttpServlet {
+public class RelatorioEstoqueServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             request.setAttribute("listaFiliais", FilialDAO.listaFilial());
         } catch (Exception ex) {
-            Logger.getLogger(RelatorioEstoque.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelatorioEstoqueServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RelatorioEstoque.jsp");
         dispatcher.forward(request, response);
     }
@@ -50,28 +50,27 @@ public class RelatorioEstoque extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Integer filial = Integer.parseInt(request.getParameter("listaFilial"));
-        
-        List<EstoqueProdutoRelatorio> estoqueProduto;
-        
-        if (filial != null || filial != 0){
-            estoqueProduto = EstoqueProdutoDAO.ListarEstoque(null, filial);
-        }else{
-            estoqueProduto = EstoqueProdutoDAO.ListarEstoque(null, null);
-        }
-        
-        request.setAttribute("listaEstoqueProduto", estoqueProduto);
         try {
+
+            List<EstoqueProdutoRelatorio> estoqueProduto;
+
+            if (request.getParameter("listaFilial") != null) {
+                int filial = Integer.parseInt(request.getParameter("listaFilial"));
+                request.setAttribute("filialSelecionada", filial);
+                estoqueProduto = EstoqueProdutoDAO.ListarEstoque(null, filial);
+            } else {
+                estoqueProduto = EstoqueProdutoDAO.ListarEstoque(null, null);
+            }
+
+            request.setAttribute("listaEstoqueProduto", estoqueProduto);
+
             request.setAttribute("listaFiliais", FilialDAO.listaFilial());
         } catch (Exception ex) {
-            Logger.getLogger(RelatorioEstoque.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelatorioEstoqueServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/RelatorioEstoque.jsp");
         dispatcher.forward(request, response);
     }
 
 }
-
-
