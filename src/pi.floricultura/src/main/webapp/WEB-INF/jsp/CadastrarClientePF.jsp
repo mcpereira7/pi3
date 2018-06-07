@@ -53,12 +53,12 @@ Author     : Marcelo Pereira
                                 <label for="dtNasc">Data Nasc:</label>
                                 <input type="date" name="dtNasc" id="dtNasc">
 
-                                <label>Sexo</label>
-                                <label class="checkbox">
-                                    <input type="radio" name="sexo" value="masculino"> Masculino
-                                    <input type="radio" name="sexo" value="feminino"> Feminino
-                                    <input type="radio" name="sexo" value="Outro"> Outro
-                                </label>
+                                <label for="sexo">Sexo</label>
+                                <select name="sexo" id="sexo">
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Feminino</option>
+                                    <option value="3">Outros</option>
+                                </select>
                             </div>
                             <div class="contato">
                                 <label for="email">E-mail:</label>

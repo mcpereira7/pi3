@@ -43,8 +43,6 @@ public class Funcionario extends PessoaFisica {
         this.nomeFilial = nomeFilial;
     }
 
-    
-
     public Funcionario(ResultSet rs) throws SQLException {
         this.idUsuario = rs.getInt("id_Usuario");
         this.user = rs.getString("Login");

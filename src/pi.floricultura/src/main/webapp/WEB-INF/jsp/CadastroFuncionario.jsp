@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <title>Pagina Generica</title>
+        <title>PI Floricultura</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="css/main.css" />
@@ -29,7 +29,7 @@
 
                     <!-- Header -->
                     <%@include file="/header.jsp" %>
-                    <strong class="page-name">Funcao da Pagina</strong>
+                    <strong class="page-name">Cadastro Funcionário</strong>
 
                     <!-- Content -->
                     <section>
@@ -53,13 +53,30 @@
                                 <label for="dtNasc">Data Nasc:</label>
                                 <input type="date" name="dtNasc" id="dtNasc">
 
-                                <label>Sexo</label>
-                                <label class="checkbox">
-                                    <input type="radio" name="sexo" value="masculino"> Masculino
-                                    <input type="radio" name="sexo" value="feminino"> Feminino
-                                    <input type="radio" name="sexo" value="Outro"> Outro
-                                </label>
-                                
+                                <label for="sexo">Sexo</label>
+                                <select name="sexo" id="sexo">
+                                    <option value="1">Masculino</option>
+                                    <option value="2">Feminino</option>
+                                    <option value="3">Outros</option>
+                                </select>
+
+                                <label for="funcao">Função</label>
+                                <select name="funcao" id="sexo">
+                                    <option value="Gerente">Gerente</option>
+                                    <option value="Atendente">Atendente</option>
+                                    <option value="Caixa">Caixa</option>
+                                    <option value="Florista">Florista</option>
+                                    <option value="Jardineiro">Jardineiro</option>
+                                    <option value="Entregador">Entregador</option>
+                                </select>
+                                <label for="filial">Filial</label>
+                                <select name="filial" id="filial">
+                                    <c:forEach  var = "filial" items = "${filiais}">
+                                        <option value="${filial.getId()}">${filial.getCodigoFilial()}</option>
+                                    </c:forEach>
+                                </select>
+                                <label for="sal">Salário</label>
+                                <input type="number" name="sal" id="sal">
                                 <label for="usuario">Usuario</label>
                                 <input type="text" name="usuario" id="usuario">
                                 <label for="senha">Senha</label>
