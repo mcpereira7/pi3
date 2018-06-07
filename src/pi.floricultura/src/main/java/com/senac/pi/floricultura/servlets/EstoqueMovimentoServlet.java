@@ -8,6 +8,7 @@ package com.senac.pi.floricultura.servlets;
 import com.senac.pi.floricultura.controllers.ServicoProduto;
 import com.senac.pi.floricultura.model.Produto;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,14 +18,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author aayan
  */
-@WebServlet(name = "ProdutoConsultaServlet", urlPatterns = {"/listarprodutos"})
-public class ProdutoConsultaServlet extends HttpServlet {
+@WebServlet(name = "EstoqueMovimentoServlet", urlPatterns = {"/movimentoestoque"})
+public class EstoqueMovimentoServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -38,28 +38,10 @@ public class ProdutoConsultaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession sessao = request.getSession();
+        String consulta = request.getParameter("consulta");
 
-        String nome = request.getParameter("consulta");
-
-        try {
-            if (nome != null) {
-
-                List<Produto> listaConsultada = ServicoProduto.getProdutosByNome(nome);
-                request.setAttribute("listaProdutos", listaConsultada);
-                request.setAttribute("procura", nome);
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ProdutoConsulta.jsp");
-                dispatcher.forward(request, response);
-
-            } else {
-                request.getRequestDispatcher("/WEB-INF/jsp/ProdutoConsulta.jsp").forward(request, response);
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(ProdutoConsultaServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/EstoqueMovimento.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
@@ -73,6 +55,8 @@ public class ProdutoConsultaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        //Trazer os movimentos de acordo com as datas selecionadas na tela
     }
 
 }

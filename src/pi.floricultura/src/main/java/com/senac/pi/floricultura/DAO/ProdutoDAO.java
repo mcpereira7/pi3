@@ -92,7 +92,6 @@ public class ProdutoDAO {
 
     public static Produto getProdutoByNome(String nome)
             throws SQLException, Exception {
-        Produto Produto = new Produto();
 
         ResultSet rs = null;
         PreparedStatement stmt = null;
@@ -110,7 +109,9 @@ public class ProdutoDAO {
 
             rs.next();
 
-            return Produto;
+            Produto consultado = new Produto(rs);
+
+            return consultado;
 
         } finally {
             ConnectionFactory.closeConnection(cn, stmt, rs);
