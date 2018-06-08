@@ -6,12 +6,9 @@ import com.senac.pi.floricultura.model.Endereco;
 import com.senac.pi.floricultura.model.GerarCodigo;
 import com.senac.pi.floricultura.model.PessoaFisica;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,8 +64,9 @@ public class CadastrarCliente extends HttpServlet{
         try {
             ServicoCliente.cadastrarClientePF(pf);
             EnderecoDAO.inserirEndereco(endereco, pf.getId());
-            PrintWriter writer = resp.getWriter();
-            writer.println("<html><body>Empresa adicionanda com Sucesso</body></html>");
+//            PrintWriter writer = resp.getWriter();
+//            writer.println("<html><body>Empresa adicionanda com Sucesso</body></html>");
+            req.getRequestDispatcher("/WEB-INF/jsp/CadastrarClientePF.jsp").forward(req, resp);
             
         } catch (Exception e) {
             System.out.println("Achou mesmo que seria assim tão fácil?");

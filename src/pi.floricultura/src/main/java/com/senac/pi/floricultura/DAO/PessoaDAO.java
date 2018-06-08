@@ -50,26 +50,26 @@ public class PessoaDAO {
         }
     }
 
-    public static void inserirPF(PessoaFisica cliente) throws SQLException, Exception {
+    public static void inserirPF(PessoaFisica pf) throws SQLException, Exception {
         PreparedStatement stmtPessoaFisica = null;
 
         String sqlPessoaFisica = "INSERT INTO PessoaFisica (id_pessoa, CPF, dt_Nasc"
                 + ", Sexo, email, telefone, telefone2) VALUES (?,?,?,?,?,?,?)";
-
-        cn = ConnectionFactory.getConnection();
-
+        
+            cn = ConnectionFactory.getConnection();
+       
         try {
-            InserirPessoa(cliente, cn);
+            InserirPessoa(pf, cn);
 
             // Insere os outros atributos de ClientePessoaFisica na tabela PessoaFisica
             stmtPessoaFisica = cn.prepareStatement(sqlPessoaFisica);
-            stmtPessoaFisica.setInt(1, cliente.getId());
-            stmtPessoaFisica.setString(2, cliente.getCpf());
-            stmtPessoaFisica.setDate(3, new Date(cliente.getDtNasc().getTime()));
-            stmtPessoaFisica.setInt(4, cliente.getSexo());
-            stmtPessoaFisica.setString(5, cliente.getEmail());
-            stmtPessoaFisica.setString(6, cliente.getTelefone());
-            stmtPessoaFisica.setString(7, cliente.getTelefone2());
+            stmtPessoaFisica.setInt(1, pf.getId());
+            stmtPessoaFisica.setString(2, pf.getCpf());
+            stmtPessoaFisica.setDate(3, new Date(pf.getDtNasc().getTime()));
+            stmtPessoaFisica.setInt(4, pf.getSexo());
+            stmtPessoaFisica.setString(5, pf.getEmail());
+            stmtPessoaFisica.setString(6, pf.getTelefone());
+            stmtPessoaFisica.setString(7, pf.getTelefone2());
             stmtPessoaFisica.execute();
         } catch (Exception e) {
 
@@ -287,24 +287,23 @@ public class PessoaDAO {
         List<PessoaFisica> pfl = new ArrayList<>();
         ResultSet rs = null;
         PreparedStatement stmt = null;
-        String sql=null;
-        
-            sql = "SELECT p.id_Pessoa, p.cod_objeto, p.Nome, p.Apelido, p.TipoPessoa, p.dt_Cadastro\n"
-                    + "	   ,pf.CPF, pf.dt_Nasc, pf.sexo, pf.email, pf.telefone, pf.telefone2\n"
-                    + "       ,e.CEP, e.log, e.numero, e.complemento, e.bairro, e.cidade, e.uf\n"
-                    + "FROM pessoa p \n"
-                    + "JOIN pessoafisica pf ON p.id_Pessoa=pf.id_Pessoa\n"
-                    + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa "
-                    + "WHERE pf.CPF=?";
-        
-            
+        String sql = null;
+
+        sql = "SELECT p.id_Pessoa, p.cod_objeto, p.Nome, p.Apelido, p.TipoPessoa, p.dt_Cadastro\n"
+                + "	   ,pf.CPF, pf.dt_Nasc, pf.sexo, pf.email, pf.telefone, pf.telefone2\n"
+                + "       ,e.CEP, e.log, e.numero, e.complemento, e.bairro, e.cidade, e.uf\n"
+                + "FROM pessoa p \n"
+                + "JOIN pessoafisica pf ON p.id_Pessoa=pf.id_Pessoa\n"
+                + "JOIN endereco e on e.id_Pessoa=p.id_Pessoa "
+                + "WHERE pf.CPF=?";
+
         cn = ConnectionFactory.getConnection();
 
         try {
             stmt = cn.prepareStatement(sql);
             stmt.setString(1, cpf);
             rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 PessoaFisica pf = new PessoaFisica();
 

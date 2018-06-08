@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class Filial extends PessoaJuridica{
     private String codigoFilial;
+    private int id;
 
     public Filial() {
         this.codigoFilial = codigoFilial;
@@ -31,6 +32,16 @@ public class Filial extends PessoaJuridica{
         this.codigoFilial = codigoFilial;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId() {
+        this.id = super.getId();
+    }
+    
+    
+    
     @Override
     public String getCodObjeto() {
         return codObjeto;

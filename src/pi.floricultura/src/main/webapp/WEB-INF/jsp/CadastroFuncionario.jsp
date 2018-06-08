@@ -1,7 +1,7 @@
 <%-- 
-Document   : CadastrarClientePF
-Created on : 18/04/2018, 11:06:44
-Author     : Marcelo Pereira
+    Document   : CadastroUsuario
+    Created on : 21/05/2018, 13:12:03
+    Author     : Marcelo Pereira <macope727@gmail.com>
 --%>
 
 <%@page import="com.senac.pi.floricultura.controllers.ServicoCliente"%>
@@ -10,10 +10,11 @@ Author     : Marcelo Pereira
 <%@page import="com.senac.pi.floricultura.model.GerarCodigo"%>
 <%@page import="com.senac.pi.floricultura.model.PessoaFisica"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <title>Pagina Generica</title>
+        <title>PI Floricultura</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="css/main.css" />
@@ -29,14 +30,14 @@ Author     : Marcelo Pereira
 
                     <!-- Header -->
                     <%@include file="/header.jsp" %>
-                    <strong class="page-name">Funcao da Pagina</strong>
+                    <strong class="page-name">Cadastro Funcionário</strong>
 
                     <!-- Content -->
                     <section>
                         <header class="main">
                         </header>
 
-                        <form action="cadastrarCliente" method="POST">
+                        <form action="CadastroFuncionario" method="POST">
                             <div class="dadosPessoais">
                                 <label for="Nome">Nome:</label> 
                                 <input type="text" name="nome" id="Nome">
@@ -59,6 +60,29 @@ Author     : Marcelo Pereira
                                     <option value="2">Feminino</option>
                                     <option value="3">Outros</option>
                                 </select>
+
+                                <label for="funcao">Função</label>
+                                <select name="funcao" id="sexo">
+                                    <option value="Gerente">Gerente</option>
+                                    <option value="Atendente">Atendente</option>
+                                    <option value="Caixa">Caixa</option>
+                                    <option value="Florista">Florista</option>
+                                    <option value="Jardineiro">Jardineiro</option>
+                                    <option value="Entregador">Entregador</option>
+                                </select>
+                                <label for="filial">Filial</label>
+                                <select name="filial" id="filial">
+                                    <option value="0" selected="">Selecione</option>
+                                    <c:forEach items = "${filiais}"  var = "filial">
+                                        <option value="${filial.id}">${filial.codigoFilial}</option>
+                                    </c:forEach>
+                                </select>
+                                <label for="sal">Salário</label>
+                                <input type="number" name="sal" id="sal">
+                                <label for="usuario">Usuario</label>
+                                <input type="text" name="usuario" id="usuario">
+                                <label for="senha">Senha</label>
+                                <input type="text" name="senha" id="senha">
                             </div>
                             <div class="contato">
                                 <label for="email">E-mail:</label>
