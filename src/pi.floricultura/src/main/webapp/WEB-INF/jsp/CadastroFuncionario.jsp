@@ -10,6 +10,7 @@
 <%@page import="com.senac.pi.floricultura.model.GerarCodigo"%>
 <%@page import="com.senac.pi.floricultura.model.PessoaFisica"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -36,7 +37,7 @@
                         <header class="main">
                         </header>
 
-                        <form action="cadastrarCliente" method="POST">
+                        <form action="CadastroFuncionario" method="POST">
                             <div class="dadosPessoais">
                                 <label for="Nome">Nome:</label> 
                                 <input type="text" name="nome" id="Nome">
@@ -71,8 +72,9 @@
                                 </select>
                                 <label for="filial">Filial</label>
                                 <select name="filial" id="filial">
-                                    <c:forEach  var = "filial" items = "${filiais}">
-                                        <option value="${filial.getId()}">${filial.getCodigoFilial()}</option>
+                                    <option value="0" selected="">Selecione</option>
+                                    <c:forEach items = "${filiais}"  var = "filial">
+                                        <option value="${filial.id}">${filial.codigoFilial}</option>
                                     </c:forEach>
                                 </select>
                                 <label for="sal">Salário</label>

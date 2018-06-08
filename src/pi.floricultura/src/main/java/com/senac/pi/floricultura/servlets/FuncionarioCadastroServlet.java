@@ -5,7 +5,10 @@
  */
 package com.senac.pi.floricultura.servlets;
 
+import com.senac.pi.floricultura.DAO.EnderecoDAO;
 import com.senac.pi.floricultura.controllers.ServicoFilial;
+import com.senac.pi.floricultura.controllers.ServicoFuncionario;
+import com.senac.pi.floricultura.model.Endereco;
 import com.senac.pi.floricultura.model.Funcionario;
 import com.senac.pi.floricultura.model.GerarCodigo;
 import com.senac.pi.floricultura.utilitarios.Auxiliares;
@@ -21,6 +24,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +36,9 @@ public class FuncionarioCadastroServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List filiais = ServicoFilial.listar();
-        req.setAttribute("filial", filiais);
+        
+//        req.setAttribute("filiais", filiais);
+        req.getSession().setAttribute("filiais", filiais);
         req.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp").forward(req, resp);
     }
 
@@ -44,10 +50,7 @@ public class FuncionarioCadastroServlet extends HttpServlet{
         String cpf = req.getParameter("cpf");
         String rg = req.getParameter("rg");
         int tipo = 1;
-//        Data do sistema - ainda não achei um jeito melhor de pegar e formatar a mesma
-//        SimpleDateFormat formato = new SimpleDateFormat( "yyyy-MM-dd" );
         Date data = new Date(System.currentTimeMillis());
-//        String date = formato.format(data);
         
         Date dtNasc = null;
         try {
@@ -57,13 +60,6 @@ public class FuncionarioCadastroServlet extends HttpServlet{
             Logger.getLogger(FuncionarioCadastroServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-//        try {
-//            dtNasc = formato.parse(req.getParameter("dtNasc"));
-//            data = formato.parse(date);
-//                    } catch (ParseException ex) {
-////            Logger.getLogger(CadastrarCliente.class.getName()).log(Level.SEVERE, null, ex);
-//                System.out.println("Erro na data!");
-//        }
         int sexo = Integer.parseInt(req.getParameter("sexo"));
         String email = req.getParameter("email");
         String telefone = req.getParameter("tel");
@@ -102,6 +98,15 @@ public class FuncionarioCadastroServlet extends HttpServlet{
         fu.setPassword(senha);
         fu.setIdFilial(filial);
         fu.setIdGrupo(2);
+        
+        Endereco endereco = new Endereco(fu.getId(), cep, log, numero, 
+                complemento, bairro, cidade, uf);
+        
+        try {
+            ServicoFuncionario.cadastrarFuncionario(fu);
+            EnderecoDAO.inserirEndereco(endereco, fu.getId());
+        } catch (Exception e) {
+        }
          req.getRequestDispatcher("WEB-INF/jsp/CadastroFuncionario.jsp").forward(req, resp);
     }
     
