@@ -34,7 +34,7 @@
                     <section>
                         <h4>${ApplicationErro}</h4>
                         <form action="${pageContext.request.contextPath}/PermissoesEditar" method="POST">
-                            <input type="text" name="nomeGrupo" value="${sessionScope.grupoEditar.nome}" />
+                            <input type="text" name="nomeGrupo" value="${sessionScope.grupoEditar.nome}" required/>
                             <table>
                                 <thead>
                                     <tr>
