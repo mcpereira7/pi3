@@ -16,7 +16,7 @@ public class Filial extends PessoaJuridica{
     private int id;
 
     public Filial() {
-        this.codigoFilial = codigoFilial;
+        
     }
 
     public Filial(String codigoFilial, String cnpj, String inscEs, boolean ehCliente, boolean ehEmpresa, String responsavel, String email, String telefone, String telefone2, String codOjeto, String nome, String apelido, int tipo, Date data, boolean disable) {

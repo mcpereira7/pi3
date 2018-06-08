@@ -27,7 +27,11 @@
             <id>a-paludetti</id>
             <name>Aline Paludetti</name>
         </developer>
-        
+        <developer>
+            <id>vinipresoto</id>
+            <name>Vinicius Presoto</name>
+        </developer>
+          
         <!--Adicionar o resto dos integrantes-->
             
     </developers>
