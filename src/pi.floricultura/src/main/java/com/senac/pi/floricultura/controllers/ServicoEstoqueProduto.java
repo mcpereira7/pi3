@@ -2,6 +2,7 @@ package com.senac.pi.floricultura.controllers;
 
 import com.senac.pi.floricultura.model.EstoqueProduto;
 import com.senac.pi.floricultura.DAO.EstoqueProdutoDAO;
+import com.senac.pi.floricultura.exceptions.EstoqueException;
 import com.senac.pi.floricultura.model.ItensVenda;
 import com.senac.pi.floricultura.model.MovimentoEstoque;
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class ServicoEstoqueProduto {
 
         }
     }
-    
+
     public static void AtualizarEstoqueVenda(EstoqueProduto estoqueProduto) {
         //Deverá conter validações para que não seja permitido realizar uma transação inválida (estoque negativo).
         try {
@@ -88,6 +89,16 @@ public class ServicoEstoqueProduto {
             EstoqueProdutoDAO.ListarEstoque(id_produto, id_pessoa);
         } catch (Exception e) {
 
+        }
+    }
+
+    public static int ObtemQuantidadeByIdProduto(int idproduto)
+            throws EstoqueException {
+
+        try {
+            return EstoqueProdutoDAO.getQuantidadeByIdProduto(idproduto);
+        } catch (SQLException ex) {
+            throw new EstoqueException("Erro ao obter a quantidade.(ServicoEstoqueProduto)", ex.getCause());
         }
     }
 }

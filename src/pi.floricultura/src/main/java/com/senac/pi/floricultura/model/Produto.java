@@ -33,6 +33,7 @@ public class Produto {
 
     //Construtor usado na consulta de produto
     public Produto(ResultSet rs) throws SQLException {
+        this.id = rs.getInt("id_produto");
         this.nome = rs.getString("Nome");
         this.preco = rs.getFloat("Preco");
         this.descricao = rs.getString("Descricao");

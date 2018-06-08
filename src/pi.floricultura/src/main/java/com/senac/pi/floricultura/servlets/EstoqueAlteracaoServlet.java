@@ -5,10 +5,10 @@
  */
 package com.senac.pi.floricultura.servlets;
 
+import com.senac.pi.floricultura.controllers.ServicoEstoqueProduto;
 import com.senac.pi.floricultura.controllers.ServicoProduto;
 import com.senac.pi.floricultura.model.Produto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,26 +40,47 @@ public class EstoqueAlteracaoServlet extends HttpServlet {
 
         String consulta = request.getParameter("consulta");
 
-        if (consulta != null) {
+        try {
+            if (consulta != null) {
 
-            try {
                 //Procura o produto
                 List<Produto> consultado = ServicoProduto.getProdutosByNome(consulta);
 
                 //Cria o produto
                 Produto mostrar = consultado.get(0);
 
+                //Verifica se o produto esta preenchido/encontrado
+                if (mostrar == null) {
+                    request.setAttribute("semproduto", true);
+                    //Redireciona para a pagina
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AlterarEstoque.jsp");
+                    dispatcher.forward(request, response);
+                    return;
+                }
+
+                //obtem a quantidade em estoque atual
+                int quantidadeAtual = ServicoEstoqueProduto.ObtemQuantidadeByIdProduto(mostrar.getId());
+
                 //Coloca o produto na request
                 request.setAttribute("produto", mostrar);
 
-            } catch (Exception ex) {
-                Logger.getLogger(EstoqueMovimentoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                //Adiciona a quantidade de produto atual ao request
+                request.setAttribute("quantidadeAtual", quantidadeAtual);
+
+                //Redireciona para a pagina
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AlterarEstoque.jsp");
+                dispatcher.forward(request, response);
+                return;
+
             }
 
+            //Redireciona para a pagina
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AlterarEstoque.jsp");
+            dispatcher.forward(request, response);
+
+        } catch (Exception ex) {
+            Logger.getLogger(EstoqueMovimentoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Redireciona para a pagina
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/AlterarEstoque.jsp");
-        dispatcher.forward(request, response);
 
     }
 
