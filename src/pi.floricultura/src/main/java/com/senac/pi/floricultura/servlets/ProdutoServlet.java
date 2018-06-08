@@ -33,12 +33,9 @@ public class ProdutoServlet extends HttpServlet {
             Produto produto = ServicoProduto.createProductByRequest(request);
 
             ServicoProduto.cadastrarProduto(produto);
-
-            System.out.println(produto);
+            request.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(ProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        request.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(request, response);
     }
 }

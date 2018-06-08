@@ -122,7 +122,7 @@ public class Produto {
     }
 
     private void setTipoNome(int tipo) {
-        this.tipoNome = tipos[(tipo - 1)];
+        this.tipoNome = tipos[(tipo)];
     }
 
     public int getQuantidadeVenda() {

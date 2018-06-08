@@ -14,11 +14,6 @@ public class ConnectionFactory {
     private static final String URL = "jdbc:mysql://senacpi3.mysql.dbaas.com.br/senacpi3?useSSL=false";
     private static final String USER = "senacpi3";
     private static final String PASS = "TADS1801@pi3";
-//    private static final String USER = "root";
-//    private static final String PASS = "rom08_01";
-    
-//by Andre, é a senha do meu server
-//    private static final String PASS = "admin";
 
     public static Connection getConnection() {
         try {
