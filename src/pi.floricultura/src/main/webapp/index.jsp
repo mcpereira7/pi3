@@ -32,11 +32,12 @@
                         <div class="login-block">
                             <form action="${pageContext.request.contextPath}/login" method="POST">
                                 <div class="login-box-head">
+                                    <p class="msg-erro-login">${msg}</p>
                                     <p class="login-box-head-face">Aztec Company</p>
                                 </div>
                                 <div class="login-box-content">
-                                    <input type="text" name="user" placeholder="Username...">
-                                    <input type="password" name="password" placeholder="Password...">
+                                    <input type="text" name="user" placeholder="Username..." required="">
+                                    <input type="password" name="password" placeholder="Password..." required="">
                                 </div>
                                 <div class="login-box-btn">
                                     <input type="submit" value="Logar">

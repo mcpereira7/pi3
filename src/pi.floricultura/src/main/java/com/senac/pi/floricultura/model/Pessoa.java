@@ -13,13 +13,13 @@ import java.util.Date;
  */
 public class Pessoa {
     
-    private int id;
-    String codObjeto;
-    private String nome;
-    private String apelido;
-    private int tipo;
-    private Date data;
-    private boolean disable;
+    protected int id;
+    protected String codObjeto;
+    protected String nome;
+    protected String apelido;
+    protected int tipo;
+    protected Date data;
+    protected boolean disable;
 
     public Pessoa() {
     }

@@ -15,16 +15,16 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class Funcionario extends PessoaFisica {
 
-    private int idUsuario;
-    private int codigo;
-    private String user;
-    private String password;
-    private String funcao;
-    private double salario;
-    private int idGrupo;
-    private int idFilial;
-    private String nomeFilial;
-    private boolean signedUp = false;
+    protected int idUsuario;
+    protected int codigo;
+    protected String user;
+    protected String password;
+    protected String funcao;
+    protected double salario;
+    protected int idGrupo;
+    protected int idFilial;
+    protected String nomeFilial;
+    protected boolean signedUp = false;
 
     
     //Constructors
@@ -44,13 +44,24 @@ public class Funcionario extends PessoaFisica {
     }
 
     public Funcionario(ResultSet rs) throws SQLException {
-        this.idUsuario = rs.getInt("id_Usuario");
-        this.user = rs.getString("Login");
-        this.password = rs.getString("Senha");
+        this.idUsuario = rs.getInt("id_Pessoa");
+        this.user = rs.getString("login");
+        this.password = rs.getString("senha");
         this.idGrupo = rs.getInt("id_Grupo");
         this.idFilial = rs.getInt("id_Filial");
         
     }
+    
+//    Construtor para usuário
+
+    public Funcionario(int codigo, String user, String password, int idGrupo, int idFilial) {
+        this.codigo = codigo;
+        this.user = user;
+        this.password = password;
+        this.idGrupo = idGrupo;
+        this.idFilial = idFilial;
+    }
+    
 
     //Getters & Setters
     public int getIdUsuario() {
