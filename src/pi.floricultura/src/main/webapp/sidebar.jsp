@@ -68,6 +68,9 @@ Author     : aayan
                             <a href="/floricultura/Relatorio">Vendas</a>
                         </li>
                         <li>
+                            <a href="/floricultura/relatorioestoque">Estoque</a>
+                        </li>
+                        <li>
                             <a href="/floricultura/movimentoestoque">Movimento Estoque</a>
                         </li>
                     </ul>
