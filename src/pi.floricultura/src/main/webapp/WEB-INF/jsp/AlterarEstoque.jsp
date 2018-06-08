@@ -1,7 +1,7 @@
 <%-- 
-    Document   : AlterarEstoque
-    Created on : 21/05/2018, 19:29:29
-    Author     : aayan
+Document   : AlterarEstoque
+Created on : 21/05/2018, 19:29:29
+Author     : aayan
 --%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -25,14 +25,15 @@
             <!-- Main -->
             <div id="main">
                 <div class="inner">
+                    <fmt:setLocale value="pt-BR"></fmt:setLocale>
 
-                    <!-- Header -->
+                        <!-- Header -->
                     <%@include file="/header.jsp" %>
                     <strong class="page-name">Alteracao de Estoque</strong>
 
                     <!-- Content -->
                     <section>
-                        <fmt:setLocale value="pt-BR"></fmt:setLocale>
+
                         <form id="estoque-form" action="${pageContext.request.contextPath}/alterarestoque" method="GET">
 
                             <div class="produto-consulta-info">
@@ -42,39 +43,33 @@
 
                         </form>
 
-                        Nome: <c:out value="${produto.nome}" ></c:out>
-                        Preco: <c:out value="${produto.preco}" ></c:out>
-                        Descricao: <c:out value="${produto.descricao}" ></c:out>
-                        Tipo: <c:out value="${produto.tipo}" ></c:out>
-                        Disable: <c:out value="${produto.disable}" ></c:out>
-                        
-                        
-<!--                        <form id="produto-resultados" action="${pageContext.request.contextPath}/produtoalteracao" method="get">
-                            <table id="produtoTable">
-                                <theader>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>Tipo</th>
-                                        <th>Preço</th>
-                                        <th>Data de Cadastro</th>
-                                        <th>Descrição</th>
-                                    </tr>
-                                </theader>
-                                <tbody>
-                                    <c:forEach items = "${listaProdutos}" var = "produto">
-                                        <tr id="rowSelection">
-                                            <td id="produtoNome"><c:out value="${produto.nome}"/></td>
-                                            <td><c:out value="${produto.tipoNome}"/></td>
-                                            <td><fmt:formatNumber value="${produto.preco}" type="currency" /></td>
-                                            <td><fmt:formatDate value="${produto.dataCadastro}" type="date" dateStyle="short" /></td>
-                                            <td><c:out value="${produto.descricao}"/></td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                                <input type="hidden" id="produtoSelecionado" name="produtoSelecionado"/>
+                        <c:if test="${semproduto == true && produto == null}">
 
-                            </table>
-                        </form>-->
+                            <p>Produto não encontrado</p>
+
+                        </c:if>
+
+
+
+                        <c:if test="${produto != null}">
+
+                            <div class="altera-estoque-info" id="produtoInfos">
+                                <p>Nome: <c:out value="${produto.nome}" ></c:out></p>
+                                <p>Preco: <fmt:formatNumber value="${produto.preco}" type="currency"></fmt:formatNumber></p>
+                                <p>Descricao: <c:out value="${produto.descricao}" ></c:out></p>
+                                <p>Tipo: <c:out value="${produto.tipo}" ></c:out></p>
+                                <p>Disable: <c:out value="${produto.disable}" ></c:out></p>
+
+                            </div>
+
+                            <form class="altera-estoque" id="form-alterarestoque" action="${pageContext.request.contextPath}/alterarestoque" method="post">
+                                <input type="hidden" value="${quantidadeAtual}" id="quantidadeAtual"/>
+                                <input name="quantidadeAlterar" id="quantidadeAlterar" placeholder="Quantidade Atual: ${quantidadeAtual}" type="text"/>
+                                <input type="hidden" id="quantidadeFinal" name="quantidadeFinal"/>
+                                <button type="button" onclick="alteraQuantidade(true)">+</button>
+                                <button type="button" onclick="alteraQuantidade(false)">-</button>
+                            </form>
+                        </c:if>
 
                     </section>
 
@@ -91,7 +86,7 @@
         <script src="js/skel.min.js"></script>
         <script src="js/util.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/produto.js"></script>
+        <script src="js/estoque.js"></script>
 
     </body>
 </html>

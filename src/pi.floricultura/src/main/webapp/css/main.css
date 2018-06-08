@@ -4295,6 +4295,25 @@ strong.page-name:hover {
     width: 70%;
     margin-right: 20px;
 }
+.altera-estoque-info {
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #9797971a;
+}
+.altera-estoque {
+    display: inline-flex;
+    width: 100%;
+}
+.altera-estoque #quantidadeAlterar {
+    width: 65%;
+}
+.altera-estoque button {
+    width: 10%;
+    margin-left: 8px;
+}
 
 /* .login-box-btn input {
     text-decoration: none;

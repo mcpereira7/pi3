@@ -62,7 +62,7 @@ public class EstoqueProdutoDAO {
 
     public static List<EstoqueProduto> ListaProdutosEstoqueById(int[] idsProduto, int idPessoaJuridica)
             throws SQLException {
-        
+
         PreparedStatement stmt = null;
         ResultSet rs;
 
@@ -113,7 +113,7 @@ public class EstoqueProdutoDAO {
 
         String sql = "UPDATE estoqueproduto SET id_Produto = ?, id_pessoa = ?, Quantidade = ? "
                 + "WHERE id_Produto = ? AND id_pessoa = ?;";
-        
+
         Connection cn = ConnectionFactory.getConnection();
 
         try {
@@ -175,5 +175,32 @@ public class EstoqueProdutoDAO {
             ConnectionFactory.closeConnection(cn, stmt, rs);
         }
         return listaEstoqueProduto;
+    }
+
+    public static int getQuantidadeByIdProduto(int idproduto)
+            throws SQLException {
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+
+        String sql = "SELECT * FROM estoqueproduto WHERE id_Produto = ?";
+
+        Connection cn = ConnectionFactory.getConnection();
+
+        try {
+            stmt = cn.prepareStatement(sql);
+
+            stmt.setInt(1, idproduto);
+
+            rs = stmt.executeQuery();
+
+            rs.next();
+
+            return rs.getInt("Quantidade");
+
+        } catch (SQLException e) {
+            throw new SQLException("Erro ao obter quantidade do produto em estoque por id do produto.(EstoqueProdutoDAO)", e.getCause());
+        } finally {
+            ConnectionFactory.closeConnection(cn, stmt, rs);
+        }
     }
 }
