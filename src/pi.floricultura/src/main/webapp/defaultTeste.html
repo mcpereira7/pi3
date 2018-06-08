@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Pagina Generica</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="css/main.css" />
+
+    </head>
+    <body>
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+
+                    <!-- Header -->
+
+
+                    <!-- Header -->
+                    <header id="header">
+                        <a href="" class="logo">
+                            <strong>Olá</strong> </a>
+                        <ul class="icons">
+                            <li>
+                                <a href="#">
+                                    <span class="label"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="label">User Foto</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/floricultura/logout">
+                                    <span class="label">Sair</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </header>
+                    <strong class="page-name">Cadastro Funcionário</strong>
+
+                    <!-- Content -->
+                    <section>
+
+                        <form id="regFunc" action="">
+
+                            <div class="tab" id="tab1">
+
+
+                                <div class="fmCadFunc">
+                                    <div id="fmCadFuncL">
+                                        <label for="Nome">Nome:</label> 
+                                        <input type="text" name="nome" id="Nome">
+
+                                        <label for="apelido">Apelido:</label>
+                                        <input type="text" name="apelido" id="apelido">
+
+                                        <label for="cpf">CPF:</label>
+                                        <input type="text" name="cpf" id="cpf">
+                                        <div class="rgdtsex">
+                                            <label for="rg">RG: </label>
+                                            <input type="text" name="rg" id="rg">
+
+                                            <label for="dtNasc">Data Nasc:</label>
+                                            <input type="date" name="dtNasc" id="dtNasc">
+
+                                            <label for="sexo">Sexo</label>
+                                            <select id="sexo">
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Feminino">Feminino</option>
+                                                <option value="Outros">Outros</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div id="fmCadFuncR">
+                                        <div id="upImage">       
+                                            <div id="image-holder"></div><br>
+                                            <input id="fileUpload" type="file"><br>
+                                        </div>
+                                        <label for="email">E-mail:</label>
+                                        <input type="email" name="email" id="email">
+
+                                        <label for="tel">Telefone:</label>
+                                        <input type="tel" name="tel" id="tel">
+
+                                        <label for="cel">Celular:</label>
+                                        <input type="tel" name="cel" id="cel">
+                                    </div>
+                                </div>
+                                
+                                <div class="tab">
+                                    <h3>Endereço</h3>
+
+                                    <label for="log">Logradouro:</label>
+                                    <input type="text" name="log" id="log">
+
+                                    <label for="num">Numero:</label>
+                                    <input type="text" name="numero" id="num">
+
+                                    <label for="comp">Complementeo:</label>
+                                    <input type="text" name="comp" id="comp">
+
+                                    <label for="bairro">Bairo:</label> 
+                                    <input type="text" name="bairro" id="bairro">
+
+                                    <label for="cid">Cidade:</label> 
+                                    <input type="text" id="cid" name="cid">
+
+                                    <label for="cep">CEP:</label> 
+                                    <input type="text" name="cep" id="cep">
+
+                                    <label for="uf">UF:</label>
+                                    <input type="text" id="uf" name="uf">
+                                </div>
+                                <div class="tab">
+                                    <label for="filial">Filial:</label>
+                                    <input type="text" name="filial" id="filial">
+
+                                    <label for="login">Login:</label>
+                                    <input type="text" name="login" id="login">
+
+                                    <label for="senha">Senha:</label> 
+                                    <input type="text" name="senha" id="senha">
+
+                                    <label for="confSenha">Confirmar Senha</label> 
+                                    <input type="text" id="confSenha" name="confSenha">
+                                </div>
+
+                                <div style="overflow:auto;">
+                                    <div style="float:right;">
+                                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                    </div>
+
+
+                                    <div style="text-align:center;margin-top:40px;">
+                                        <span class="step"></span>
+                                        <span class="step"></span>
+                                        <span class="step"></span>
+                                    </div>
+                                    </form>
+
+                                    </section>
+
+                                </div>
+                            </div>
+
+                            <!-- Sidebar -->
+
+
+                            <!-- Sidebar -->
+                            <div id="sidebar">
+                                <div class="inner" id="Menu">
+
+                                    <!-- Search -->
+                                    <section id="topSidBar" class="alt">
+                                        <img class="imgTopSB" src="img/bck_girassol_01.jpg" />
+                                    </section>
+
+                                    <!-- Menu -->
+                                    <nav id="menu">
+                                        <header class="major">
+                                            <h2>Menu</h2>
+                                        </header>
+                                        <ul>
+                                            <li>
+                                                <a href="/floricultura/home">Homepage</a>
+                                            </li>
+                                            <li>
+                                                <span class="opener" id="Vendas">Vendas</span>
+                                                <ul>
+                                                    <li>
+                                                        <a href="/floricultura/venda">Nova Venda </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/floricultura/Relatorio">Relatorio</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span class="opener" id="Permissoes">Permissoes</span>
+                                                <ul>
+                                                    <li>
+                                                        <a href="/floricultura/PermissoesCadastrar">Cadastrar</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/floricultura/PermissoesListar">Consultar</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span class="opener" id="Produto">Produto</span>
+                                                <ul>
+                                                    <li>
+                                                        <a href="/floricultura/produto">Cadastrar Produto</a>
+                                                    </li>
+                                                    <li>
+                                                        <form action="/floricultura/listarprodutos" method="GET">
+                                                            <input type="text" name="consulta" id="consulta" placeholder="Nome do produto..." maxlength="40">
+                                                            <input type="hidden" alt="submit">
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span class="opener" id="Cliente">Cliente</span>
+                                                <ul>
+                                                    <li>
+                                                        <a href="/floricultura/ListarClientes">Consultar</a></li>
+                                                    <li><a href="/floricultura/cadCli">Cadastro</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span class="opener" id="filial">Filiais</span>
+                                                <ul>
+                                                    <li><a href="/floricultura/CadastroFilial">Cadastrar</a></li>
+                                                    <li><a href="/floricultura/ListaFiliais">Unidades</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                    <!-- Section -->
+                                    <section>
+                                        <header class="major">
+                                            <!--<h2>Ante interdum</h2>-->
+                                        </header>
+                                        <div class="mini-posts">
+                                        </div>
+                                        <ul class="actions">
+                                            <!--<li><a href="#" class="button">More</a></li>-->
+                                        </ul>
+                                    </section>
+
+                                    <!-- Footer -->
+                                    <footer id="footer">
+                                        <p class="copyright">&copy;
+                                            Untitled. All rights reserved.
+                                            Demo Images: <a href="https://unsplash.com">Unsplash</a>.
+                                            Design: <a href="https://html5up.net">HTML5 UP</a>.
+                                        </p>
+                                    </footer>
+
+
+                                </div>
+
+                            </div>
+
+                            </div>
+
+                            <!-- Scripts -->
+                            <script src="js/jquery.min.js"></script>
+                            <script src="js/skel.min.js"></script>
+                            <script src="js/util.js"></script>
+                            <script src="js/main.js"></script>
+                            <script src="js/formFuncionario.js"></script>
+
+                            <script>
+                                            $("#fileUpload").on('change', function () {
+
+                                                if (typeof (FileReader) !== "undefined") {
+
+                                                    var image_holder = $("#image-holder");
+                                                    image_holder.empty();
+
+                                                    var reader = new FileReader();
+                                                    reader.onload = function (e) {
+                                                        $("<img />", {
+                                                            "src": e.target.result,
+                                                            "class": "thumb-image"
+                                                        }).appendTo(image_holder);
+                                                    }
+                                                    image_holder.show();
+                                                    reader.readAsDataURL($(this)[0].files[0]);
+                                                } else {
+                                                    alert("Este navegador nao suporta FileReader.");
+                                                }
+                                            });
+                            </script>
+
+                            </body>
+                            </html>
