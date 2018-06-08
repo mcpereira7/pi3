@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -69,25 +70,32 @@ public class LoginServlet extends HttpServlet {
          */
         try {
             func = ServicoFuncionario.LogarUsuario(user, password);
-            if (func.getUser().equals(user)) {
-                if (func.checkPassword(password)) {
-                    //Se estiver tudo ok 
-                    
-                    sessao.setAttribute("user", user);
-                }else{
-                    msg = "Senha incorreta";
-                    sessao.setAttribute("msg", msg);
-                    response.sendRedirect(request.getContextPath() + "/index.jsp");
-                }
+            if (func != null) {
+                if (func.getUser().equals(user)) {
+                    String openPass = BCrypt.hashpw(password, BCrypt.gensalt());
+                    if (func.getPassword().equals(openPass)) {
+                        //Se estiver tudo ok 
+                        sessao.setAttribute("user", user);
+                    } else {
+                        msg = "Senha incorreta";
+                        sessao.setAttribute("msg", msg);
+                        response.sendRedirect(request.getContextPath() + "/index.jsp");
+                    }
 
-            }else{
+                } else {
                     msg = "Usuário não encontrado";
                     sessao.setAttribute("user", user);
                     response.sendRedirect(request.getContextPath() + "/index.jsp");
                 }
+            } else {
+                msg = "Usuário não encontrado";
+                request.getSession().setAttribute("msg", msg);
+                request.getRequestDispatcher("index.jsp")
+                        .forward(request, response);
+            }
         } catch (Exception e) {
         }
-        
+
         response.sendRedirect(request.getContextPath() + "/home");
 
     }

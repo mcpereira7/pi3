@@ -26,9 +26,9 @@ public class ServicoFuncionario {
 
             usuario = FuncionarioDAO.getUser(user);
 
-//            if (!usuario.getPassword().equals(password)) {
-//                return null;
-//            }
+            if (usuario == null) {
+                return null;
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(ServicoFuncionario.class.getName()).log(Level.SEVERE, null, ex);

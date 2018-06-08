@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author leand
  */
-@WebFilter(filterName = "Filter", urlPatterns = {"/*"})
+@WebFilter(filterName = "Filter", urlPatterns = {"/floricultura/*"})
 public class Filtro implements Filter {
 
     @Override

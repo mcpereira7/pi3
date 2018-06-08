@@ -25,13 +25,13 @@ public class FuncionarioDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM funcionarios WHERE Login = '?'";
+        String sql = "SELECT * FROM funcionarios WHERE Login = ?";
 
         cn = ConnectionFactory.getConnection();
 
         try {
             stmt = cn.prepareStatement(sql);
-
+            stmt.setString(1, user);
             rs = stmt.executeQuery();
 
             rs.next();
