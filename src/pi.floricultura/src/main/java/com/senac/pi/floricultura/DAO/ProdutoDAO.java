@@ -161,12 +161,13 @@ public class ProdutoDAO {
             throws SQLException, Exception {
         PreparedStatement stmtProduto = null;
 
-        String sqlProduto = "INSERT INTO Produto(Nome, Descricao, Preco, Tipo, Disable) "
-                + "VALUES(?,?,?,?,?,?)";
+        String sqlProduto = "INSERT INTO produto(Nome, Descricao, Preco, Tipo, Disable) "
+                + "VALUES(?,?,?,?,?)";
+
+        cn = ConnectionFactory.getConnection();
 
         try {
             stmtProduto = cn.prepareStatement(sqlProduto);
-//            stmtProduto.setInt(1, produto.getId());
             stmtProduto.setString(1, produto.getNome());
             stmtProduto.setString(2, produto.getDescricao());
             stmtProduto.setFloat(3, produto.getPreco());

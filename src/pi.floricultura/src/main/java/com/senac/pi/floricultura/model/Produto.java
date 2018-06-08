@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Aline Paludetti de Oliveira
+ * TADS - Turma A
  */
 package com.senac.pi.floricultura.model;
 
@@ -124,7 +123,7 @@ public class Produto {
     }
 
     private void setTipoNome(int tipo) {
-        this.tipoNome = tipos[(tipo - 1)];
+        this.tipoNome = tipos[(tipo)];
     }
 
     public int getQuantidadeVenda() {

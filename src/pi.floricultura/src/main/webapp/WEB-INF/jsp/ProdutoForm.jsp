@@ -41,11 +41,11 @@ Author     : Aline
                             </div>
                             <div class="produto-tipo">
                                 Tipo:&nbsp;&nbsp;&nbsp;
-                                <input type="radio" name="tipo" id="indefinido"><label for="indefinido">Indefinido</label>
-                                <input type="radio" name="tipo" id="flor"><label for="flor">Flor</label>
-                                <input type="radio" name="tipo" id="planta"><label for="planta">Planta</label>
-                                <input type="radio" name="tipo" id="rosa"><label for="rosa">Rosa</label>
-                                <input type="radio" name="tipo" id="ilicita"><label for="ilicita">Ilícita</label>
+                                <input type="radio" name="tipo" id="indefinido" value="0"><label for="indefinido">Indefinido</label>
+                                <input type="radio" name="tipo" id="flor" value="1"><label for="flor">Flor</label>
+                                <input type="radio" name="tipo" id="planta" value="2"><label for="planta">Planta</label>
+                                <input type="radio" name="tipo" id="rosa" value="3"><label for="rosa">Rosa</label>
+                                <input type="radio" name="tipo" id="ilicita" value="4"><label for="ilicita">Ilícita</label>
                             </div>
                             <div>
                                 Descrição: <br>
