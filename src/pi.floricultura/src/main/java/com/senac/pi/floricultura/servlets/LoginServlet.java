@@ -73,7 +73,8 @@ public class LoginServlet extends HttpServlet {
             if (func != null) {
                 if (func.getUser().equals(user)) {
                     String openPass = BCrypt.hashpw(password, BCrypt.gensalt());
-                    if (func.getPassword().equals(openPass)) {
+                    
+                    if (BCrypt.checkpw(password, func.getPassword())) {
                         //Se estiver tudo ok 
                         sessao.setAttribute("user", user);
                     } else {
